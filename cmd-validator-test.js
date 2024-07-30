@@ -10,6 +10,38 @@ import { mvTestCases } from "./builtins/mv.js";
 import { rmTestCases } from "./builtins/rm.js";
 import { rmdirTestCases } from "./builtins/rmdir.js";
 import { touchTestCases } from "./builtins/touch.js";
+import { catTestCases } from "./builtins/cat.js";
+import { emacsTestCases } from "./builtins/emacs.js";
+import { headTestCases } from "./builtins/head.js";
+import { lessTestCases } from "./builtins/less.js";
+import { moreTestCases } from "./builtins/more.js";
+import { nanoTestCases } from "./builtins/nano.js";
+import { tailTestCases } from "./builtins/tail.js";
+import { viTestCases } from "./builtins/vi.js";
+import { vimTestCases } from "./builtins/vim.js";
+import { groupaddTestCases } from "./builtins/groupadd.js";
+import { groupdelTestCases } from "./builtins/groupdel.js";
+import { groupmodTestCases } from "./builtins/groupmod.js";
+import { groupsTestCases } from "./builtins/groups.js";
+import { idTestCases } from "./builtins/id.js";
+import { killTestCases } from "./builtins/kill.js";
+import { killallTestCases } from "./builtins/killall.js";
+import { niceTestCases } from "./builtins/nice.js";
+import { nohupTestCases } from "./builtins/nohup.js";
+import { passwdTestCases } from "./builtins/passwd.js";
+import { pkillTestCases } from "./builtins/pkill.js";
+import { psTestCases } from "./builtins/ps.js";
+import { reniceTestCases } from "./builtins/renice.js";
+import { suTestCases } from "./builtins/su.js";
+import { sudoTestCases } from "./builtins/sudo.js";
+import { unameTestCases } from "./builtins/uname.js";
+import { useraddTestCases } from "./builtins/useradd.js";
+import { userdelTestCases } from "./builtins/userdel.js";
+import { usermodTestCases } from "./builtins/usermod.js";
+import { whichTestCases } from "./builtins/which.js";
+import { whereisTestCases } from "./builtins/whereis.js";
+import { whoamiTestCases } from "./builtins/whoami.js";
+
 import { CommandValidator } from "./cmd-validator.js";
 
 const colors = {
@@ -47,6 +79,37 @@ function runTestCase(testCase) {
   rmTestCases,
   rmdirTestCases,
   touchTestCases,
+  catTestCases,
+  emacsTestCases,
+  headTestCases,
+  lessTestCases,
+  moreTestCases,
+  nanoTestCases,
+  tailTestCases,
+  viTestCases,
+  vimTestCases,
+  groupaddTestCases,
+  groupdelTestCases,
+  groupmodTestCases,
+  groupsTestCases,
+  idTestCases,
+  killTestCases,
+  killallTestCases,
+  niceTestCases,
+  nohupTestCases,
+  passwdTestCases,
+  pkillTestCases,
+  psTestCases,
+  reniceTestCases,
+  suTestCases,
+  sudoTestCases,
+  unameTestCases,
+  useraddTestCases,
+  userdelTestCases,
+  usermodTestCases,
+  whichTestCases,
+  whereisTestCases,
+  whoamiTestCases,
 ].forEach((testCase) => {
   console.log(`\n\n=========================`);
   runTestCase(testCase);
