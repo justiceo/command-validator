@@ -1,4 +1,4 @@
-import { BaseFSM } from "./base-fsm.js";
+import { BaseFSM } from "../base-fsm.js";
 
 export class MkdirFSM extends BaseFSM {
   constructor() {

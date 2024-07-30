@@ -1,4 +1,4 @@
-import { BaseFSM } from "./base-fsm.js";
+import { BaseFSM } from "../base-fsm.js";
 
 /**
  * Finite State Machine to validate the syntax of a cd command
