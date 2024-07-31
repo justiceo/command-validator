@@ -64,13 +64,3 @@ export class WhereisFSM extends BaseFSM {
   }
 }
 
-export const whereisTestCases = [
-  { description: "Basic whereis", input: "whereis ls", expectedOutput: true },
-  { description: "whereis with multiple arguments", input: "whereis ls cat grep", expectedOutput: true },
-  { description: "whereis with option", input: "whereis -b ls", expectedOutput: true },
-  { description: "whereis with multiple options", input: "whereis -bm ls", expectedOutput: true },
-  { description: "Invalid: whereis without arguments", input: "whereis", expectedOutput: false },
-  { description: "Invalid: whereis with only options", input: "whereis -b", expectedOutput: false },
-  { description: "whereis with option and multiple arguments", input: "whereis -b ls cat", expectedOutput: true },
-  { description: "Invalid: whereis with invalid option", input: "whereis -z ls", expectedOutput: true }, // whereis doesn't validate option names at syntax level
-];

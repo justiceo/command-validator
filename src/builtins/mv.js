@@ -63,21 +63,3 @@ export class MvFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const mvTestCases = [
-  { description: "Basic mv", input: "mv source destination", expectedOutput: true },
-  { description: "mv with option", input: "mv -i source destination", expectedOutput: true },
-  { description: "mv with multiple sources", input: "mv file1 file2 file3 destination", expectedOutput: true },
-  { description: "mv with path", input: "mv /path/to/source /path/to/destination", expectedOutput: true },
-  { description: "mv with option and path", input: "mv -f /path/to/source /path/to/destination", expectedOutput: true },
-  { description: "mv with long option", input: "mv --force source destination", expectedOutput: true },
-  { description: "mv with quoted file names", input: "mv 'source file.txt' 'destination file.txt'", expectedOutput: true },
-  { description: "mv with escaped space", input: "mv source\\ file.txt destination\\ file.txt", expectedOutput: true },
-  { description: "Invalid: mv without destination", input: "mv source", expectedOutput: false },
-  { description: "Invalid: mv without source and destination", input: "mv", expectedOutput: false },
-  { description: "mv with multiple options", input: "mv -i -v source destination", expectedOutput: true },
-  { description: "mv with update option", input: "mv -u source destination", expectedOutput: true },
-  { description: "mv with backup option", input: "mv --backup=numbered source destination", expectedOutput: true },
-  { description: "mv with target-directory option", input: "mv --target-directory=dest file1 file2", expectedOutput: true },
-  { description: "mv with no-clobber option", input: "mv -n source destination", expectedOutput: true },
-];

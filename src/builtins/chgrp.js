@@ -77,20 +77,3 @@ export class ChgrpFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const chgrpTestCases = [
-  { description: "Basic chgrp", input: "chgrp group file", expectedOutput: true },
-  { description: "chgrp with option", input: "chgrp -R group directory", expectedOutput: true },
-  { description: "chgrp with multiple files", input: "chgrp group file1 file2 file3", expectedOutput: true },
-  { description: "chgrp with path", input: "chgrp group /path/to/file", expectedOutput: true },
-  { description: "chgrp with long option", input: "chgrp --recursive group directory", expectedOutput: true },
-  { description: "chgrp with quoted file name", input: "chgrp group 'file with spaces.txt'", expectedOutput: true },
-  { description: "chgrp with escaped space", input: "chgrp group file\\ with\\ spaces.txt", expectedOutput: true },
-  { description: "Invalid: chgrp without group and file", input: "chgrp", expectedOutput: false },
-  { description: "Invalid: chgrp without file", input: "chgrp group", expectedOutput: false },
-  { description: "chgrp with reference option", input: "chgrp --reference=ref_file target_file", expectedOutput: true },
-  { description: "chgrp with verbose option", input: "chgrp -v group file", expectedOutput: true },
-  { description: "chgrp with preserve-root option", input: "chgrp --preserve-root group /", expectedOutput: true },
-  { description: "chgrp with from option", input: "chgrp --from=oldgroup newgroup file", expectedOutput: true },
-  { description: "chgrp with multiple options", input: "chgrp -Rv group directory", expectedOutput: true },
-];

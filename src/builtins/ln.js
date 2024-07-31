@@ -63,20 +63,3 @@ export class LnFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const lnTestCases = [
-  { description: "Basic ln", input: "ln source destination", expectedOutput: true },
-  { description: "ln with option", input: "ln -s source destination", expectedOutput: true },
-  { description: "ln with path", input: "ln /path/to/source /path/to/destination", expectedOutput: true },
-  { description: "ln with option and path", input: "ln -f /path/to/source /path/to/destination", expectedOutput: true },
-  { description: "ln with long option", input: "ln --symbolic source destination", expectedOutput: true },
-  { description: "ln with quoted file names", input: "ln 'source file.txt' 'destination file.txt'", expectedOutput: true },
-  { description: "ln with escaped space", input: "ln source\\ file.txt destination\\ file.txt", expectedOutput: true },
-  { description: "Invalid: ln without destination", input: "ln source", expectedOutput: false },
-  { description: "Invalid: ln without source and destination", input: "ln", expectedOutput: false },
-  { description: "ln with multiple options", input: "ln -sf source destination", expectedOutput: true },
-  { description: "ln with backup option", input: "ln --backup=numbered source destination", expectedOutput: true },
-  { description: "ln with target-directory option", input: "ln --target-directory=dest file1 file2", expectedOutput: true },
-  { description: "ln with no-dereference option", input: "ln -n source destination", expectedOutput: true },
-  { description: "ln with relative option", input: "ln --relative source destination", expectedOutput: true },
-];

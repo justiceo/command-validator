@@ -49,11 +49,3 @@ export class NohupFSM extends BaseFSM {
     return this.transition(undefined) && this.commandSeen;
   }
 }
-
-export const nohupTestCases = [
-  { description: "Basic nohup", input: "nohup command", expectedOutput: true },
-  { description: "nohup with command and arguments", input: "nohup command arg1 arg2", expectedOutput: true },
-  { description: "nohup with complex command", input: "nohup command1 && command2", expectedOutput: true },
-  { description: "Invalid: nohup without command", input: "nohup", expectedOutput: false },
-  { description: "nohup with redirections", input: "nohup command > output.log 2>&1 &", expectedOutput: true },
-];

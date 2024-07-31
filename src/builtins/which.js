@@ -63,14 +63,3 @@ export class WhichFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const whichTestCases = [
-  { description: "Basic which", input: "which ls", expectedOutput: true },
-  { description: "which with multiple arguments", input: "which ls cat grep", expectedOutput: true },
-  { description: "which with option", input: "which -a ls", expectedOutput: true },
-  { description: "which with long option", input: "which --all ls", expectedOutput: true },
-  { description: "Invalid: which without arguments", input: "which", expectedOutput: false },
-  { description: "Invalid: which with only options", input: "which -a", expectedOutput: false },
-  { description: "which with option and multiple arguments", input: "which -a ls cat", expectedOutput: true },
-  { description: "Invalid: which with invalid option", input: "which -z ls", expectedOutput: true }, // which doesn't validate option names at syntax level
-];

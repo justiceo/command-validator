@@ -63,14 +63,3 @@ export class TypeFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const typeTestCases = [
-  { description: "Basic type", input: "type ls", expectedOutput: true },
-  { description: "type with multiple arguments", input: "type ls cat grep", expectedOutput: true },
-  { description: "type with option", input: "type -t ls", expectedOutput: true },
-  { description: "type with long option", input: "type --type ls", expectedOutput: true },
-  { description: "Invalid: type without arguments", input: "type", expectedOutput: false },
-  { description: "Invalid: type with only options", input: "type -t", expectedOutput: false },
-  { description: "type with option and multiple arguments", input: "type -t ls cat", expectedOutput: true },
-  { description: "Invalid: type with invalid option", input: "type -z ls", expectedOutput: true }, // type doesn't validate option names at syntax level
-];

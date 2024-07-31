@@ -79,21 +79,3 @@ export class KillallFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const killallTestCases = [
-    { description: "Basic killall", input: "killall process_name", expectedOutput: true },
-    { description: "killall with signal number", input: "killall -9 process_name", expectedOutput: true },
-    { description: "killall with signal name", input: "killall -SIGKILL process_name", expectedOutput: true },
-    { description: "killall with user filter", input: "killall -u username process_name", expectedOutput: true },
-    { description: "killall with exact match", input: "killall -e process_name", expectedOutput: true },
-    { description: "killall with ignore case", input: "killall -I PROCESS_NAME", expectedOutput: true },
-    { description: "killall with wait mode", input: "killall -w process_name", expectedOutput: true },
-    { description: "killall with quiet mode", input: "killall -q process_name", expectedOutput: true },
-    { description: "killall with multiple process names", input: "killall proc1 proc2 proc3", expectedOutput: true },
-    { description: "killall with multiple options", input: "killall -9 -u root -e process_name", expectedOutput: true },
-    { description: "killall with long options", input: "killall --signal SIGKILL --user root process_name", expectedOutput: true },
-    { description: "killall with invalid signal", input: "killall -999 process_name", expectedOutput: true }, // killall doesn't validate signal numbers at syntax level
-    { description: "killall without process name", input: "killall", expectedOutput: false },
-    { description: "killall with extremely long input", input: "killall " + "-9 ".repeat(50) + "process_name", expectedOutput: true },
-    { description: "killall with quoted argument", input: "killall 'process name with spaces'", expectedOutput: true },
-  ];

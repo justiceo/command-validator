@@ -66,20 +66,3 @@ export class UserdelFSM extends BaseFSM {
     return this.transition(undefined) && this.usernameSeen;
   }
 }
-
-export const userdelTestCases = [
-  { description: "Basic userdel", input: "userdel username", expectedOutput: true },
-  { description: "userdel with short option", input: "userdel -r username", expectedOutput: true },
-  { description: "userdel with long option", input: "userdel --remove username", expectedOutput: true },
-  { description: "userdel with multiple options", input: "userdel -r -f username", expectedOutput: true },
-  { description: "userdel with mixed short and long options", input: "userdel -r --force username", expectedOutput: true },
-  { description: "Invalid: userdel without username", input: "userdel", expectedOutput: false },
-  { description: "Invalid: userdel with multiple usernames", input: "userdel user1 user2", expectedOutput: false },
-  { description: "Invalid: userdel with invalid option", input: "userdel -z username", expectedOutput: true }, // userdel doesn't validate option names at syntax level
-  { description: "userdel with option requiring no value", input: "userdel --force username", expectedOutput: true },
-  { description: "userdel with very long username", input: "userdel verylongusernamexxxxxxxxxxxxxxxxxxxxxxxxx", expectedOutput: true },
-  { description: "userdel with numeric username", input: "userdel 123456", expectedOutput: true },
-  { description: "userdel with underscore in username", input: "userdel old_user", expectedOutput: true },
-  { description: "userdel with all possible options", input: "userdel -r -f --force username", expectedOutput: true },
-  { description: "Invalid: userdel with option after username", input: "userdel username -r", expectedOutput: false },
-];

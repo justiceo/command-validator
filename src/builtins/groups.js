@@ -54,10 +54,3 @@ export class GroupsFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const groupsTestCases = [
-  { description: "Basic groups", input: "groups", expectedOutput: true },
-  { description: "groups with username", input: "groups username", expectedOutput: true },
-  { description: "groups with multiple usernames", input: "groups user1 user2", expectedOutput: true },
-  { description: "Invalid: groups with option", input: "groups -a", expectedOutput: false },
-];

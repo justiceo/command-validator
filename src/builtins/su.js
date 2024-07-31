@@ -79,24 +79,3 @@ export class SuFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const suTestCases = [
-    { description: "Basic su", input: "su", expectedOutput: true },
-    { description: "su with username", input: "su username", expectedOutput: true },
-    { description: "su with hyphen (simulate full login)", input: "su -", expectedOutput: true },
-    { description: "su with hyphen and username", input: "su - username", expectedOutput: true },
-    { description: "su with -c option (run command)", input: "su -c 'command'", expectedOutput: true },
-    { description: "su with -c option and username", input: "su -c 'command' username", expectedOutput: true },
-    { description: "su with multiple options", input: "su -l -c 'command' username", expectedOutput: true },
-    { description: "su with long options", input: "su --login --command='command' username", expectedOutput: true },
-    { description: "su with -s option (specify shell)", input: "su -s /bin/bash username", expectedOutput: true },
-    { description: "su with -p option (preserve environment)", input: "su -p username", expectedOutput: true },
-    { description: "su with quoted command containing spaces", input: "su -c 'command with spaces' username", expectedOutput: true },
-    { description: "su with multiple commands", input: "su -c 'command1 && command2' username", expectedOutput: true },
-    { description: "su with redirection", input: "su -c 'command > output.log' username", expectedOutput: true },
-    { description: "su with pipeline", input: "su -c 'command1 | command2' username", expectedOutput: true },
-    { description: "su with invalid option", input: "su -z username", expectedOutput: true }, // su doesn't validate option names at syntax level
-    { description: "su with extremely long input", input: "su " + "-c 'command' ".repeat(50) + "username", expectedOutput: true },
-    { description: "su with quoted username containing spaces", input: "su 'user name with spaces'", expectedOutput: true },
-    { description: "su with environment variables", input: "su -c 'echo $HOME' username", expectedOutput: true },
-  ];

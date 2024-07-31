@@ -63,21 +63,3 @@ export class RmFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const rmTestCases = [  
-    { description: "Basic rm", input: "rm file", expectedOutput: true },
-    { description: "rm with option", input: "rm -r directory", expectedOutput: true },
-    { description: "rm with multiple files", input: "rm file1 file2 file3", expectedOutput: true },
-    { description: "rm with path", input: "rm /path/to/file", expectedOutput: true },
-    { description: "rm with option and path", input: "rm -f /path/to/file", expectedOutput: true },
-    { description: "rm with long option", input: "rm --recursive directory", expectedOutput: true },
-    { description: "rm with quoted file name", input: "rm 'file with spaces.txt'", expectedOutput: true },
-    { description: "rm with escaped space", input: "rm file\\ with\\ spaces.txt", expectedOutput: true },
-    { description: "Invalid: rm without file", input: "rm", expectedOutput: false },
-    { description: "rm with multiple options", input: "rm -rf directory", expectedOutput: true },
-    { description: "rm with force option", input: "rm --force file", expectedOutput: true },
-    { description: "rm with interactive option", input: "rm -i file", expectedOutput: true },
-    { description: "rm with verbose option", input: "rm -v file", expectedOutput: true },
-    { description: "rm with preserve-root option", input: "rm --preserve-root -rf /", expectedOutput: true },
-    { description: "rm with no-preserve-root option", input: "rm --no-preserve-root -rf /", expectedOutput: true },
-  ];

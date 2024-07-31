@@ -64,27 +64,3 @@ export class CatFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const catTestCases = [
-  { description: "Basic cat", input: "cat file.txt", expectedOutput: true },
-  { description: "cat with multiple files", input: "cat file1.txt file2.txt file3.txt", expectedOutput: true },
-  { description: "cat with option", input: "cat -n file.txt", expectedOutput: true },
-  { description: "cat with long option", input: "cat --number file.txt", expectedOutput: true },
-  { description: "cat with multiple options", input: "cat -bn file.txt", expectedOutput: true },
-  { description: "cat with path", input: "cat /path/to/file.txt", expectedOutput: true },
-  { description: "cat with wildcard", input: "cat *.txt", expectedOutput: true },
-  { description: "cat with quoted filename", input: "cat 'file with spaces.txt'", expectedOutput: true },
-  { description: "cat with escaped spaces", input: "cat file\\ with\\ spaces.txt", expectedOutput: true },
-  { description: "cat without arguments", input: "cat", expectedOutput: true },
-  { description: "cat with only options", input: "cat -n", expectedOutput: true },
-  { description: "cat with stdin redirection", input: "cat < input.txt", expectedOutput: true },
-  { description: "cat with stdout redirection", input: "cat file.txt > output.txt", expectedOutput: true },
-  { description: "cat with pipe", input: "cat file.txt | grep pattern", expectedOutput: true },
-  { description: "cat with multiple wildcards", input: "cat *.txt *.log", expectedOutput: true },
-  { description: "cat with absolute and relative paths", input: "cat /etc/passwd ./local/file.txt", expectedOutput: true },
-  { description: "cat with show-ends option", input: "cat -E file.txt", expectedOutput: true },
-  { description: "cat with show-tabs option", input: "cat -T file.txt", expectedOutput: true },
-  { description: "cat with squeeze-blank option", input: "cat -s file.txt", expectedOutput: true },
-  { description: "cat with multiple mixed options and files", input: "cat -bns file1.txt 'spaced file.txt' /etc/hosts", expectedOutput: true },
-  { description: "Invalid: cat with invalid option", input: "cat -z file.txt", expectedOutput: true }, // cat doesn't validate option names at syntax level
-];

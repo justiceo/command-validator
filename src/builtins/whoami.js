@@ -17,18 +17,18 @@ export class WhoamiFSM extends BaseFSM {
   }
 
   handleStart(char) {
-    return char === 'w' ? "whoami" : "invalid";
+    return char === "w" ? "whoami" : "invalid";
   }
 
   handleWhoami(char) {
     if ("hoami".indexOf(char) !== -1) return "whoami";
-    if (char === ' ' || char === '\t') return "space";
+    if (char === " " || char === "\t") return "space";
     if (char === undefined) return "valid";
     return "invalid";
   }
 
   handleSpace(char) {
-    if (char === ' ' || char === '\t') return "space";
+    if (char === " " || char === "\t") return "space";
     if (char === undefined) return "valid";
     return "invalid";
   }
@@ -41,10 +41,3 @@ export class WhoamiFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const whoamiTestCases = [
-  { description: "Basic whoami", input: "whoami", expectedOutput: true },
-  { description: "whoami with spaces", input: "whoami   ", expectedOutput: true },
-  { description: "Invalid: whoami with argument", input: "whoami argument", expectedOutput: false },
-  { description: "Invalid: whoami with option", input: "whoami -a", expectedOutput: false },
-];

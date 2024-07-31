@@ -67,13 +67,3 @@ export class HostnameFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const hostnameTestCases = [
-  { description: "Basic hostname", input: "hostname", expectedOutput: true },
-  { description: "hostname with option", input: "hostname -f", expectedOutput: true },
-  { description: "hostname with long option", input: "hostname --fqdn", expectedOutput: true },
-  { description: "hostname with argument (set new hostname)", input: "hostname newhost", expectedOutput: true },
-  { description: "hostname with option and argument", input: "hostname -b newhost", expectedOutput: true },
-  { description: "Invalid: hostname with multiple arguments", input: "hostname arg1 arg2", expectedOutput: false },
-  { description: "Invalid: hostname with invalid option", input: "hostname -z", expectedOutput: true }, // hostname doesn't validate option names at syntax level
-];

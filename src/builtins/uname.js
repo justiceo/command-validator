@@ -54,13 +54,3 @@ export class UnameFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const unameTestCases = [
-  { description: "Basic uname", input: "uname", expectedOutput: true },
-  { description: "uname with single option", input: "uname -a", expectedOutput: true },
-  { description: "uname with multiple options", input: "uname -asnrvm", expectedOutput: true },
-  { description: "uname with space between options", input: "uname -a -s -n", expectedOutput: true },
-  { description: "Invalid: uname with argument", input: "uname argument", expectedOutput: false },
-  { description: "Invalid: uname with invalid option", input: "uname -z", expectedOutput: true }, // uname doesn't validate option names at syntax level
-  { description: "uname with long option", input: "uname --all", expectedOutput: true },
-];

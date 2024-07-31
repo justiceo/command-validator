@@ -63,27 +63,3 @@ export class HeadFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const headTestCases = [
-  { description: "Basic head", input: "head file.txt", expectedOutput: true },
-  { description: "head with multiple files", input: "head file1.txt file2.txt", expectedOutput: true },
-  { description: "head with option", input: "head -n 10 file.txt", expectedOutput: true },
-  { description: "head with long option", input: "head --lines=20 file.txt", expectedOutput: true },
-  { description: "head with multiple options", input: "head -n 10 -q file.txt", expectedOutput: true },
-  { description: "head with path", input: "head /path/to/file.txt", expectedOutput: true },
-  { description: "head with wildcard", input: "head *.txt", expectedOutput: true },
-  { description: "head with quoted filename", input: "head 'file with spaces.txt'", expectedOutput: true },
-  { description: "head with escaped spaces", input: "head file\\ with\\ spaces.txt", expectedOutput: true },
-  { description: "head without arguments", input: "head", expectedOutput: true },
-  { description: "head with only options", input: "head -n 10", expectedOutput: true },
-  { description: "head with stdin redirection", input: "head < input.txt", expectedOutput: true },
-  { description: "head with pipe", input: "cat file.txt | head", expectedOutput: true },
-  { description: "head with multiple wildcards", input: "head *.txt *.log", expectedOutput: true },
-  { description: "head with absolute and relative paths", input: "head /etc/passwd ./local/file.txt", expectedOutput: true },
-  { description: "head with bytes option", input: "head -c 100 file.txt", expectedOutput: true },
-  { description: "head with quiet option", input: "head -q file1.txt file2.txt", expectedOutput: true },
-  { description: "head with verbose option", input: "head -v file.txt", expectedOutput: true },
-  { description: "head with zero-terminated option", input: "head -z file.txt", expectedOutput: true },
-  { description: "head with multiple mixed options and files", input: "head -n 10 -q file1.txt 'spaced file.txt' /etc/hosts", expectedOutput: true },
-  { description: "Invalid: head with invalid option", input: "head -x file.txt", expectedOutput: true }, // head doesn't validate option names at syntax level
-];

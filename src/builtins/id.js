@@ -65,14 +65,3 @@ export class IdFSM extends BaseFSM {
     return this.transition(undefined);
   }
 }
-
-export const idTestCases = [
-  { description: "Basic id", input: "id", expectedOutput: true },
-  { description: "id with single option", input: "id -u", expectedOutput: true },
-  { description: "id with multiple options", input: "id -Gn", expectedOutput: true },
-  { description: "id with long option", input: "id --group", expectedOutput: true },
-  { description: "id with username argument", input: "id username", expectedOutput: true },
-  { description: "id with option and username", input: "id -u username", expectedOutput: true },
-  { description: "Invalid: id with multiple arguments", input: "id user1 user2", expectedOutput: false },
-  { description: "Invalid: id with invalid option", input: "id -z", expectedOutput: true }, // id doesn't validate option names at syntax level
-];
