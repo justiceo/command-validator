@@ -1,29 +1,83 @@
-import { PsFSM } from "../../src/builtins/ps.js";
+import { PsFSM, psTestCases } from '../../src/builtins/ps.js';
+import { execSync, spawn } from 'child_process';
+import os from 'os';
 
-describe("PsFSM", () => {
+describe('PsFSM', () => {
   let fsm;
+  let testProcess;
 
   beforeEach(() => {
     fsm = new PsFSM();
+    testProcess = spawn('sleep', ['3600']);
   });
 
-  test("Basic ps command", () => {
-    expect(fsm.isValid("ps")).toBe(true);
+  afterEach(() => {
+    if (testProcess) {
+      testProcess.kill();
+    }
   });
 
-  test("ps with single option", () => {
-    expect(fsm.isValid("ps -e")).toBe(true);
+  psTestCases.forEach(({ description, input, expectedOutput }) => {
+    test(description, () => {
+      expect(fsm.isValid(input)).toBe(expectedOutput);
+    });
   });
 
-  test("ps with multiple options", () => {
-    expect(fsm.isValid("ps -ef")).toBe(true);
+  test('ps basic execution', () => {
+    const command = 'ps';
+    expect(fsm.isValid(command)).toBe(true);
+
+    const output = execSync(command).toString();
+    expect(output).toContain('PID');
   });
 
-  test("ps with long option", () => {
-    expect(fsm.isValid("ps --pid 1234")).toBe(true);
+  test('ps with all processes', () => {
+    const command = 'ps aux';
+    expect(fsm.isValid(command)).toBe(true);
+
+    const output = execSync(command).toString();
+    expect(output).toContain('USER');
+    expect(output).toContain('PID');
+    expect(output).toContain('%CPU');
+    expect(output).toContain('%MEM');
   });
 
-  test("ps with invalid option", () => {
-    expect(fsm.isValid("ps -z")).toBe(true); // ps doesn't validate option names at syntax level
+  test('ps with specific PID', () => {
+    const command = `ps -p ${testProcess.pid}`;
+    expect(fsm.isValid(command)).toBe(true);
+
+    const output = execSync(command).toString();
+    expect(output).toContain(`${testProcess.pid}`);
+    expect(output).toContain('sleep');
+  });
+
+  test('ps with custom format', () => {
+    const command = 'ps -o pid,user,%cpu,command';
+    expect(fsm.isValid(command)).toBe(true);
+
+    const output = execSync(command).toString();
+    expect(output).toContain('PID');
+    expect(output).toContain('USER');
+    expect(output).toContain('%CPU');
+    expect(output).toContain('COMMAND');
+  });
+
+  test('ps with sorting', () => {
+    const command = 'ps aux --sort=-%cpu';
+    expect(fsm.isValid(command)).toBe(true);
+
+    const output = execSync(command).toString();
+    const lines = output.trim().split('\n');
+    const cpuValues = lines.slice(1).map(line => parseFloat(line.split(/\s+/)[2]));
+    expect(cpuValues).toEqual([...cpuValues].sort((a, b) => b - a));
+  });
+
+  test('ps with specific user', () => {
+    const currentUser = os.userInfo().username;
+    const command = `ps -u ${currentUser}`;
+    expect(fsm.isValid(command)).toBe(true);
+
+    const output = execSync(command).toString();
+    expect(output).toContain(currentUser);
   });
 });
