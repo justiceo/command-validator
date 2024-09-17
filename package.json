@@ -1,5 +1,5 @@
 {
-  "name": "code-correcter",
+  "name": "command-validator",
   "version": "1.0.0",
   "main": "base-fsm.js",
   "scripts": {
