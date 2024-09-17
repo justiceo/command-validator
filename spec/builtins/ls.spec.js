@@ -1,75 +1,139 @@
-import { LsFSM } from '../../src/builtins/ls.js';
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import os from 'os';
+import { CommandValidator } from "../../src/cmd-validator.js";
 
-describe('LsFSM', () => {
-  let fsm;
-  let tempDir;
-
-  beforeAll(() => {
-    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ls-test-'));
-    fs.writeFileSync(path.join(tempDir, 'file1'), 'content');
-    fs.writeFileSync(path.join(tempDir, 'file2'), 'content');
-    fs.mkdirSync(path.join(tempDir, 'dir1'));
-  });
-
-  afterAll(() => {
-    fs.rmSync(tempDir, { recursive: true, force: true });
-  });
+describe("ls command validation", () => {
+  let validator;
 
   beforeEach(() => {
-    fsm = new LsFSM();
+    validator = new CommandValidator();
   });
 
-  test('Basic ls', () => {
-    expect(fsm.isValid(`ls ${tempDir}`)).toBe(true);
-    const output = execSync(`ls ${tempDir}`).toString().trim().split('\n');
-    expect(output).toContain('file1');
-    expect(output).toContain('file2');
-    expect(output).toContain('dir1');
+  test("Basic ls", () => {
+    expect(validator.validateCommand("ls")).toBe(true);
   });
 
-  test('ls with -l option', () => {
-    expect(fsm.isValid(`ls -l ${tempDir}`)).toBe(true);
-    const output = execSync(`ls -l ${tempDir}`).toString().trim().split('\n');
-    expect(output.length).toBeGreaterThan(1);
-    expect(output[0]).toMatch(/^total \d+$/);
-    expect(output[1]).toMatch(/^[-d]([rwx-]{3}){3}\s+\d+\s+\w+\s+\w+\s+\d+\s+\w+\s+\d+\s+\d+:\d+\s+\w+$/);
+  test("ls with option", () => {
+    expect(validator.validateCommand("ls -l")).toBe(true);
   });
 
-  test('ls with -a option', () => {
-    expect(fsm.isValid(`ls -a ${tempDir}`)).toBe(true);
-    const output = execSync(`ls -a ${tempDir}`).toString().trim().split('\n');
-    expect(output).toContain('.');
-    expect(output).toContain('..');
+  test("ls with multiple options", () => {
+    expect(validator.validateCommand("ls -la")).toBe(true);
   });
 
-  test('ls with -R option', () => {
-    fs.writeFileSync(path.join(tempDir, 'dir1', 'file3'), 'content');
-    expect(fsm.isValid(`ls -R ${tempDir}`)).toBe(true);
-    const output = execSync(`ls -R ${tempDir}`).toString().trim();
-    expect(output).toContain('dir1:');
-    expect(output).toContain('file3');
+  test("ls with path", () => {
+    expect(validator.validateCommand("ls /home/user")).toBe(true);
   });
 
-  test('ls with multiple options', () => {
-    expect(fsm.isValid(`ls -la ${tempDir}`)).toBe(true);
-    const output = execSync(`ls -la ${tempDir}`).toString().trim().split('\n');
-    expect(output).toContain('.');
-    expect(output).toContain('..');
-    expect(output[0]).toMatch(/^total \d+$/);
+  test("ls with option and path", () => {
+    expect(validator.validateCommand("ls -l /home/user")).toBe(true);
   });
 
-  test('ls with non-existent directory', () => {
-    const nonExistentDir = path.join(tempDir, 'nonexistent');
-    expect(fsm.isValid(`ls ${nonExistentDir}`)).toBe(true);
-    expect(() => execSync(`ls ${nonExistentDir}`)).toThrow();
+  test("ls with multiple paths", () => {
+    expect(validator.validateCommand("ls /home /usr")).toBe(true);
   });
 
-  test('ls with invalid option', () => {
-    expect(fsm.isValid(`ls -z ${tempDir}`)).toBe(true); // The FSM allows invalid options
-    expect(() => execSync(`ls -z ${tempDir}`)).toThrow();
+  test("ls with wildcard", () => {
+    expect(validator.validateCommand("ls *.txt")).toBe(true);
+  });
+
+  test("ls with quoted path", () => {
+    expect(validator.validateCommand("ls 'My Documents'")).toBe(true);
+  });
+
+  test("ls with double quoted path", () => {
+    expect(validator.validateCommand('ls "Program Files"')).toBe(true);
+  });
+
+  test("ls with escaped space", () => {
+    expect(validator.validateCommand("ls My\\ Documents")).toBe(true);
+  });
+
+  test("ls with multiple options and path", () => {
+    expect(validator.validateCommand("ls -lah /home/user")).toBe(true);
+  });
+
+  test("ls with long option", () => {
+    expect(validator.validateCommand("ls --all")).toBe(true);
+  });
+
+  test("ls with numeric option", () => {
+    expect(validator.validateCommand("ls -1")).toBe(true);
+  });
+
+  test("ls with multiple quoted paths", () => {
+    expect(
+      validator.validateCommand("ls 'path with spaces' \"another path\"")
+    ).toBe(true);
+  });
+
+  test("ls with option and wildcard", () => {
+    expect(validator.validateCommand("ls -l *.jpg")).toBe(true);
+  });
+
+  test("ls with complex path", () => {
+    expect(validator.validateCommand("ls /home/user/Documents/*.txt")).toBe(
+      true
+    );
+  });
+
+  test("ls with environment variable", () => {
+    expect(validator.validateCommand("ls $HOME")).toBe(true);
+  });
+
+  test("ls with tilde expansion", () => {
+    expect(validator.validateCommand("ls ~/Documents")).toBe(true);
+  });
+
+  test("Invalid: ls with unmatched quote", () => {
+    expect(validator.validateCommand("ls 'unmatched")).toBe(false);
+  });
+
+  test("Invalid: ls with space before option", () => {
+    expect(validator.validateCommand(" ls -l")).toBe(false);
+  });
+
+  test("ls with option after path", () => {
+    expect(validator.validateCommand("ls /home -l")).toBe(true);
+  });
+
+  test("ls with invalid option", () => {
+    expect(validator.validateCommand("ls --invalid-option")).toBe(true);
+  });
+
+  test("ls with multiple escaped spaces", () => {
+    expect(validator.validateCommand("ls path\\ with\\ many\\ spaces")).toBe(
+      true
+    );
+  });
+
+  test("ls with combination of quoted and escaped paths", () => {
+    expect(validator.validateCommand("ls 'quoted path' unquoted\\ path")).toBe(
+      true
+    );
+  });
+
+  test("ls with option and multiple wildcards", () => {
+    expect(validator.validateCommand("ls -l *.jpg *.png")).toBe(true);
+  });
+
+  test("ls with option and complex wildcard", () => {
+    expect(validator.validateCommand("ls -l [a-z]*.txt")).toBe(true);
+  });
+
+  test("ls with multiple long options", () => {
+    expect(validator.validateCommand("ls --all --human-readable")).toBe(true);
+  });
+
+  test("ls with option and hidden files", () => {
+    expect(validator.validateCommand("ls -a .hidden_file")).toBe(true);
+  });
+
+  test("ls with complex combination", () => {
+    expect(
+      validator.validateCommand("ls -lR ~/Documents/*.pdf '/path with spaces'")
+    ).toBe(true);
+  });
+
+  test("ls with unescaped special character", () => {
+    expect(validator.validateCommand("ls file|name")).toBe(true);
   });
 });
