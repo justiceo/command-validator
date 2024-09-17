@@ -1,0 +1,47 @@
+NAME
+       kill -- terminate or signal a process
+
+SYNOPSIS
+       kill [-s signal_name] pid ...
+       kill -l [exit_status]
+       kill -signal_name pid ...
+       kill -signal_number pid ...
+
+DESCRIPTION
+       The kill utility sends a signal to the processes specified by the pid
+       operands.
+
+       Only the super-user may send signals to other users' processes.
+
+OPTIONS
+
+       -s signal_name                    A symbolic signal name specifying the signal to be sent instead
+                                         of the default TERM.
+
+       -l [exit_status]                  If no operand is given, list the signal names; otherwise, write
+                                         the signal name corresponding to exit_status.
+
+       -signal_name                      A symbolic signal name specifying the signal to be sent instead
+                                         of the default TERM.
+
+       -signal_number                    A non-negative decimal integer, specifying the signal to be sent
+                                         instead of the default TERM.
+
+EXAMPLE
+    kill -9 1234
+    kill -l
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    kill - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/kill-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

@@ -1,0 +1,47 @@
+﻿NAME  
+    chmod - Change access permissions, change mode.
+
+SYNOPSIS  
+    chmod [OPTIONS]... MODE[,MODE]... FILE...
+
+    chmod [OPTIONS]... NUMERIC_MODE FILE...
+
+    chmod [OPTIONS]... --reference=RFILE FILE...
+
+DESCRIPTION  
+    The `chmod` command changes the access permissions or modes of a file or directory.
+
+OPTIONS  
+    -f, --silent, --quiet    Suppress most error messages.
+    
+    -v, --verbose            Output a diagnostic for every file processed.
+    
+    -c, --changes            Like verbose but report only when a change is made.
+    
+        --reference=RFILE    Use RFILE’s mode instead of MODE values.
+    
+    -R, --recursive          Change files and directories recursively. Take care not to run
+                             recursive `chmod` on the root '/' directory or any other system directory.
+    
+        --help               Display this help and exit.
+    
+        --version            Output version information and exit.
+
+EXAMPLE
+    chmod 755 file.txt
+    chmod u+x file.txt
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    chmod - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/chmod-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

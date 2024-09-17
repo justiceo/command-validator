@@ -1,0 +1,21 @@
+﻿NAME
+NAME  
+    cd - Change Directory. Change the current working directory to a specific folder.
+
+SYNOPSIS  
+    cd [OPTIONS] [DIRECTORY]
+
+DESCRIPTION  
+    The `cd` command changes the current working directory to the specified directory.
+
+OPTIONS  
+    -P    Do not follow symbolic links.
+    
+    -L    Follow symbolic links (default).
+
+AUTHORS
+Rocky Bernstein rocky@panix.com, based on the cdinfo program by Gerd Knorr <kraxel@bytesex.org> and Heiko Eissfeldt <heiko@hexco.de>
+
+
+COPYRIGHT
+Copyright Â© 2003, 2004, 2005, 2007, 2008 R. Bernstein

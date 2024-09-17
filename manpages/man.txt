@@ -1,0 +1,107 @@
+NAME
+       man - Format and display help pages.
+
+SYNOPSIS
+       man [-acdfFhkKtwW] [--path] [-m system] [-p string] [-C config_file]
+              [-M pathlist] [-P pager] [-B browser] [-H htmlpager] [-S section_list]
+
+                 [section] name ...
+DESCRIPTION
+ 	man is the system's manual pager. Each page argument given to man is normally the name of a program, utility or function.
+
+OPTIONS
+   -C config_file                   The configuration file to use; the default is /etc/man.config. 
+                                    (See man.config(5).) 
+
+   -M path                          The list of directories to search for man pages. Separate the 
+                                    directories with colons. An empty list is the same as not 
+                                    specifying -M at all. See SEARCH PATH FOR MANUAL PAGES. 
+
+   -P pager                         Which pager to use. This option overrides the MANPAGER 
+                                    environment variable, which in turn overrides the PAGER 
+                                    variable. By default, man uses /usr/bin/less -is. 
+
+   -B                               Which browser to use on HTML files. This option overrides the 
+                                    BROWSER environment variable. By default, man uses 
+                                    /usr/bin/less-is.
+
+   -H                               Specify a command that renders HTML files as text. This option 
+                                    overrides the HTMLPAGER environment variable. By default, 
+                                    man uses /bin/cat.
+
+   -S section_list                  List is a colon separated list of manual sections to search. 
+                                    This option overrides the MANSECT environment variable.
+
+   -a                               By default, man will exit after displaying the first manual page 
+                                    it finds. Using this option forces man to display all the 
+                                    manual pages that match name, not just the first.
+
+   -c                               Reformat the source man page, even when an up-to-date cat page 
+                                    exists. This can be meaningful if the cat page was formatted 
+                                    for a screen with a different number of columns, or if the 
+                                    preformatted page is corrupted.
+
+   -d                               Don’t actually display the man pages, but do print gobs of 
+                                    debugging information.
+
+   -D                               Both display and print debugging info.
+
+   -f                               Equivalent to whatis.
+
+   -F --preformat                   Format only - do not display.
+
+   -h                               Print a help message and exit.
+
+   -k                               Equivalent to apropos.
+
+   -K                               Search for the specified string in *all* man pages. Warning: 
+                                    this can be very slow and can match multiple pages! It helps 
+                                    to specify a section.
+
+   -m system                        Specify an alternate set of man pages to search based on the 
+                                    system name given.
+
+   -p string                        Specify the sequence of preprocessors to run before nroff or 
+                                    troff. Not all installations will have a full set of 
+                                    preprocessors. Some of the preprocessors and the letters 
+                                    used to designate them: eqn (e), grap (g), pic (p), tbl (t), 
+                                    vgrind (v), refer (r). This option overrides the MANROFFSEQ 
+                                    environment variable.
+
+   -t                               Use /usr/bin/groff -Tps -mandoc to format the manual page, 
+                                    passing the output to stdout. The default output format of 
+                                    /usr/bin/groff -Tps -mandoc is Postscript, refer to the 
+                                    manual page of /usr/bin/groff -Tps -mandoc for ways to pick 
+                                    an alternate format. Depending on the selected format and the 
+                                    availability of printing devices, the output may need to be 
+                                    passed through some filter or another before being printed.
+
+   -w --path                        Don’t actually display the man pages, but do print the location(s) 
+                                    of the files that would be formatted or displayed. If no argument 
+                                    is given: display (on stdout) the list of directories that is 
+                                    searched by man for man pages. If manpath is a link to man, then 
+                                    "manpath" is equivalent to "man --path".
+
+   -W                               Like -w, but print file names one per line, without additional 
+                                    information. This is useful in shell commands like man -aW man 
+                                    | xargs ls -l.
+
+EXAMPLE
+       man ls
+       man -k keyword
+
+AUTHOR
+       Written by Michael Stone.
+
+REPORTING BUGS
+       Report bugs to <bug-man@gnu.org>.
+
+SEE ALSO
+       man - GNU Man Documentation: https://man7.org/linux/man-pages/man1/man.1.html
+
+COPYRIGHT
+       Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+       This is free software; see the source for copying conditions. There is NO warranty; 
+       not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

@@ -1,0 +1,33 @@
+NAME
+    sleep - delay for a specified amount of time
+
+DESCRIPTION
+    The sleep command delays for a specified amount of time.
+
+SYNOPSIS
+    sleep [TIME]
+
+OPTIONS
+    -s, --seconds            TIME is in seconds (default)
+    -m, --minutes            TIME is in minutes
+    -h, --hours              TIME is in hours
+    -d, --days               TIME is in days
+
+EXAMPLE
+    sleep 10
+    sleep 5m
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    sleep - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/sleep-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

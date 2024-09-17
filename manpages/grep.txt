@@ -1,0 +1,194 @@
+NAME
+    grep: Search file(s) for specific text.
+
+SYNOPSIS
+      grep [options] PATTERN [FILE...]
+      grep [options] [-e PATTERN | -f FILE] [FILE...]
+
+
+OPTIONS
+   -A NUM                           Print NUM lines of trailing context after matching lines.
+   --after-context=NUM              Places a line containing -- between contiguous groups of matches.
+
+   -a                               Process a binary file as if it were text; this is equivalent
+   --text                           to the --binary-files=text option.
+
+   -B NUM                           Print NUM lines of leading context before matching lines.
+   --before-context=NUM             Places a line containing -- between contiguous groups of matches.
+
+   -b                               Print the byte offset within the input file before each line of output.
+   --byte-offset                    
+
+   --binary-files=TYPE              If the first few bytes of a file indicate that the file contains binary data, assume
+                                    that the file is of type TYPE. By default, TYPE is binary, and grep normally outputs
+                                    either a one-line message saying that a binary file matches, or no message if there
+                                    is no match. If TYPE is without-match, grep assumes that a binary file does not match;
+                                    this is equivalent to the -I option. If TYPE is text, grep processes a binary file as
+                                    if it were text; this is equivalent to the -a option.
+                                    Warning: grep --binary-files=text might output binary garbage, which can have nasty
+                                    side effects if the output is a terminal and if the terminal driver interprets some
+                                    of it as commands.
+
+   --colour[=WHEN]                  Surround the matching string with the marker from the GREP_COLOR environment variable.
+   --color[=WHEN]                   WHEN can be 'never', 'always', or 'auto' e.g. --color=always
+                                    By default the matched text will be colored red.
+                                    If grep is made to match several strings, all of the matches will be colored, one exception
+                                    is the regex ^ (match beginning of every line), the beginning of a line has no length so will
+                                    not be colored.
+                                    So to return all lines and colour only matches: egrep --color=always '^|string1|string2'
+
+   -C NUM                           Print NUM lines of output context.
+   --context=NUM                    Places a line containing -- between contiguous groups of matches.
+
+   -c                               Suppress normal output; instead print a count of matching lines for each input file.
+   --count                          With the -v, --invert-match option (see below), count non-matching lines.
+
+   -D ACTION                        If an input file is a device, FIFO or socket, use ACTION to process it.
+   --devices=ACTION                 By default, ACTION is read, which means that devices are read just as if they were
+                                    ordinary files. If ACTION is skip, devices are silently skipped.
+
+   -d ACTION                        If an input file is a directory, use ACTION to process it.
+   --directories=ACTION             By default, ACTION is read, which means that directories are read just as if they
+                                    were ordinary files. If ACTION is skip, directories are silently skipped.
+                                    If ACTION is recurse, grep reads all files under each directory, recursively; this
+                                    is equivalent to the -r option.
+
+   -E                               Interpret PATTERN as an extended regular expression.
+   --extended-regexp                 
+
+   -e PATTERN                       Use PATTERN as the pattern; useful to protect patterns beginning with -.
+   --regexp=PATTERN                  
+
+   -F                               Interpret PATTERN as a list of fixed strings, separated by newlines,
+   --fixed-strings                  any of which is to be matched.
+
+   -f FILE                          Obtain patterns from FILE, one per line. The empty file contains zero
+   --file=FILE                      patterns, and therefore matches nothing.
+
+   -G                               Interpret PATTERN as a basic regular expression This is the default.
+   --basic-regexp                    
+
+   -H                               Print the filename for each match.
+   --with-filename                   
+
+   -h                               Suppress the prefixing of filenames on output when multiple files are searched.
+   --no-filename                      
+
+   --help                           Output a brief help message.
+
+   -I                               Process a binary file as if it did not contain matching data; this is
+   --binary-files=without-match     equivalent to the --binary-files=without-match option.
+
+   -i                               Ignore case distinctions in both the PATTERN and the input files.
+   --ignore-case                     
+
+   -L                               Suppress normal output; instead print the name of each input file from which
+   --files-without-match            no output would normally have been printed. The scanning will stop on the first match.
+
+   -l                               Suppress normal output; instead print the name of each input file from which
+   --files-with-matches             output would normally have been printed. The scanning will stop on the first match.
+
+   -m NUM                           Stop reading a file after NUM matching lines.
+   --max-count=NUM                  If the input is standard input from a regular file, and NUM matching lines are
+                                    output, grep ensures that the standard input is positioned to just after the last
+                                    matching line before exiting, regardless of the presence of trailing context lines.
+                                    This enables a calling process to resume a search. When grep stops after NUM matching
+                                    lines, it outputs any trailing context lines.
+                                    When the -c or --count option is also used, grep does not output a count greater
+                                    than NUM. When the -v or --invert-match option is also used, grep stops after
+                                    outputting NUM non-matching lines.
+
+   --mmap                           If possible, use the mmap(2) system call to read input, instead of the default
+                                    read(2) system call. In some situations, --mmap yields better performance.
+                                    However, --mmap can cause undefined behavior (including core dumps) if an input
+                                    file shrinks while grep is operating, or if an I/O error occurs.
+
+   -n                               Prefix each line of output with the line number within its input file.
+   --line-number                     
+
+   -o                               Show only the part of a matching line that matches PATTERN.
+   --only-matching                   
+
+   --label=LABEL                    Display input actually coming from standard input as input coming from file LABEL.
+                                    This is especially useful for tools like zgrep, e.g. gzip -cd foo.gz |grep --label=foo something
+
+   --line-buffered                  Use line buffering; it can be a performance penalty.
+
+   -P                               Interpret PATTERN as a Perl regular expression.
+   --perl-regexp                     
+
+   -q                               Quiet; do not write anything to standard output.
+   --quiet, --silent                Exit immediately with zero status if any match is found, even if an error
+                                    was detected. Also see the -s or --no-messages option.
+
+   -R                               Read all files under each directory, recursively; this is equivalent to the '-d recurse' option.
+   -r                               Not all grep implementations support -r and among those that do, the behaviour with symlinks may differ.
+   --recursive                        
+                                   
+
+   --include=PATTERN                Recurse in directories only searching file matching PATTERN.
+   --exclude=PATTERN                Recurse in directories skipping file matching PATTERN.
+
+   -s                               Suppress error messages about nonexistent or unreadable files.
+   --no-messages                    Portability note: unlike GNU grep, traditional grep did not conform to POSIX.2,
+                                    because traditional grep lacked a -q option and its -s option behaved like
+                                    GNU grep’s -q option. Shell scripts intended to be portable to traditional grep
+                                    should avoid both -q and -s and should redirect output to /dev/null instead.
+
+   -U, --binary                     Treat the file(s) as binary.
+   --unix-byte-offsets              By default, under MS-DOS and MS-Windows, grep guesses the file type by looking at
+                                    the contents of the first 32KB read from the file. If grep decides the file is a
+                                    text file, it strips the CR characters from the original file contents
+                                    (to make regular expressions with ^ and $ work correctly).
+                                    Specifying -U overrules this guesswork, causing all files to be read and passed
+                                    to the matching mechanism verbatim; if the file is a text file with CR/LF pairs
+                                    at the end of each line, this will cause some regular expressions to fail.
+                                    This option has no effect on platforms other than MS-DOS and MS-Windows.
+
+   -u                               Report Unix-style byte offsets.
+   --unix-byte-offsets              This switch causes grep to report byte offsets as if the file were a Unix-style text
+                                    file, i.e. with CR characters stripped off. This will produce results identical to
+                                    running grep on a Unix machine.
+                                    This option has no effect unless -b option is also used; it has no effect on
+                                    platforms other than MS-DOS and MS-Windows.
+
+   -V                               Print the version number of grep to standard error.
+   --version                        This version number should be included in all bug reports (see below).
+
+   -v                               Invert the sense of matching, to select non-matching lines.
+   --invert-match                    
+
+   -w                               Select only those lines containing matches that form whole words.
+   --word-regexp                    The test is that the matching substring must either be at the beginning of
+                                    the line, or preceded by a non-word constituent character. Similarly, it
+                                    must be either at the end of the line or followed by a non-word constituent
+                                    character. Word-constituent characters are letters, digits, and the underscore.
+
+   -x                               Select only those matches that exactly match the whole line.
+   --line-regexp                     
+
+   -y                               Obsolete synonym for -i.
+   --null                           Output a zero byte (the ASCII NUL character) instead of the character that
+                                    normally follows a file name. For example, grep -lZ outputs a zero byte after
+                                    each file name instead of the usual newline.
+                                    This option makes the output unambiguous, even in the presence of file names
+                                    containing unusual characters like newlines.
+                                    This option can be used with commands like find -print0, perl -0, sort -z, and
+                                    xargs -0 to process arbitrary file names, even those that contain newline characters.
+
+EXAMPLES
+    grep "pattern" file.txt
+    grep -r "function" /path/to/code
+    grep -i "ERROR" logfile.txt
+
+AUTHOR
+    Written by Ken Thompson.
+
+SEE ALSO
+    `man grep` on your local system.
+
+DOCUMENTATION
+    For full documentation, visit: https://man.freebsd.org/cgi/man.cgi?query=grep
+
+BUG REPORTING
+    Report bugs at: https://bugs.freebsd.org/

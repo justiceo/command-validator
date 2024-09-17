@@ -1,0 +1,35 @@
+NAME
+   jobs - Print currently running jobs and their status.
+
+SYNOPSIS
+      jobs [OPTIONS] [PID]
+
+OPTIONS:
+   -c, --command                        Print the command name for each process in jobs
+
+   -g, --group                          Only print the group id of each job
+
+   -h, --help                           Display a help message and exit
+
+   -l, --last                           Only the last job to be started is printed
+
+   -p, --pid                            Print the process id for each process in all jobs
+
+EXAMPLE
+    jobs
+    jobs -l
+
+AUTHOR
+    Written by Brian Fox and Chet Ramey.
+
+REPORTING BUG
+    Report bugs to <bug-bash@gnu.org>.
+
+SEE ALSO
+    jobs - GNU Bash Documentation: https://www.gnu.org/software/bash/manual/html_node/Job-Handling.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

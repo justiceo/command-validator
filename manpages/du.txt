@@ -1,0 +1,85 @@
+
+NAME
+    du - Disk Usage - report the amount of disk space used by the specified files and for each subdirectory.
+
+SYNOPSIS
+    du [options]... [file]...
+
+DESCRIPTION
+    With no arguments, 'du' reports the disk space for the current directory. Normally the disk space is printed 
+    in units of 1024 bytes, but this can be overridden.
+
+OPTIONS
+
+    -a, --all                                      Show counts for all files, not just directories.
+
+    -b, --bytes                                    Print sizes in bytes, overriding the default block size.
+
+    -c, --total                                    Print a grand total of all arguments after all arguments 
+                                                   have been processed. This can be used to find out the total 
+                                                   disk usage of a given set of files or directories.
+
+    -D, --dereference-args                         Dereference symbolic links that are command line arguments. 
+                                                   Does not affect other symbolic links. This helps to find the 
+                                                   disk usage of directories, such as '/usr/tmp', which are 
+                                                   often symbolic links.
+
+    -h, --human-readable                           Append a size letter such as 'M' for megabytes to each size. 
+                                                   Powers of 1024 are used, not 1000; 'M' stands for 1,048,576 
+                                                   bytes. Use the '-H' or '--si' option if you prefer powers of 
+                                                   1000.
+
+    -H, --si                                       Display size with a non-standard suffix as follows: B=Byte, 
+                                                   K=kilobyte, M=megabyte, G=gigabyte, T=terabyte, and P=petabyte. 
+                                                   Powers of 1000 are used, not 1024; so 'M' stands for 1,000,000 
+                                                   bytes. Use the '-h' or '--human-readable' option if you prefer 
+                                                   powers of 1024.
+
+    -k, --kilobytes                                Print sizes in 1024-byte blocks, overriding the default block size.
+
+    -l, --count-links                              Count the size of all files, even if they have appeared already 
+                                                   (as a hard link).
+
+    -L, --dereference                              Dereference symbolic links (show the disk space used by the file 
+                                                   or directory that the link points to instead of the space used by 
+                                                   the link).
+
+    --max-depth=MAX_DEPTH                          Show the total for each directory (and file if -all) that is at most 
+                                                   MAX_DEPTH levels down from the root of the hierarchy. The root is at 
+                                                   level 0, so 'du --max-depth=0' is equivalent to 'du -s'.
+
+    -m, --megabytes                                Print sizes in megabyte (that is, 1,048,576-byte) blocks.
+
+    -s, --summarize                                Display only a total for each argument.
+
+    -S, --separate-dirs                            Report the size of each directory separately, not including the 
+                                                   sizes of subdirectories.
+
+    -x, --one-file-system                          Skip directories that are on different filesystems from the one 
+                                                   that the argument being processed is on.
+
+    --exclude=PAT                                  When recursing, skip subdirectories or files matching PAT. 
+                                                   For example, 'du --exclude='*.o'' excludes files whose names end 
+                                                   in '.o'.
+
+    -X FILE, --exclude-from=FILE                   Like '--exclude', except take the patterns to exclude from FILE, 
+                                                   one per line. If FILE is '-', take the patterns from standard input.
+
+EXAMPLE
+    du -h
+    du -sh directory/
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    du - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

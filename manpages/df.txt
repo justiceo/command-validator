@@ -1,0 +1,76 @@
+NAME
+    df - Disk Free - display free disk space.
+
+SYNOPSIS
+    df [OPTION]... [FILE]...
+
+DESCRIPTION
+    The df utility displays the amount of disk space available on the file systems. 
+    With no arguments, 'df' reports the space used and available on all currently 
+    mounted filesystems (of all types). Otherwise, 'df' reports on the filesystem 
+    containing each specified FILE.
+
+OPTIONS
+    -a, --all                              Include in the listing filesystems that have a size of 0 blocks, 
+                                           which are omitted by default. Typically special-purpose 
+                                           pseudo-filesystems, such as automounter entries, or filesystems 
+                                           of type "ignore" or "auto".
+
+    -h, --human-readable                   Append a size letter such as 'M' for megabytes to each size. 
+                                           Powers of 1024 are used, not 1000; 'M' stands for 1,048,576 bytes.
+
+    -H, --si                               Append a size letter such as 'M' for megabytes to each size.
+                                           Powers of 1000 are used, not 1024; 'M' stands for 1,000,000 bytes.
+
+    -i, --inodes                           List inode usage information instead of block usage. An inode contains 
+                                           information about a file, such as its owner, permissions, timestamps, 
+                                           and location on the disk.
+
+    -k, --kilobytes                        Print sizes in 1024-byte blocks, overriding the default block size.
+
+    -l, --local                            Limit the listing to local filesystems. By default, remote 
+                                           filesystems are also listed.
+
+    -m, --megabytes                        Print sizes in megabyte (1,048,576-byte) blocks.
+
+    --no-sync                              Do not invoke the 'sync' system call before getting any usage data. 
+                                           This can make 'df' run faster but results may be slightly out of date.
+
+    -P, --portability                      Use the POSIX output format. Ensures each filesystem's information 
+                                           is always printed on one line, even if the mount device name is long.
+
+    --sync                                 Invoke the 'sync' system call before getting any usage data. This 
+                                           may provide more up-to-date results on some systems but can make 
+                                           'df' slower.
+
+    -t FSTYPE, --type=FSTYPE               Limit the listing to filesystems of type FSTYPE. Multiple types 
+                                           can be specified with multiple '-t' options.
+
+    -T, --print-type                       Print each filesystem’s type. Common types include 'nfs' for network 
+                                           file systems, 'ufs' for local hard disks, 'hsfs' or 'cdfs' for CD-ROMs, 
+                                           and 'pcfs' for MS-DOS filesystems.
+
+    -x FSTYPE, --exclude-type=FSTYPE       Limit the listing to filesystems not of type FSTYPE. Multiple 
+                                           types can be excluded with multiple '-x' options.
+
+    -v                                     Ignored; for compatibility with System V versions of 'df'.
+
+
+EXAMPLE
+    df
+    df -h
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    df - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

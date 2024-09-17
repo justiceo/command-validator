@@ -1,0 +1,69 @@
+NAME
+       lsof - List open files.
+
+SYNOPSIS
+       lsof [ -?abChlnNOPRstUvVX ] [ -A A ] [ -c c ] [ +c c ] [ +|-d d ]
+             [ +|-D D ] [ +|-f [cfgGn] ] [ -F [f] ] [ -g [s] ] [ -i[i] ]
+                [ -k k ] [ +|-L [l] ] [ +|-m m ] [ +|-M ] [ -o [o] ] [ -p s ]
+                   [ +|-r [t] ] [ -S [t] ] [ -T [t] ] [ -u s ] [ +|-w ]
+                      [ -x [fl] ] [ -z [z] ] [ -Z [Z] ] [ -- ] [filenames]
+
+DESCRIPTION
+       An open file can be a regular file, a directory, a block special file, a
+       character special file, an executing text reference, a library, a stream
+       or a network file (Internet socket, NFS file or UNIX domain socket). A
+       specific file or all the files in a file system can be selected by path.
+
+OPTIONS
+       -? -h                                Display usage (help) output list.
+       -a                                   Causes list selection options to be ANDed.
+       -A A                                 Specifies an alternate name list file A for AFS.
+       -b                                   Avoids kernel functions that might block.
+       -c c                                 Lists files for processes executing the command that begins with c.
+       +c w                                 Sets the maximum number of initial characters of the UNIX command.
+       -C                                   Disables the reporting of any path name components from the kernel’s name cache.
+       -d s                                 Specifies a list of file descriptors (FDs) to exclude/include.
+       -D D                                 Directs lsof’s use of the device cache file with functions: b (build), i (ignore), r (read), u (read and update).
+       -g [s]                               Excludes or selects files for processes with process group ID numbers in s.
+       -i [i]                               Lists files whose Internet address matches i.
+       -k k                                 Specifies a kernel name list file k.
+       -l                                   Inhibits the conversion of user ID numbers to login names.
+       +|-L [l]                             Enables (+) or disables (-) listing of file link counts.
+       +|-m m                               Specifies an alternate kernel memory file or activates mount table processing.
+       +|-M                                 Enables (+) or disables (-) reporting of portmapper registrations.
+       -n                                   Inhibits conversion of network numbers to host names.
+       -N                                   Selects listing of NFS files.
+       -o                                   Always displays file offsets, changing the SIZE/OFF column title to OFFSET.
+       -O                                   Bypasses strategy to avoid blocking by some kernel operations.
+       -p s                                 Excludes or selects listing of files for processes with process ID numbers in s.
+       -P                                   Inhibits conversion of port numbers to port names.
+       +|-r [t]                             Puts lsof in repeat mode, listing open files, delaying t seconds, then repeating.
+       -R                                   Lists the Parent Process IDentification number in the PPID column.
+       -s                                   Always displays file size, changing the SIZE/OFF column title to SIZE.
+       -S [t]                               Specifies a time-out value t for kernel functions.
+       -T [t]                               Controls reporting of TCP/TPI information, including socket options, queue lengths, connection states, and window sizes.
+       -t                                   Produces terse output with process identifiers only.
+       -u s                                 Lists files for users with login names or user ID numbers in s.
+       -U                                   Selects listing of UNIX domain socket files.
+       -v                                   Displays lsof version information.
+       -V                                   Indicates items lsof was asked to list and failed to find.
+       +|-w                                 Enables (+) or disables (-) suppression of warning messages.
+       -x [fl]                             Directs processing to cross symbolic links and/or file system mount points.
+       -X                                   A dialect-specific option with details for specific UNIX dialects.
+       -z [z]                               Specifies how Solaris 10 and higher zone information is handled.
+       -Z [Z]                               Specifies how SELinux security contexts are handled.
+
+       --                                  Marks the end of options, useful when filenames start with a dash.
+       filenames                           Specifies path names of specific files to list. Symbolic links are resolved before use.
+
+AUTHOR
+       The lsof command was written by Victor A. Abell.
+
+SEE ALSO
+       netstat(1), ps(1), fstat(1), stat(2), uname(1), readlink(2), lstat(2), stat(2).
+
+COLPHON
+       This page is maintained by the lsof community. For more information, consult the [lsof website](http://lsof.org).
+
+REPORTING BUGS
+       Report bugs to <lsof@lsof.org>. For more information, visit the [lsof website](http://lsof.org).

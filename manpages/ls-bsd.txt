@@ -1,0 +1,147 @@
+NAME
+    ls - list information about files.
+
+SYNOPSIS
+    ls [Options]... [File]...
+
+DESCRIPTION
+    The `ls` command lists information about files and directories. It is commonly used to view the contents of a directory, providing details like filenames, permissions, size, and modification dates.
+
+OPTIONS
+    -a, --all                  List all entries including those starting with a dot `.`.
+
+    -A, --almost-all           List all entries including those starting with a dot `.`.
+                               Except for `.` and `..` (implied).
+
+    -b, --escape               Print octal escapes for nongraphic characters.
+
+        --block-size=SIZE      Use SIZE-byte blocks.
+
+    -B, --ignore-backups       Do not list implied entries ending with `~`.
+
+    -c                         Sort by change time; with `-l`: show ctime.
+
+    -C                         List entries by columns.
+
+        --color[=WHEN]         Control whether color is used to distinguish file types.
+                               WHEN can be 'never', 'always', or 'auto'.
+
+    -d, --directory            List directory entries instead of contents.
+
+    -D, --dired                Generate output designed for Emacs' dired mode.
+
+    -f                         Do not sort, enable `-aU`, disable `-lst`.
+
+    -F, --classify             Append indicator (one of `*/=@|`) to entries.
+
+        --format=WORD          Format output in specified style: 
+                               across `-x`, commas `-m`, horizontal `-x`, 
+                               long `-l`, single-column `-1`, verbose `-l`, 
+                               vertical `-C`.
+
+        --full-time            List both full date and full time.
+
+    -g                         (ignored).
+
+    -G, --no-group             Inhibit display of group information.
+
+    -h, --human-readable       Print sizes in human-readable format (e.g., `1K 234M 2G`).
+
+    -H, --si                   Likewise, but use powers of 1000 not 1024.
+
+        --indicator-style=WORD Append indicator with style WORD to entry names:
+                               `none` (default), `classify` (`-F`), `file-type` (`-p`).
+
+    -i, --inode                Print index number of each file.
+
+    -I, --ignore=PATTERN       Do not list implied entries matching shell PATTERN.
+
+    -k, --kilobytes            Like `--block-size=1024`.
+
+    -l                         Use a long listing format.
+
+    -L, --dereference          List entries pointed to by symbolic links.
+
+    -m                         Fill width with a comma-separated list of entries.
+
+    -n, --numeric-uid-gid      List numeric UIDs and GIDs instead of names.
+
+    -N, --literal              Print entry names without quoting. 
+                               Don’t treat control characters specially.
+                               Example: `My File`, not `'My File'`.
+                               This can be made the default with: 
+                               `alias ls='/bin/ls -N'`.
+
+    -o                         Use long listing format without group info.
+
+    -p, --file-type            Append indicator (one of `/=@|`) to entries.
+
+    -q, --hide-control-chars   Print `?` instead of non-graphic characters.
+
+        --show-control-chars   Show non-graphic characters as-is (default).
+
+    -Q, --quote-name           Enclose entry names in double quotes.
+
+        --quoting-style=WORD   Use quoting style WORD for entry names:
+                               `literal`, `shell`, `shell-always`, `c`, `escape`.
+
+    -r, --reverse              Reverse order while sorting.
+
+    -R, --recursive            List subdirectories recursively.
+
+    -s, --size                 Print size of each file, in blocks.
+
+    -S                         Sort by file size.
+
+        --sort=WORD            Sort entries by WORD, which can be: 
+                               time (`-t`), version (`-v`), status (`-c`), 
+                               size (`-S`), extension (`-X`), none (`-U`), 
+                               access time (`-u`), use (`-u`).
+
+        --time=WORD            Show time as WORD instead of modification time:
+                               `atime`, `access`, `use`, `ctime`, or `status`. 
+                               Also use this as a sort key if `--sort=time`.
+
+    -t                         Sort by modification time.
+
+    -T, --tabsize=COLS         Assume tab stops at each COLS instead of 8.
+
+    -u                         Sort by last access time; with `-l`: show atime.
+
+    -U                         Do not sort; list entries in directory order.
+
+    -v                         Sort by version.
+
+    -w, --width=COLS           Assume screen width instead of current value.
+
+    -x                         List entries by lines instead of by columns.
+
+    -X                         Sort alphabetically by entry extension.
+
+    -1                         List one file per line.
+
+        --help                 Display help and exit.
+
+        --version              Output version information and exit.
+
+DEFAULT SORT
+    By default, `ls` will sort entries alphabetically if none of the options 
+    `-cftuSUX` or `--sort` are given.
+
+EXAMPLES
+    ls
+    ls -la
+    ls -lhS
+    ls -R /path/to/directory
+
+AUTHOR
+    Written by Richard Stallman and David MacKenzie.
+
+SEE ALSO
+    `man ls` on your local system.
+
+DOCUMENTATION
+    For full documentation, visit: https://man.freebsd.org/cgi/man.cgi?query=ls
+
+BUG REPORTING
+    Report bugs at: https://bugs.freebsd.org/

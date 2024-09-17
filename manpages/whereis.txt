@@ -1,0 +1,41 @@
+NAME
+    whereis - locate the binary, source, and manual page files for a command
+
+DESCRIPTION
+    The whereis command locates the binary, source, and manual page files for a command.
+
+SYNOPSIS
+     whereis [options] [-BMS directory... -f] name...
+
+OPTIONS
+    -b			earch for binaries.
+    -m			Search for manuals.
+    -s			Search for sources.
+    -u			Only show the command names that have unusual entries.
+    -B list		Limit the places where whereis searches for binaries, by a whitespace-separated list of directories.
+    -M list		Limit the places where whereis searches for manuals and documentation in Info format, by a whitespace-separated list of directories.
+    -S list		Limit the places where whereis searches for sources, by a whitespace-separated list of directories.
+    -f			Terminates the directory list and signals the start of filenames. It must be used when any of the -B, -M, or -S options is used.
+    -l			Output the list of effective lookup paths that whereis is using. When none of -B, -M, or -S is specified, the option will output the hard-coded paths that the command was able to find on the system.
+    -g			Interpret the next names as a glob(7) patterns. whereis always compares only filenames (aka basename) and never complete path. Using directory names in the pattern has no effect.
+    -h, --help		Display help text and exit.
+    -V, --version	Print version and exit.
+
+EXAMPLE
+    whereis ls
+    whereis -b ls
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    whereis - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/whereis-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

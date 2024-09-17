@@ -1,0 +1,95 @@
+﻿NAME  
+    curl - Transfer data from or to a server, using one of the protocols: HTTP, HTTPS, FTP, FTPS, SCP, SFTP, TFTP, DICT, TELNET, LDAP or FILE.
+
+SYNOPSIS  
+    curl [OPTIONS] [URL...]
+
+DESCRIPTION  
+    The `curl` command transfers data from or to a server, using one of the supported protocols.
+
+OPTIONS  
+    url                             One or multiple URLs that will be fetched in sequence.
+                                    Multiple URLs or parts of URLs can be specified by writing part sets within braces as in:
+                                    https://site.{one,two,three}.com
+                                    or get sequences of alphanumeric series by using [] as in:
+                                    ftp://ftp.numericals.com/file[1-100].txt
+
+    -A "agent string"               Specify the User-Agent string to send to the HTTP server.
+    --user-agent "agent string"     To encode blanks in the string, surround the string with single quote marks.
+                                    This can also be set with -H, --header option. (HTTP)
+
+    -b name=data                    Send the data to the HTTP server as a cookie. The data should be in the format "NAME1=VALUE1; NAME2=VALUE2".
+    --cookie name=data              Supposedly the data previously received from the server in a "Set-Cookie:" line.
+
+    -c filename                     Save cookies to file after a completed operation.
+    --cookie-jar file name          Curl writes all cookies previously read from a specified file as well as all cookies received from remote server(s).
+
+    --compressed                    Request a compressed response using one of the algorithms curl supports (gzip), and save the uncompressed document.
+                                    If this option is used and the server sends an unsupported encoding, curl will report an error.(HTTP)
+
+    -d @file                        Send the specified data in an (HTTP) POST request.
+    -d "string"                     This will pass the data using the content-type application/x-www-form-urlencoded.
+    --data "string"                 Multiple data options will be merged together.
+
+    -f, --fail                      (HTTP) Fail silently (no output at all) on server errors. This flag will prevent curl from outputting an error document.
+
+    -F name=@file                   Emulate a filled-in form in which a user has pressed the submit button.
+    -F name=content                 This will POST data using the Content-Type multipart/form-data according to RFC 2388.
+    --form name=content             This enables uploading of binary files etc.
+
+    -H "name: value"                Extra header to include in the request when sending HTTP to a server.
+    --header "name: value"          You may specify any number of extra headers.
+
+    -I, --head                      Fetch the HTTP-header only! (HTTP/FTP/FILE)
+
+    -k, --insecure                  Allow curl to perform "insecure" SSL connections and transfers.
+
+    --limit-rate speed              Specify the maximum transfer rate. The given speed is measured in bytes/second, unless a suffix is appended.
+
+    -L, --location                  If the server reports that the requested page has moved, this option will make curl redo the request on the new location.
+
+    -m seconds                      Maximum time that you allow the whole operation to take.
+    --max-time seconds              This is useful for preventing your batch jobs from hanging for hours.
+
+    -o file                         Write output to file instead of stdout. Use - to force the output to stdout.
+    --output file                   You can use '#' followed by a number in the file specifier for multiple documents.
+
+    -O, --remote-name               Write output to a local file named like the remote file we get.
+
+    -s, --silent                    Silent or quiet mode. Don’t show progress meter or error messages.
+
+    -S, --show-error                When used with -s, --silent, it makes curl show an error message if it fails.
+
+    --trace-ascii file              Enable a full trace dump of all incoming and outgoing data to the given output file.
+
+    -T file                         Transfer the specified local file to the remote URL. PUT
+    --upload-file file              If there is no file part in the specified URL, Curl will append the local file name.
+
+    -u user:password                The username and password to use for server authentication.
+    --user user:password            If only the user name is given, curl will prompt for a password.
+
+    -v, --verbose                   Make more verbose/talkative. Mostly useful for debugging.
+
+    -w format                       Define extra info to display on stdout after a completed and successful operation.
+    --write-out format              The format is a string that may contain plain text mixed with any number of variables.
+
+    -x host:port                    Use the specified HTTP proxy.
+    --proxy host:port               If the port number is not specified, it is assumed at port 1080.
+
+
+EXAMPLES
+    curl http://example.com
+    curl -O http://example.com/file.txt
+    curl -u username:password ftp://ftp.example.com/
+
+AUTHOR
+    Written by Daniel Stenberg.
+
+SEE ALSO
+    `man curl` on your local system.
+
+DOCUMENTATION
+    For full documentation, visit: https://man.freebsd.org/cgi/man.cgi?query=curl
+
+BUG REPORTING
+    Report bugs at: https://github.com/curl/curl/issues

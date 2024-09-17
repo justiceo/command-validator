@@ -1,0 +1,77 @@
+NAME
+    netstat - print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+
+DESCRIPTION
+    The netstat command prints network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+
+SYNOPSIS
+    netstat [address_family_options] [--tcp|-t] [--udp|-u] [--raw|-w] [--listening|-l]
+                 [--all|-a] [--numeric|-n] [--numeric-hosts][--numeric-ports][--numeric-ports]
+                    [--symbolic|-N] [--extend|-e[--extend|-e]] [--timers|-o] [--program|-p]
+                       [--verbose|-v] [--continuous|-c] [delay]
+
+      netstat {--route|-r} [address_family_options] [--extend|-e[--extend|-e]]
+                 [--verbose|-v] [--numeric|-n] [--numeric-hosts][--numeric-ports][--numeric-ports]
+                    [--continuous|-c] [delay]
+
+      netstat {--interfaces|-I|-i} [iface] [--all|-a] [--extend|-e]
+                 [--verbose|-v] [--program|-p] [--numeric|-n] [--numeric-hosts][--numeric-ports][--numeric-ports]
+                    [--continuous|-c] [delay]
+
+      netstat {--groups|-g} [--numeric|-n] [--numeric-hosts][--numeric-ports][--numeric-ports]
+                 [--continuous|-c] [delay]
+
+      netstat {--masquerade|-M} [--extend|-e] [--numeric|-n] [--numeric-hosts][--numeric-ports][--numeric-ports]
+                 [--continuous|-c] [delay]
+
+      netstat {--statistics|-s} [--tcp|-t] [--udp|-u] [--raw|-w] [delay]
+
+      netstat {--version|-V}
+
+      netstat {--help|-h} 
+
+
+      address_family_options:
+
+      [--protocol={inet,unix,ipx,ax25,netrom,ddp}[,...]] [--unix|-x]
+         [--inet|--ip] [--ax25] [--ipx] [--netrom] [--ddp]
+
+OPTIONS
+     --verbose , -v   		Tell the user what is going on by being verbose. Especially print some useful information about unconfigured address families.
+ --numeric , -n   		Show numerical addresses instead of trying to determine symbolic host, port or user names.
+ --numeric-hosts  		Shows numerical host addresses but does not affect the resolution of port or user names.
+ --numeric-ports  		Shows numerical port numbers but does not affect the resolution of host or user names.
+ --numeric-users  		Shows numerical user IDs but does not affect the resolution of host or port names.
+ --protocol=family , -A		Specifies the address families (perhaps better described as low level protocols) for which connections are to be shown. family is a comma (',') separated list of address
+                  		family keywords like inet, unix, ipx, ax25, netrom, and ddp. This has the same effect as using the --inet, --unix (-x), --ipx, --ax25, --netrom, and --ddp options. The address family inet includes raw, udp and tcp protocol sockets.
+ -c, --continuous 		This will cause netstat to print the selected information every second continuously.
+ -e, --extend     		Display additional information. Use this option twice for maximum detail.
+ -o, --timers     		Include information related to networking timers.
+ -p, --program    		Show the PID and name of the program to which each socket belongs.
+ -l, --listening  		Show only listening sockets. (These are omitted by default.)
+ -a, --all        		Show both listening and non-listening (for TCP this means established connections) sockets.
+                  		With the --interfaces option, show interfaces that are not marked.
+ -f               		Print routing information from the FIB. (This is the default.)
+ -c               		Print routing information from the route cache.
+ -Z --context     		If SELinux enabled print SELinux context.
+ -T --notrim      		Stop trimming long addresses.
+ delay            		Netstat will cycle printing through statistics every delay seconds. UP.
+
+EXAMPLE
+    netstat
+    netstat -r
+
+AUTHOR
+    Written by the net-tools team.
+
+REPORTING BUG
+    Report bugs to <net-tools@linux.org>.
+
+SEE ALSO
+    netstat - Net-Tools Documentation: https://linux.die.net/man/8/netstat
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

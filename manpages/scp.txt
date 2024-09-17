@@ -1,0 +1,48 @@
+NAME
+    scp - secure copy (remote file copy program)
+
+DESCRIPTION
+    The scp command copies files between hosts on a network.
+
+SYNOPSIS
+    scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
+        [-l limit] [-o ssh_option] [-P port] [-S program]
+        [ [user@]host1:]file1 [...] [ [user@]host2:]file2
+
+OPTIONS
+   -1                      Force scp to use protocol 1.
+   -2                      Force scp to use protocol 2.
+   -4                      Force scp to use IPv4 addresses only.
+   -6                      Force scp to use IPv6 addresses only.
+   -B                      Select batch mode (don't ask for passwords or passphrases).
+   -C                      Compression, passes the -C flag to ssh to enable compression.
+   -c cipher               Select the cipher to use for encrypting the data transfer. This option is directly passed to ssh.
+   -F ssh_config           Specifies an alternative per-user configuration file for ssh. This option is directly passed to ssh.
+   -i identity_file        Select the file from which the identity (private key) for RSA authentication is read. This option is directly passed to ssh.
+   -l limit                Limit the used bandwidth, specified in Kbit/s.
+   -o ssh_option           Can be used to pass options to ssh in the format used in ssh_config(5). This is useful for specifying options for which there is no separate scp command-line flag.
+   -P port                 The port to connect to on the remote host. Note that this option is written with a capital 'P', because -p is already reserved for preserving the times and modes of the file in rcp(1).
+   -p                      Preserves modification times, access times, and modes from the original file.
+   -q                      Disables the progress meter.
+   -r                      Recursively copy entire directories.
+   -S program              Name of program to use for the encrypted connection. The program must understand ssh options.
+   -v                      Verbose mode. Causes scp and ssh to print debugging messages about their progress. This is helpful in debugging connection, authentication, and configuration problems.
+
+EXAMPLE
+    scp file.txt user@remote:/path/to/destination
+    scp -r directory/ user@remote:/path/to/destination
+
+AUTHOR
+    Written by Tatu Ylönen.
+
+REPORTING BUG
+    Report bugs to <bug-openssh@openssh.com>.
+
+SEE ALSO
+    scp - OpenSSH Documentation: https://man.openbsd.org/scp
+
+COPYRIGHT
+    Copyright © 2024 OpenSSH.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

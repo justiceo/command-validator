@@ -1,0 +1,35 @@
+NAME  
+    cut - Divide a file into several parts (columns). Writes to standard output selected parts of each line of each input file, or standard input if no files are given or for a file name of '-'.
+
+SYNOPSIS  
+    cut [OPTIONS]... [FILE]...
+
+DESCRIPTION  
+    The `cut` command is used to extract specific sections (columns) of each line from a file or standard input.
+
+OPTIONS  
+    -b BYTE-LIST                  		 Print only the bytes in positions listed in BYTE-LIST.
+    --bytes=BYTE-LIST             		 Tabs and backspaces are treated like any other character; they take up 1 byte.
+
+    -c CHARACTER-LIST             		 Print only characters in positions listed in CHARACTER-LIST.
+    --characters=CHARACTER-LIST   		 Similar to '-b', but will change with internationalization. Tabs and backspaces are treated like any other character; they take up 1 character.
+
+    -f FIELD-LIST                 		 Print only the fields listed in FIELD-LIST.
+    --fields=FIELD-LIST           		 Fields are separated by a TAB character by default.
+
+    -d INPUT_DELIM_BYTE           		 For '-f', fields are separated in the input by the first character in INPUT_DELIM_BYTE.
+    --delimiter=INPUT_DELIM_BYTE  		 The default delimiter is TAB.
+
+    -n                            		 Do not split multi-byte characters (no-op for now).
+
+    -s                            		 For '-f', do not print lines that do not contain the field separator character.
+    --only-delimited              		 This option suppresses lines without the specified delimiter.
+
+    --output-delimiter=OUTPUT_DELIM_STRING  	For '-f', output fields are separated by OUTPUT_DELIM_STRING.
+                                  		The default is to use the input delimiter.
+
+
+EXAMPLE
+   $ cat myfile.txt | cut -d \; -f 2 > output.txt
+
+

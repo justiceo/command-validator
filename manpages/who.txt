@@ -1,0 +1,47 @@
+NAME
+    who - show who is logged on
+
+DESCRIPTION
+    The who command shows who is logged on.
+
+SYNOPSIS
+    who [OPTION]...
+
+OPTIONS
+    -a, --all			same as -b -d --login -p -r -t -T -u
+    -b, --boot			time of last system boot
+    -d, --dead			print dead processes
+    -H, --heading		print line of column headings
+    -l, --login			print system login processes
+    --lookup			attempt to canonicalize hostnames via DNS
+    -m				only hostname and user associated with stdin
+    -p, --process		print active processes spawned by init
+    -q, --count			all login names and number of users logged on
+    -r, --runlevel		print current runlevel
+    -s, --short			print only name, line, and time (default)
+    -t, --time			print last system clock change
+    -T, -w, --mesg		add user's message status as +, - or ?
+    -u, --users			list users logged in
+    --message			same as -T 
+    --writable                  same as -T
+    --help			display this help and exit
+    --version			output version information and exit
+
+EXAMPLE
+    who
+    who -b
+
+AUTHOR
+    Written by the util-linux project.
+
+REPORTING BUG
+    Report bugs to <util-linux@vger.kernel.org>.
+
+SEE ALSO
+    who - util-linux Documentation: https://man7.org/linux/man-pages/man1/who.1.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

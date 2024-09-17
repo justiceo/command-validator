@@ -1,0 +1,38 @@
+NAME
+    su - change user ID or become superuser
+
+DESCRIPTION
+    The su command allows a permitted user to switch to another user account.
+
+SYNOPSIS
+    su [OPTION]... [USER]
+
+OPTIONS
+-c COMMAND --command=COMMAND		Pass COMMAND, a single command line to run, to the instead of starting an interactive shell.
+   -f --fast				Pass the '-f' option to the shell. 
+   -l --login				Make the shell a login shell.  This means the following.  Unset all environment variables except 'TERM', 'HOME', and 'SHELL' (which are set as described above), and 'USER' and 'LOGNAME' (which
+       					are set, even for the super-user, as described above), and set 'PATH' to a compiled-in default value. Change to USER’s home directory.
+   -m -p --preserve-environment		Do not change the environment variables 'HOME', 'USER', 'LOGNAME', or 'SHELL'.
+   -s SHELL --shell=SHELL		Run SHELL instead of the shell from USER’s passwd entry, unless the user running 'su' is not the superuser and USER’s shell is restricted (see '-m' just above).
+   --help				Display this help and exit
+   --version				Output version information and exit
+
+EXAMPLE
+    su
+    su - user
+    su -c 'command' user
+
+AUTHOR
+    Written by William Shwitzer and others.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    su - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/su-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

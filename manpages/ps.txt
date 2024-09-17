@@ -1,0 +1,44 @@
+NAME
+       ps - report a snapshot of current processes
+
+SYNOPSIS
+       ps [options]
+
+DESCRIPTION
+       `ps` displays information about active processes. The output varies
+       depending on the options used.
+
+OPTIONS
+
+   -A, --all            Show all processes.
+   -a                   Show processes of all users.
+   -e                   Show all processes. Equivalent to `-A`.
+   -f                   Show processes in full format.
+   -l                   Show processes in long format.
+   -u [user]            Show processes for the specified user.
+   -p [pid]             Show information for the specified process ID.
+   -x                   Show processes not attached to a terminal.
+   -o format            User-defined output format. Replace `format` with a comma-separated list of output specifiers (e.g., `pid,comm,%mem`).
+   -h, --help           Display a help message and exit.
+   -V, --version        Output version information and exit.
+   --sort key           Sort the output based on the specified key. Examples include `%mem`, `%cpu`, and `pid`.
+   --forest             Show a tree view of processes, displaying parent-child relationships.
+
+EXAMPLE
+    ps
+    ps -ef
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-procps@kernel.org>.
+
+SEE ALSO
+    ps - procps Documentation: https://man7.org/linux/man-pages/man1/ps.1.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

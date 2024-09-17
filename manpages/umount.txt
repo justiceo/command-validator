@@ -1,0 +1,44 @@
+NAME
+    	umount - unmount file systems
+
+DESCRIPTION
+    	The umount command detaches the file system(s) mentioned from the file hierarchy.
+
+SYNOPSIS
+    	umount [-hV]
+	umount -a [-dflnrv] [-t vfstype] [-O options]
+	umount [-dflnrv] {dir|device}...
+
+OPTIONS
+	-V			Print version and exit.
+	-h			Print help message and exit.
+	-v			Verbose mode.
+	-n			Unmount without writing in /etc/mtab.
+	-r			In case unmounting fails, try to remount read-only.
+	-d			In case the unmounted device was a loop device, also free this loop device.
+	-i			Don't call the /sbin/umount.<filesystem> helper even if it exists. By default /sbin/umount.<filesystem> helper is called if one exists.
+	-a			All of the file systems described in /etc/mtab are unmounted. (With umount version 2.7 and later: the proc filesystem is not unmounted.)
+	-t vfstype		Indicate that the actions should only be taken on file systems of the specified type. More than one type may be specified in a comma separated list. The list of file system types can be prefixed with no to specify the file system types on which no action should be taken.
+	-O options		Indicate that the actions should only be taken on file systems with the specified options in /etc/fstab. More than one option type may be specified in a comma separated list. Each option can be prefixed with no to specify options for which no action should be taken.
+	-f			Force unmount (in case of an unreachable NFS system). (Requires kernel 2.1.116 or later.)
+	-l			Lazy unmount. Detach the filesystem from the filesystem hierarchy now, and cleanup all references to the filesystem as soon as it is not busy anymore. (Requires kernel 2.4.11 or later.)
+	--no-canonicalize	Don't canonicalize paths. For more details about this option see the mount(8) man page.
+	--fake			Causes everything to be done except for the actual system call; this ''fakes'' unmounting the filesystem. It can be used to remove entries from /etc/mtab that were unmounted earlier with the -n option.
+EXAMPLE
+    umount /mnt/point
+    umount -l /mnt/point
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    umount - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/umount-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

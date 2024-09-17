@@ -1,0 +1,66 @@
+NAME  
+    awk - pattern scanning and processing language
+
+SYNOPSIS  
+    awk [OPTION]... 'PROGRAM' [INPUT-FILE]...
+
+DESCRIPTION  
+    The `awk` utility interprets a special-purpose programming language that allows handling simple data-reformatting jobs with just a few lines of code. It operates on an input file or standard input and applies patterns and actions defined in the program.
+
+OPTIONS  
+    -F FS, --field-separator FS        		Use FS for the input field separator (the value of the 'FS' predefined variable).
+    
+    -f PROGRAM-FILE, --file PROGRAM-FILE	Read the awk program source from the file PROGRAM-FILE, instead of from the first
+                                       		command line argument.
+
+    -mf NNN, -mr NNN                   		The 'f' flag sets the maximum number of fields, and the 'r' flag sets the maximum
+                                       		record size. These options are ignored by `gawk` as it has no predefined limits;
+                                       		they are for compatibility with the Bell Labs research version of Unix awk.
+
+    -v VAR=VAL, --assign VAR=VAL        	Assign the variable VAR the value VAL before program execution begins.
+
+    -W traditional, --traditional       	Use compatibility mode, in which `gawk` extensions are turned off.
+
+    -W lint, --lint                     	Give warnings about dubious or non-portable awk constructs.
+
+    -W lint-old, --lint-old             	Warn about constructs that are not available in the original V.7 Unix version
+                                       		of awk.
+
+    -W posix, --posix                   	Use POSIX compatibility mode. `gawk` extensions are turned off, and additional
+                                       		restrictions apply.
+
+    -W re-interval, --re-interval       	Allow interval expressions in regular expressions.
+
+    -W source=PROGRAM-TEXT,             	Use PROGRAM-TEXT as awk program source code. This option allows mixing command
+    --source PROGRAM-TEXT               	line source code with source code from files, and is useful for mixing command
+                                       		line programs with library functions.
+
+    --                                  	Signal the end of options. This allows further arguments to the awk program
+                                       		itself to start with a '-'. Mainly for consistency with POSIX argument parsing
+                                       		conventions.
+
+PROGRAM						A series of patterns and actions that tells `awk` how to process input data.  
+    						The basic syntax is: `pattern { action }`. If no pattern is given, the action is applied to every record. 
+    						
+
+INPUT-FILE					If no Input-File is specified, then `awk` applies the program to "standard input" (piped output of another command
+    						or terminal input). Typed input will continue until the end-of-file (typing `Control-d`).
+
+EXAMPLES  
+    - Print the third column of a file:  
+      `awk '{print $3}' file.txt`
+
+    - Sum the values in the first column:  
+      `awk '{sum += $1} END {print sum}' file.txt`
+
+    - Using a field separator:  
+      `awk -F "," '{print $2}' file.csv`
+
+AUTHOR  
+    Written by Alfred Aho, Brian Kernighan, and Peter Weinberger.
+
+SEE ALSO  
+    `man awk` on your local system for further details.
+
+BUG REPORTING  
+    Report bugs to the appropriate bug tracking system for your distribution.

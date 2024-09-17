@@ -1,0 +1,32 @@
+NAME
+    xdg-open - open a file or URL in the user's preferred application
+
+DESCRIPTION
+    The xdg-open command opens a file or URL in the user's preferred application.
+
+SYNOPSIS
+    xdg-open [OPTION]... FILE
+
+OPTIONS
+    --help		Show command synopsis.
+    --manual		Show this manualpage.
+    --version		Show the xdg-utils version information.
+
+EXAMPLE
+    xdg-open file.pdf
+    xdg-open https://example.com
+
+AUTHOR
+    Written by David Zeuthen.
+
+REPORTING BUG
+    Report bugs to <xdg@freedesktop.org>.
+
+SEE ALSO
+    xdg-open - freedesktop.org Documentation: https://specifications.freedesktop.org/xdg-utils-spec/latest/ar01s05.html
+
+COPYRIGHT
+    Copyright © 2024 freedesktop.org.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

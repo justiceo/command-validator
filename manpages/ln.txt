@@ -1,0 +1,46 @@
+NAME
+    ln - create links between files
+
+DESCRIPTION
+    The ln command creates links between files. By default, it creates hard links.
+
+SYNOPSIS
+    ln [OPTION]... TARGET [LINK_NAME]
+    ln [OPTION]... TARGET... DIRECTORY
+
+OPTIONS
+--backup[=CONTROL]                     Make a backup of each existing destination file.
+-b                                     Like --backup but does not accept an argument.
+-d, -F, --directory                    Allow the superuser to attempt to hard link directories (note: will probably fail due to system restrictions, even for the superuser).
+-f, --force                            Remove existing destination files.
+-i, --interactive                      Prompt whether to remove destinations.
+-L, --logical                          Make hard links to symbolic link references.
+-n, --no-dereference                   Treat destination that is a symlink to a directory as if it were a normal file.
+-P, --physical                         Make hard links directly to symbolic links.
+-s, --symbolic                         Make symbolic links instead of hard links.
+-S, --suffix=SUFFIX                    Override the usual backup suffix.
+-t, --target-directory=DIRECTORY       Specify the DIRECTORY in which to create the links.
+-T, --no-target-directory              Treat NewLinkFile as a normal file.
+-v, --verbose                          Print name of each linked file.
+--help                                 Display this help and exit.
+--version                              Output version information and exit.
+
+
+EXAMPLE
+    ln file1.txt link_to_file1.txt
+    ln -s file1.txt symbolic_link_to_file1.txt
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    ln - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/ln-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

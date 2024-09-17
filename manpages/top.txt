@@ -1,0 +1,67 @@
+NAME
+    top - display Linux tasks
+
+DESCRIPTION
+    The top command provides a dynamic, real-time view of the running system. It displays a list of processes and their resource usage.
+
+SYNOPSIS
+    top [OPTION]...
+
+OPTIONS
+ Options
+   -b   		Run in batch mode; don’t accept command-line input.
+        		Useful for sending output to another command or to a file.
+   -c   		Show command line in display instead of just command name.
+   -d delay		Specify delay between refreshes.
+   -i   		Suppress display of idle and zombie processes.
+   -n num		Update display num times, then exit.
+   -p pid		Monitor only processes with the specified process ID.
+   -q   		Refresh without any delay.
+        		If user is privileged, run with highest priority.
+   -s   		Secure mode. Disable some (dangerous) interactive commands.
+   -S   		Cumulative mode. Print total CPU time of each process, including dead child processes.
+
+Interactive commands
+
+space    		Update display immediately.
+  A      		Sort by age, with newest first.
+  c      		Toggle display of command name or full command line.
+  f, F   		Add fields to display or remove fields from the display.
+  h, ?   		Display help about commands and the status of secure and cumulative modes.
+  k      		Prompt for process ID to kill and signal to send (default is 15) to kill it.
+  i      		Toggle suppression of idle and zombie processes.
+  l      		Toggle display of load average and uptime information.
+ ^L      		Redraw screen.
+  m      		Toggle display of memory information.
+  M      		Sort tasks by resident memory usage.
+  n, #   		Prompt for number of processes to show. 
+  N      		Sort numerically by process ID.
+  o, O   		Change order of displayed fields.
+  P      		Sort tasks by CPU usage (default).
+  q      		Exit.
+  r      		Apply renice to a process. Prompt for PID and renice value. Suppressed in secure mode.
+  s      		Change delay between refreshes. 
+  S      		Toggle cumulative mode. (See the -S option.)
+  t      		Toggle display of processes and CPU states information.
+  T      		Sort tasks by time/cumulative time.
+  W      		Write current setup to ~/.toprc. This is the recommended way to write a top configuration file.
+
+EXAMPLE
+    top
+    top -d 5
+    top -u username
+
+AUTHOR
+    Written by William LeFebvre and others.
+
+REPORTING BUG
+    Report bugs to <linux-kernel@vger.kernel.org>.
+
+SEE ALSO
+    top - Linux Manual Page: https://man7.org/linux/man-pages/man1/top.1.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

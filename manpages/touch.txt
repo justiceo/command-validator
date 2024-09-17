@@ -1,0 +1,39 @@
+NAME
+    touch - change file timestamps
+
+DESCRIPTION
+    The touch command changes file timestamps.
+
+SYNOPSIS
+    touch [OPTION]... FILE...
+
+OPTIONS
+   -a  --time=atime --time=access --time=use		Change the access time only.
+   -c  --no-create					Do not create files that do not exist.
+   -d  --date=time					Use time instead of the current time.  It can contain month names, timezones, 'am' and 'pm', etc.
+   -f   						Ignored; for compatibility with BSD versions of 'touch'.
+   -h, --no-dereference					Affect each symbolic link instead of any referenced file(useful only on systems that can change the timestamps of a symlink) 
+   -m  --time=mtime --time=modify			Change the modification time only.
+   -r  FILE --reference=FILE				Use the times of the reference FILE instead of the current time.
+   -t  [[CC]YY]MMDDhhmm[.ss]				Set to a specific date/time.
+   --help     						Display help and exit
+   --version  						Output version information and exit
+
+EXAMPLE
+    touch file.txt
+    touch -t 202408091230.00 file.txt
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    touch - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/touch-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

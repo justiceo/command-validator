@@ -1,0 +1,40 @@
+NAME
+    shutdown - bring the system down
+
+DESCRIPTION
+    The shutdown command brings the system down in a secure way.
+
+SYNOPSIS
+    shutdown [OPTION] [TIME] [MESSAGE]
+
+OPTIONS
+   -c                      Cancel a shutdown that is in progress.
+   -f                      Reboot fast, by suppressing the normal call to fsck when rebooting.
+   -h                      Halt the system when shutdown is complete.
+   -k                      Print the warning message, but suppress actual shutdown.
+   -n                      Perform shutdown without a call to init.
+   -r                      Reboot the system when shutdown is complete.
+   -t sec                  Ensure a sec-second delay between killing processes and changing the runlevel.
+   when                    The time to execute the shutdown. This accepts several formats:
+                           'now' will bring the system down immediately.
+                           +m, where m is the number of minutes to wait until shutting down,
+                           hh:mm which specifies the time on the 24hr clock.
+
+EXAMPLE
+    shutdown -h now
+    shutdown -r +10 "Rebooting for maintenance"
+
+AUTHOR
+    Written by Julianne Frances Haugh.
+
+REPORTING BUG
+    Report bugs to <bug-shutdown@gnu.org>.
+
+SEE ALSO
+    shutdown - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/shutdown-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

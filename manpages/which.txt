@@ -1,0 +1,39 @@
+NAME
+    which - locate a command
+
+DESCRIPTION
+    The which command locates a command by searching the directories listed in PATH.
+
+SYNOPSIS
+    which [OPTION]... COMMAND...
+
+OPTIONS
+    --all, -a			Print all matching executables in PATH, not just the first.
+    --read-alias, -i		Read aliases from stdin, reporting matching ones on stdout. This is useful in combination with using an alias for which itself.
+    --skip-alias		Ignore option --read-alias, if any.  This is useful to explicity search for normal binaries, while using the --read-alias option in an alias for which.
+    --skip-dot			Skip directories in PATH that start with a dot.
+    --skip-tilde		Skip directories in PATH that start with a tilde and executables which reside in the HOME directory.
+    --show-dot			If a directory in PATH starts with a dot and a matching executable was found for that path, then print "./program_name" rather than the full path.
+    --show-tilde		Output a tilde when a directory matches the HOME directory.
+    --tty-only			Stop processing options on the right if not on tty.
+    --version, -v, -V		Print version information on standard output then exit successfully.
+    --help			Print usage information on standard output then exit successfully.
+
+EXAMPLE
+    which ls
+    which --all ls
+
+AUTHOR
+    Written by Chet Ramey.
+
+REPORTING BUG
+    Report bugs to <bug-bash@gnu.org>.
+
+SEE ALSO
+    which - GNU Bash Documentation: https://www.gnu.org/software/bash/manual/html_node/Command-Location.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

@@ -1,0 +1,104 @@
+NAME
+    rsync - remote file and directory synchronization
+
+DESCRIPTION
+    The rsync command synchronizes files and directories between two locations.
+
+SYNOPSIS
+    rsync [OPTION]... SOURCE DEST
+
+OPTIONS
+ -r, --recursive             recurse into directories
+ -R, --relative              use relative path names
+     --exclude=PATTERN       Exclude files matching PATTERN
+     --exclude-from=FILE     Read exclude patterns from FILE
+ -I, --ignore-times          Don’t exclude files that match length and time
+     --size-only             only use file size when determining if a file should be transferred
+ -@  --modify-window=NUM     Timestamp window (seconds) for file match (default=0)
+     --include=PATTERN       Don’t exclude files matching PATTERN
+     --include-from=FILE     Read include patterns from FILE
+
+How to copy it:
+ -n, --dry-run               Perform a trial run with no changes made
+ -l, --links                 Copy symlinks as symlinks
+ -L, --copy-links            Transform symlink into referent file/dir
+     --copy-unsafe-links     Only "unsafe" symlinks are transformed
+     --safe-links            Ignore links outside the destination tree
+     --munge-links           Munge symlinks to make them safer
+ -H, --hard-links            Preserve hard links
+     --devices               preserve device files (super-user only)
+     --specials              preserve special files
+ -D, --devices --specials    Preserve devices (super-user only) +files
+ -g, --group                 Preserve group
+ -o, --owner                 Preserve owner (super-user only)
+ -p, --perms                 Preserve permissions
+     --remove-source-files   Sender removes synchronized files (non-dir)
+ -t, --times                 Preserve times
+ -S, --sparse                Handle sparse files efficiently
+ -x, --one-file-system       Don’t cross filesystem boundaries
+ -B, --block-size=SIZE       Force a fixed checksum block-size (default 700)
+ -e, --rsh=COMMAND           Specify rsh replacement
+     --rsync-path=PATH       Specify path to rsync on the remote machine
+     --numeric-ids           Don’t map uid/gid values by user/group name
+     --timeout=SECONDS       Set IO timeout in seconds
+ -W, --whole-file            Copy whole files, no incremental checks
+
+Destination options:
+ -a, --archive               Archive mode equals -rlptgoD (no -H,-A,-X)
+ -b, --backup                Make backups (see --suffix & --backup-dir)
+     --backup-dir=DIR        Make backups into this directory
+ -z, --compress              Compress file data during the transfer
+ -c, --checksum              Skip based on checksum, not mod-time & size
+ -C, --cvs-exclude           Auto ignore files in the same way CVS does
+     --existing              Only update files that already exist
+     --delete                Delete files that don’t exist on the sending side
+     --delete-excluded       also delete excluded files on the receiving side
+     --delete-after          Receiver deletes after transfer, not during
+     --force                 Force deletion of directories even if not empty
+     --ignore-errors         Delete even if there are IO errors
+     --max-delete=NUM        Don’t delete more than NUM files
+     --log-file-format=FMT   Log file transfers using specified format
+     --partial               Keep partially transferred files
+     --progress              Show progress during transfer
+ -P                          equivalent to --partial --progress
+     --stats                 Give some file transfer stats
+ -T  --temp-dir=DIR          Create temporary files in directory DIR
+     --compare-dest=DIR      also compare destination files relative to DIR
+ -u, --update                update only (don’t overwrite newer files)
+
+Misc Others:
+     --address=ADDRESS       bind to the specified address
+     --blocking-io           Use blocking IO for the remote shell
+     --bwlimit=KBPS          Limit I/O bandwidth, KBytes per second
+     --config=FILE           Specify alternate rsyncd.conf file (daemon)
+     --daemon                Run as a rsync daemon
+     --no-detach             Do not detach from the parent (daemon)
+     --password-file=FILE    Get daemon-access password from FILE
+     --port=PORT             Specify alternate rsyncd port number
+ -f, --read-batch=FILE       Read batch file
+ -F, --write-batch=FILE      Write batch file
+     --version               Print version number
+ -v, --verbose               Increase verbosity
+ -q, --quiet                 Decrease verbosity
+ -4, --ipv4                  Prefer IPv4
+ -6, --ipv6                  Prefer IPv6
+ -h, --help                  show this help screen
+
+EXAMPLE
+    rsync -av source/ destination/
+    rsync -avz remote:/path/to/source /local/destination
+
+AUTHOR
+    Written by Andrew Tridgell and others.
+
+REPORTING BUG
+    Report bugs to <bug-rsync@lists.samba.org>.
+
+SEE ALSO
+    rsync - Rsync Documentation: https://rsync.samba.org/documentation.html
+
+COPYRIGHT
+    Copyright © 2024 Andrew Tridgell.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

@@ -1,0 +1,85 @@
+NAME
+    wget - non-interactive network downloader
+
+DESCRIPTION
+    The wget command is a non-interactive network downloader.
+
+SYNOPSIS
+    wget [OPTION]... [URL]...
+
+OPTIONS
+    -V	--version					Display the version of Wget.
+    -h	--help						Print a help message describing all of Wget's command-line options.
+    -b	--background					Go to background immediately after startup.  If no output file is specified via the -o, output is redirected to wget-log.
+    -e command	--execute command			Execute command as if it were a part of .wgetrc.  A command thus invoked will be executed after the commands in .wgetrc,thus taking precedence over them.
+
+   Logging and Input File Options
+    -o logfile	--output-file=logfile 			Log all messages to logfile. The messages are normally reported to standard error.
+    -a logfile	--append-output=logfile			Append to logfile. This is the same as -o, only it appends to logfile instead of overwriting the old log file. If logfile does not exist, a new file is created.
+    -d	--debug						Turn on debug output, meaning various information important to the developers of Wget if it does not work properly.  Your system administrator may have chosen to compile Wget without debug support, in which case -d will not work.  
+    -q	--quiet 					Turn off Wget's output.
+    -v	--verbose					Turn on verbose output, with all the available data. The default output is verbose.
+    -nv	--no-verbose					Turn off verbose without being completely quiet (use -q for that), which means that error messages and basic information still get printed.
+    --report-speed=type					Output bandwidth as type.  The only accepted value is bits.
+    -i file	--input-file=file			Read URLs from a local or external file.  If - is specified as file, URLs are read from the standard input.  (Use ./- to read from a file literally named -.)
+    --input-metalink=file				Downloads files covered in local Metalink file. Metalink version 3 and 4 are supported.
+    --keep-badhash					Keeps downloaded Metalink's files with a bad hash. It appends .badhash to the name of Metalink's files which have a checksum mismatch, except without overwriting existing files
+    --metalink-over-http				Issues HTTP HEAD request instead of GET and extracts Metalink metadata from response headers. Then it switches to Metalink download.  
+    --metalink-index=number --preferred-location	Set preferred location for Metalink resources. This has effect if multiple resources with same priority are available.
+    --xattr						Enable use of file system's extended attributes to save the original URL and the Referer HTTP header value if used.
+    -F --force-html					When input is read from a file, force it to be treated as an HTML file.  This enables you to retrieve relative links from existing HTML files on your local disk, by adding "<base href="url">" to HTML, or using the --base command-line option.
+    -B URL --base=URL					Resolves relative links using URL as the point of reference, when reading links from an HTML file specified via the
+    -i/--input-file option 				(together with --force-html, or when the input file was fetched remotely from a server describing it as HTML).
+    --config=FILE					Specify the location of a startup file you wish to use instead of the default one(s). Use --no-config to disable reading of config files.
+    --rejected-log=logfile				Logs all URL rejections to logfile as comma separated values. The values include the reason of rejection, the URL and the parent URL it was found in.
+
+   Download Options
+    --bind-address=ADDRESS				When making client TCP/IP connections, bind to ADDRESS on the local machine.  ADDRESS may be specified as a hostname or IP address. This option can be useful if your machine is bound to multiple IPs.
+    --bind-dns-address=ADDRESS				[libcares only] This address overrides the route for DNS requests. If you ever need to circumvent the standard settings from /etc/resolv.conf, this option together with --dns-servers is your friend.
+    --dns-servers=ADDRESSES				[libcares only] The given address(es) override the standard nameserver addresses,  e.g. as configured in /etc/resolv.conf.  ADDRESSES may be specified either as IPv4 or IPv6 addresses, comma-separated. Wget needs to be built with libcares for this option to be available.
+    -t number --tries=number				Set number of tries to number. Specify 0 or inf for infinite retrying.  The default is to retry 20 times, with the exception of fatal errors like "connection refused" or "not found" (404), which are not retried.
+    -O file --output-document=file			The documents will not be written to the appropriate files, but all will be concatenated together and written to file. If - is used as file, documents will be printed to standard output, disabling link conversion.
+    -nc --no-clobber					If a file is downloaded more than once in the same directory, Wget's behavior depends on a few options, including -nc.  In certain cases, the local file will be clobbered, or overwritten, upon repeated download.  In other cases it will be preserved.
+    --backups=backups					Before (over)writing a file, back up an existing file by adding a .1 suffix (_1 on VMS) to the file name.  Such backup files are rotated to .2, .3, and so on, up to backups (and lost beyond that).
+    --no-netrc						Do not try to obtain credentials from .netrc file. By default .netrc file is searched for credentials in case none have been passed on command line and authentication is required.
+    -c --continue					Continue getting a partially-downloaded file.  This is useful when you want to finish up a download started by a previous instance of Wget, or by another program.
+    --start-pos=OFFSET					Start downloading at zero-based position OFFSET.  Offset may be expressed in bytes, kilobytes with the `k' suffix, or megabytes with the `m' suffix, etc.
+    --progress=type					Select the type of the progress indicator you wish to use. Legal indicators are "dot" and "bar".
+    --show-progress					Force wget to display the progress bar in any verbosity.
+    -N --timestamping					Turn on time-stamping.
+    --no-if-modified-since				Do not send If-Modified-Since header in -N mode. Send preliminary HEAD request instead. This has only effect in -N mode.
+    --no-use-server-timestamps				Don't set the local file's timestamp by the one on the server.
+    -S --server-response				Print the headers sent by HTTP servers and responses sent by FTP servers.
+    --spider						When invoked with this option, Wget will behave as a Web spider, which means that it will not download the pages, just check that they are there.  For example, you can use Wget to
+    -T seconds --timeout=seconds			Set the network timeout to seconds seconds. This is equivalent to specifying --dns-timeout, --connect-timeout, and --read-timeout, all at the same time.
+    --dns-timeout=seconds				Set the DNS lookup timeout to seconds seconds.  DNS lookups that don't complete within the specified time will fail.  By default, there is no timeout on DNS lookups, other than that implemented by system libraries.
+    --connect-timeout=seconds				Set the connect timeout to seconds seconds. TCP connections that take longer to establish will be aborted.  By default, there is no connect timeout, other than that implemented by system libraries.
+    --read-timeout=seconds				Set the read (and write) timeout to seconds seconds. The "time" of this timeout refers to idle time: if, at any point in the download, no data is received for more than the specified number of seconds, reading fails and the download is restarted.
+    --limit-rate=amount					Limit the download speed to amount bytes per second.  Amount may be expressed in bytes, kilobytes with the k suffix, or megabytes with the m suffix.  
+    -w seconds --wait=seconds				Wait the specified number of seconds between the retrievals. Use of this option is recommended, as it lightens the server load by making the requests less frequent.
+    --waitretry=seconds					If you don't want Wget to wait between every retrieval, butonly between retries of failed downloads, you can use this option. 
+    --random-wait					Some web sites may perform log analysis to identify retrieval programs such as Wget by looking for statistically significant similarities in the time between requests. 
+    --no-proxy						Don't use proxies, even if the appropriate *_proxy environment variable is defined.
+    -Q quota --quota=quota				Specify download quota for automatic retrievals. The value can be specified in bytes (default), kilobytes (with k suffix), or megabytes (with m suffix).
+    --no-dns-cache					Turn off caching of DNS lookups. Normally, Wget remembers the IP addresses it looked up from DNS so it doesn't have to repeatedly contact the DNS server for the same (typically small) set of hosts it retrieves from.  This cache exists in memory only; a new Wget run will contact DNS again.
+    --restrict-file-names=modes				Change which characters found in remote URLs must be escaped during generation of local filenames. Characters that are restricted by this option are escaped, i.e. replaced with %HH, where HH is the hexadecimal number that corresponds to the restricted character. This option may also be used to force all alphabetical cases to be either lower or uppercase.
+
+
+EXAMPLE
+    wget http://example.com/file
+    wget -r http://example.com/dir
+
+AUTHOR
+    Written by Hrvoje Nikšić.
+
+REPORTING BUG
+    Report bugs to <bug-wget@gnu.org>.
+
+SEE ALSO
+    wget - GNU Wget Documentation: https://www.gnu.org/software/wget/manual/wget.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

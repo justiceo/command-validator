@@ -1,0 +1,60 @@
+﻿NAME  
+    chown - Change owner, change the user and/or group ownership of each given file to a new owner.
+            `chown` can also change the ownership of a file to match the user/group of an existing reference file.
+
+SYNOPSIS  
+    chown [OPTIONS]... NEWOWNER FILE...
+
+    chown [OPTIONS]... :GROUP FILE...
+
+    chown [OPTIONS]... --reference=RFILE FILE...
+
+DESCRIPTION  
+    The `chown` command changes the ownership of a file or directory. The new ownership can be specified by a combination of user and group.
+
+OWNER/GROUP SPECIFICATION  
+    [OWNER] [ [:.] [GROUP] ]
+
+    Examples:
+    - OWNER              		- Change the owner of the file.
+    - OWNER.GROUP or OWNER:GROUP  	- Change both the owner and group of the file.
+    - OWNER. or OWNER:    		- Change the owner and set the group to OWNER’s login group.
+    - .GROUP or :GROUP    		- Change only the group of the file.
+
+OPTIONS  
+    -c, --changes              Verbosely describe the action for each FILE whose ownership actually changes.
+
+        --dereference          Do not act on symbolic links themselves but rather on what they point to.
+
+    -f, --silent, --quiet      Do not print error messages about files whose ownership cannot be changed.
+    
+    -h, --no-dereference       Act on symbolic links themselves instead of what they point to. 
+                               This is the default. Relies on the 'lchown' system call. On systems that do not provide the 'lchown' system call, 
+                               'chown' fails when a file specified on the command line is a symbolic link.
+
+        --reference=FILE       Use the user and group of the reference FILE instead of an explicit NEWOWNER value.
+    
+    -R, --recursive            Recursively change ownership of directories and their contents. 
+                               Take care to not run recursive `chown` on the root '/' directory or any other system directory.
+    
+    -v, --verbose              Verbosely describe the action (or non-action) taken for every FILE. If a symbolic link is encountered during a recursive traversal on a system without the 'lchown' system call, 
+                               and '--no-dereference' is in effect, then issue a diagnostic saying neither the symbolic link nor its referent is being changed.
+
+EXAMPLE
+    chown user:group file.txt
+    chown -R user:group directory/
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    chown - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/chown-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

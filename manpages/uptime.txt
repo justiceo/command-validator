@@ -1,0 +1,35 @@
+NAME
+    uptime - tell how long the system has been running
+
+DESCRIPTION
+    The uptime command shows how long the system has been running, along with the number of users and system load averages.
+
+SYNOPSIS
+    uptime [option ...]AES
+
+OPTIONS
+
+ 	-c, --container			show the container uptime instead of system uptime.
+       	-p, --pretty			show uptime in pretty format
+       	-h, --help			display this help text
+       	-r, --raw			Display values in a raw format. Current time and uptime are displayed in seconds.
+       	-s, --since			system up since, in yyyy-mm-dd HH:MM:SS format
+       	-V, --version			display version information and exit
+
+EXAMPLE
+    uptime
+
+AUTHOR
+    Written by Miquel van Smoorenburg.
+
+REPORTING BUG
+    Report bugs to <linux-kernel@vger.kernel.org>.
+
+SEE ALSO
+    uptime - Linux Manual Page: https://man7.org/linux/man-pages/man1/uptime.1.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

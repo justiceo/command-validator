@@ -1,0 +1,39 @@
+NAME
+       hostname -- set or print name of current host system
+
+SYNOPSIS
+       hostname [-f] [-s | -d] [name-of-host]
+
+DESCRIPTION
+       The hostname utility prints the name of the current host. The super-
+       user can set the hostname by supplying an argument; this is usually
+       done in the initialization script /etc/rc.d/hostname, normally run at
+       boot time. This script uses the hostname variable in /etc/rc.conf.
+
+OPTIONS
+
+       -f                 Include domain information in the printed name. This is the default behavior.
+
+       -s                 Trim off any domain information from the printed name.
+
+       -d                 Only print domain information.
+
+
+EXAMPLE
+    hostname
+    hostname -f
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    hostname - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/hostname-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

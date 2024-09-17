@@ -1,0 +1,59 @@
+NAME
+    sudo - execute a command as another user
+
+DESCRIPTION
+    The sudo command allows a permitted user to execute a command as another user, typically the superuser.
+
+SYNOPSIS
+    	sudo -K | -L | -V | -h | -k | -l | -v 
+ 
+      	sudo [-HPSb] [-a auth_type] [-c class|-] [-p prompt]
+        [-u username|#uid] {-e file [...] | -i | -s | command}
+
+      	sudoedit [-S] [-a auth_type] [-p prompt] [-u username|#uid] file [...] 
+
+
+OPTIONS
+  -H   			Set the HOME environment variable to the homedir of the target user (root by default) as specified in passwd(5). By default, sudo does
+        		not modify HOME (see set_home and always_set_home in sudoers(5)).
+  -K  			(sure kill) like kill (-k) except that it removes the user’s timestamp entirely. Like -k, this option does not require a password.
+  -L   			list defaults, list out the parameters that can be set in a Default line along with a short description for each. This option is useful in conjunction with grep.
+  -P   			Preserve group vector, causes sudo to preserve the invoking user’s group vector unaltered. By default, sudo will initialize the group vector to the list of groups the target user is in. The real and effective group IDs, however, are still set to match the target user.
+  -S   			stdin, read the password from the standard input instead of the terminal.
+  -V   			Version, print the version number and exit.
+  -a   			Authentication type, use the specified authentication type when validating the user, as allowed by /etc/login.conf. 
+  -b   			Background, run the given command in the background.
+  -c   			Class, run the specified command with resources limited by the specified login class. 
+  -e   			Edit, instead of running a command, the user wishes to edit one or more files. In lieu of a command, the string "sudoedit" is used when consulting the sudoers file. If the user is authorized by sudoers the following steps are taken:
+         		1. Temporary copies are made of the files to be edited with the owner set to the invoking user.
+         		2. The editor specified by the VISUAL or EDITOR environment variables is run to edit the temporary files. If neither VISUAL nor EDITOR are set, the program listed in the editor sudoers variable is used.
+         		3. If they have been modified, the temporary files are copied back to their original location and the temporary versions are removed. 
+ -h   			Help, print a usage message and exit.
+ -i   			Simulate initial login, run the shell specified in the passwd(5) entry of the user that the command is being run as. The command name argument given to the shell begins with a - to tell the shell to run as a login shell.
+ -k   			Kill, invalidates the user’s timestamp by setting the time on it to the epoch.
+ -l   			List, list out the allowed (and forbidden) commands for the user on the current host.
+ -p   			Prompt, allows you to override the default password prompt and use a custom one.
+ -s    			Shell, runs the shell specified by the SHELL environment variable if it is set or the shell as specified in passwd.
+ -u   			User, causes sudo to run the specified command as a user other than root.
+ -v   			Validate, sudo will update the user’s timestamp, prompting for the user’s password if necessary. This extends the sudo timeout for another 5 minutes (or whatever the timeout is set to in sudoers) but does not run a command.
+ --   			Indicates that sudo should stop processing command line arguments.
+
+EXAMPLE
+    sudo command
+    sudo -u user command
+
+AUTHOR
+    Written by Todd C. Miller.
+
+REPORTING BUG
+    Report bugs to <bug-sudo@sudo.ws>.
+
+SEE ALSO
+    sudo - Sudo Documentation: https://www.sudo.ws/man/1.8.32/sudo.html
+
+COPYRIGHT
+    Copyright © 2024 Todd C. Miller.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+

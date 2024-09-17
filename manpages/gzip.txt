@@ -1,0 +1,82 @@
+NAME
+   gzip, gunzip, zcat -- compression/decompression tool using Lempel-Ziv
+   coding (LZ77)
+
+SYNOPSIS
+   gzip [-cdfhkLlNnqrtVv] [-S suffix] file [file [...]]
+   gunzip [-cfhkLNqrtVv] [-S suffix] file [file [...]]
+   zcat [-fhV] file [file [...]]
+
+
+DESCRIPTION
+   The gzip program compresses and decompresses files using Lempel-Ziv
+   coding (LZ77). If no files are specified, gzip will compress from
+   standard input, or decompress to standard output. When in compression
+   mode, each file will be replaced with another file with the suffix, set
+   by the -S suffix option, added, if possible.
+
+   In decompression mode, each file will be checked for existence, as will
+   the file with the suffix added. Each file argument must contain a sep-
+   arate complete archive; when multiple files are indicated, each is de-
+   compressed in turn.
+
+  
+
+OPTIONS
+   -1, --fast                                  These options change the compression level used, with
+   -2, -3, -4, -5, -6, -7, -8                  the -1 option being the fastest, with less compres-
+                                               sion, and the -9 option being the slowest, with opti-
+                                               mal compression. The default compression level is 6.
+                      
+   -9, --best                                   
+   -c, --stdout, --to-stdout                   This option specifies that output will go to the
+                                               standard output stream, leaving files intact.
+   -d, --decompress, --uncompress              This option selects decompression rather than com-
+                                               pression.
+   -f, --force                                 This option turns on force mode. This allows files
+                                               with multiple links, symbolic links to regular files,
+                                               overwriting of pre-existing files, reading from or
+                                               writing to a terminal, and when combined with the -c
+                                               option, allowing non-compressed data to pass through
+                                               unchanged.
+   -h, --help                                  This option prints a usage summary and exits.
+   -k, --keep                                  This option prevents gzip from deleting input files
+                                               after (de)compression.
+   -L, --license                               This option prints gzip license.
+   -l, --list                                  This option displays information about the file's
+                                               compressed and uncompressed size, ratio, uncompressed
+                                               name. With the -v option, it also displays the com-
+                                               pression method, CRC, date and time embedded in the
+                                               file.
+   -N, --name                                  This option causes the stored filename in the input
+                                               file to be used as the output file.
+   -n, --no-name                               This option stops the filename and timestamp from be-
+                                               ing stored in the output file.
+   -q, --quiet                                 With this option, no warnings or errors are printed.
+   -r, --recursive                             This option is used to gzip the files in a directory
+                                               tree individually, using the fts(3) library.
+   -S suffix, --suffix suffix                  This option changes the default suffix from .gz to
+                                               suffix.
+   -t, --test                                  This option will test compressed files for integrity.
+   -V, --version                               This option prints the version of the gzip program.
+   -v, --verbose                               This option turns on verbose mode, which prints the
+                                               compression ratio for each file compressed.
+
+EXAMPLE
+    gzip file.txt
+    gzip -d file.txt.gz
+
+AUTHOR
+    Written by Jean-loup Gailly and Mark Adler.
+
+REPORTING BUG
+    Report bugs to <bug-gzip@gnu.org>.
+
+SEE ALSO
+    gzip - GNU Gzip Manual: https://www.gnu.org/software/gzip/manual/gzip.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

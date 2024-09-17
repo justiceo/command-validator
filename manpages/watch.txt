@@ -1,0 +1,43 @@
+NAME
+    watch - execute a program periodically, showing output fullscreen
+
+DESCRIPTION
+    	watch runs command repeatedly, displaying its output and errors(the first screenful). This allows you to watch the program output change over time. By default, command is run every 2 seconds and watch will run until interrupted.
+SYNOPSIS
+    watch [OPTION] COMMAND
+
+OPTIONS
+   	-b, --beep			Beep if command has a non-zero exit.
+       	-c, --color			Interpret ANSI color and style sequences.
+       	-C, --no-color			Do not interpret ANSI color and style sequences.
+	-d, --differences[=permanent]	Highlight the differences between successive updates.
+       	-e, --errexit			Freeze updates on command error, and exit after a key press.
+       	-g, --chgexit			Exit when the output of command changes.
+       	-n, --interval seconds		Specify update interval. Values smaller than 0.1 and larger than 2678400 (31 days) are converted into these respective bounds. 
+       	-p, --precise			Execute command --interval seconds after its previous run started, instead of --interval seconds after its previous run finished.
+       	-q, --equexit <cycles>		Exit when output of command does not change for the given number of cycles.
+        -r, --no-rerun			Do not run the program on terminal resize, the output of the program will re-appear at the next regular run time.
+       	-s, --shotsdir			Directory to save screenshots into.
+       	-t, --no-title			Turn off the header normally shown at the top of the screen.
+       	-w, --no-wrap			Turn off line wrapping. Long lines will be truncated instead of wrapped to the next line.
+       	-x, --exec			Pass command to an exec(3) call instead of sh -c. The program will start a bit quicker.
+       	-h, --help			Display help text and exit.
+       	-v, --version			Display version information and exit.
+EXAMPLE
+    watch ls
+    watch -n 5 df -h
+
+AUTHOR
+    Written by Julianne Frances Haugh.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    watch - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/watch-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

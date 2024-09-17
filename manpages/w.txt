@@ -1,0 +1,35 @@
+NAME
+    w - who is logged in and what they are doing
+
+DESCRIPTION
+    The w command shows who is logged in and what they are doing.
+
+SYNOPSIS
+    w [OPTION]...
+
+OPTIONS
+   -h			Don't print the header.
+   -u			Ignores the username while figuring out the current process and cpu times. To demonstrate this, do a "su" and do a "w" and a "w -u".
+   -s			Use the short format. Don't print the login time, JCPU or PCPU times.
+   -f			Toggle printing the from (remote hostname) field. The default as released is for the from field to not be printed, although your system administrator or distribution maintainer may have compiled a version in which the from field is shown by default.
+   -V			Display version information.
+   user			Show information about the specified user only.
+
+EXAMPLE
+    w
+    w -u username
+
+AUTHOR
+    Written by William Shwitzer and others.
+
+REPORTING BUG
+    Report bugs to <util-linux@vger.kernel.org>.
+
+SEE ALSO
+    w - util-linux Documentation: https://man7.org/linux/man-pages/man1/w.1.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

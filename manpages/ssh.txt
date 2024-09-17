@@ -1,0 +1,114 @@
+NAME
+    ssh - OpenSSH SSH client (remote login program)
+
+DESCRIPTION
+    The ssh command is a program for logging into a remote machine and executing commands.
+
+SYNOPSIS
+    ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+            [-D [bind_address:]port] [-e escape_char] [-F configfile]
+               [-i identity_file] [-L  [bind_address:]port:host:hostport]
+                  [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] 
+                     [-p port] [-R [bind_address:]port:host:hostport]
+                        [-S ctl_path] [-w local_tun[:remote_tun]]
+                           [user@]hostname [command]
+
+OPTIONS
+    -1      					Forces ssh to try protocol version 1 only.                                 
+
+    -2      					Forces ssh to try protocol version 2 only.                                 
+
+    -4      					Forces ssh to use IPv4 addresses only.                                      
+
+    -6     					Forces ssh to use IPv6 addresses only.                                      
+
+    -A      					Enables forwarding of the authentication agent connection. This can also be specified on a per-host basis in a configuration file.  
+
+    -a      					Disables forwarding of the authentication agent connection.                   
+
+    -b bind_address				Use bind_address on the local machine as the source address of the connection. Only useful on systems with more than one address.  
+
+    -C      					Requests compression of all data (including stdin, stdout, stderr, and data for forwarded X11 and TCP connections).  
+
+    -c cipher_spec				Selects the cipher specification for encrypting the session.                   
+
+    -D [bind_address:]port			Specifies a local “dynamic” application-level port forwarding. IPv6 addresses can be specified with an alternative syntax: [bind_address/]port or by enclosing the address in square brackets.  
+
+    -e escape_char				Sets the escape character for sessions with a pty (default: ‘~’). The escape character is only recognized at the beginning of a line.  
+
+    -F configfile				Specifies an alternative per-user configuration file.                             
+
+    -f      					Requests ssh to go to background just before command execution. If the ExitOnForwardFailure configuration option is set to “yes”, then a client started with -f will wait for all remote port forwards to be successfully established before placing itself in the background.  
+
+    -g      					Allows remote hosts to connect to local forwarded ports.                       
+
+    -I smartcard_device				Specify the device ssh should use to communicate with a smartcard used for storing the user’s private RSA key.  
+
+    -i identity_file				Selects a file from which the identity (private key) for RSA or DSA authentication is read.  
+
+    -K      					Enables GSSAPI-based authentication and forwarding (delegation) of GSSAPI credentials to the server.  
+
+    -k      					Disables forwarding (delegation) of GSSAPI credentials to the server.          
+
+    -L [bind_address:]port:host:hostport	Specifies that the given port on the local (client) host is to be forwarded to the given host and port on the remote side.  
+
+    -l login_name				Specifies the user to log in as on the remote machine. This also may be specified on a per-host basis in the configuration file.  
+
+    -M      					Places the ssh client into "primary" mode for connection sharing.               
+
+    -m mac_spec					Additionally, for protocol version 2 a comma-separated list of MAC (message authentication code) algorithms can be specified in order of preference. See the MACs keyword for more information.  
+
+    -N      					Do not execute a remote command. This is useful for just forwarding ports (protocol version 2 only).  
+
+    -n      					Redirects stdin from /dev/null (actually, prevents reading from stdin). This must be used when ssh is run in the background.  
+
+    -O ctl_cmd					Control an active connection multiplexing primary process. When the -O option is specified, the ctl_cmd argument is interpreted and passed to the primary process.  
+
+    -o option					Can be used to give options in the format used in the configuration file. This is useful for specifying options for which there is no separate command-line flag.  
+
+    -p port					Port to connect to on the remote host. This can be specified on a per-host basis in the configuration file.  
+
+    -q      					Quiet mode. Causes most warning and diagnostic messages to be suppressed. Only fatal errors are displayed.  
+
+    -R [bind_address:]port:host:hostport        Specifies that the given port on the remote (server) host is to be forwarded to the given host and port on the local side.  
+
+    -S ctl_path                         	Specifies the location of a control socket for connection sharing, or the string “none” to disable connection sharing.  
+
+    -s      					Used to request invocation of a subsystem on the remote system.                
+
+    -T      					Disable pseudo-tty allocation.                                                 
+
+    -t      					Force pseudo-tty allocation.                                                   
+
+    -V      					Display the version number and exit.                                            
+
+    -v      					Verbose mode. Causes ssh to print debugging messages about its progress.  
+
+    -w local_tun[:remote_tun]           	Requests tunnel device forwarding with the specified tun(4) devices between the client (local_tun) and the server (remote_tun).  
+
+    -X      					Enables X11 forwarding. This can also be specified on a per-host basis in a configuration file. For this reason, X11 forwarding is subjected to X11 SECURITY extension restrictions by default. Please refer to the ssh -Y option and the ForwardX11Trusted directive in ssh_config(5) for more information.  
+
+    -x      					Disables X11 forwarding.                                                       
+
+    -Y      					Enables trusted X11 forwarding. Trusted X11 forwardings are not subjected to the X11 SECURITY extension controls.  
+
+    -y      					Send log information using the syslog(3) system module. By default this information is sent to stderr.  
+
+EXAMPLE
+    ssh user@remote
+    ssh -p 2222 user@remote
+
+AUTHOR
+    Written by Tatu Ylönen.
+
+REPORTING BUG
+    Report bugs to <bug-openssh@openssh.com>.
+
+SEE ALSO
+    ssh - OpenSSH Documentation: https://man.openbsd.org/ssh
+
+COPYRIGHT
+    Copyright © 2024 OpenSSH.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

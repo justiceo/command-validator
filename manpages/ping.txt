@@ -1,0 +1,105 @@
+NAME
+    ping - send ICMP ECHO_REQUEST to network hosts
+
+DESCRIPTION
+    The ping command sends ICMP ECHO_REQUEST packets to network hosts and reports on their response times.
+
+SYNOPSIS
+    ping [OPTION]... DESTINATION
+
+OPTIONS
+   -a                        Audible ping. This removes the need to look at the ping output.
+
+   -A                        Adaptive ping. Interpacket interval adapts to round-trip time, so that effectively not more than one (or more, if preload is set) unanswered probes
+                             present in the network.
+
+   -b                        Allow pinging a broadcast address. 
+
+   -B                        Do not allow ping to change source address of probes. The address is bound to one selected when ping starts.
+
+   -c count                  Stop after sending (and receiving) count ECHO_RESPONSE packets.
+
+   -d                        Debug, Set the SO_DEBUG option on the socket being used.
+
+   -F flow_label             Allocate and set 20 bit flow label on echo request packets. (Only ping6).
+                             If value is zero, kernel allocates random flow label.
+
+   -f                        Flood ping, output packets as fast as they come back or 100 times per second.
+
+   -i wait                   Set an interval of wait seconds between sending each packet. default=one second.
+                             Only super-user can set wait to values less 0.2 seconds.
+                             (incompatible with -f)
+
+   -I interface address      Set source address to specified interface_address.
+                             Argument can be numeric IP address or name of device.
+                             Required when pinging an IPv6 link-local address.
+
+   -l preload                If preload is specified, ping sends that many packets as fast as
+                             possible before falling into its normal mode of behavior.
+                             Only the super-user can select preload more than 3.
+
+   -L                        Suppress loopback of multicast packets.
+                             only applies if the ping destination is a multicast address.
+
+   -n                        Numeric output only. No attempt will be made to lookup symbolic
+                             names for host addresses.
+
+   -p pattern                Specify up to 16 'pad' bytes to fill out the packet sent.
+                             This is useful for diagnosing data-dependent problems in a
+                             network. eg, '-p ff' will fill the packet sent with all ones.
+
+   -q                        Quiet output. Only display the summary lines at startup time and when finished.
+
+   -Q tos                    Set Quality of Service -related bits in ICMP datagrams. tos can be a decimal or hex number.
+                             Multiple TOS bits should not be set simultaneously. For detail see RFC1349 and RFC2474
+
+   -R                        Record route(IPv4 only). Includes the RECORD_ROUTE option in the ECHO_REQUEST packet and
+                             display the route buffer on returned packets.
+
+   -r                        Bypass the normal routing tables and send directly to a host on an attached network.
+
+   -s packetsize             The number of data bytes to be sent. The default is 56, which translates into
+                             64 ICMP data bytes when combined with the 8 bytes of ICMP header data.
+
+   -S sndbuf                 Set socket sndbuf. If not specified, it is selected to buffer not more than one packet.
+
+   -t ttl                    Set the IP Time to Live.
+
+   -T timestamp_option       Set special IP timestamp options, either 'tsonly' (only timestamps),
+                             'tsandaddr' (timestamps and addresses)
+                             or 'tsprespec host1 [host2 [host3 [host4]]]' (timestamp prespecified hops).
+
+   -M hint                   Select Path MTU Discovery strategy. hint can be either 'do' (prohibit fragmentation,
+                             even local one), 'want' (do PMTU discovery, fragment locally when packet size is large),
+                             or 'dont' (do not set DF flag).
+
+   -U                        Print full user-to-user latency (the old behaviour).
+                             Normally ping prints network round trip time, which can be different f.e. due to DNS failures.
+
+   -v                        Verbose output. ICMP packets other than ECHO_RESPONSE that are received are listed.
+
+   -w deadline               A timeout, in seconds, before ping exits regardless of how many packets have been sent or received.
+                             In this case ping does not stop after count packet are sent, it waits either for deadline expire
+                             or until count probes are answered or for some error notification from the network.
+
+   -W timeout                Time to wait for a response, in seconds.
+                             This option affects only the ICMP timeout in the absense of any responses, otherwise ping waits for two RTTs.
+
+EXAMPLE
+    ping google.com
+    ping -c 4 192.168.1.1
+
+AUTHOR
+    Written by Mike Muuss.
+
+REPORTING BUG
+    Report bugs to <bug-iputils@linux.it>.
+
+SEE ALSO
+    ping - iputils Documentation: https://man7.org/linux/man-pages/man8/ping.8.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

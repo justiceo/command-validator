@@ -1,0 +1,36 @@
+NAME
+   head -- display first lines of a file
+
+SYNOPSIS
+   head [-qv] [-n count | -c bytes] [file ...]
+
+DESCRIPTION
+   This filter displays the first count lines or bytes of each of the
+   specified files, or of the standard input if no files are specified.
+   If count is omitted it defaults to 10.
+
+OPTIONS
+   -c bytes, --bytes=bytes                  Print bytes of each of the specified files.
+   -n count, --lines=count                  Print count lines of each of the specified files.
+                                            Both count and bytes may also be specified with size suffixes
+                                            supported by expand_number(3).
+   -q, --quiet, --silent                    Suppresses printing of headers when multiple files are being
+                                            examined.
+   -v, --verbose                            Prepend each file with a header.
+
+EXAMPLES
+    head file.txt
+    head -n 20 file.txt
+    head -c 100 file.txt
+
+AUTHOR
+    Written by David MacKenzie.
+
+SEE ALSO
+    `man head` on your local system.
+
+DOCUMENTATION
+    For full documentation, visit: https://man.freebsd.org/cgi/man.cgi?query=head
+
+BUG REPORTING
+    Report bugs at: https://bugs.freebsd.org/

@@ -1,0 +1,33 @@
+NAME
+    crontab - manage cron tables
+
+DESCRIPTION
+    The crontab command installs, removes, or lists the tables used to drive the cron daemon.
+
+SYNOPSIS
+    crontab [OPTION]... [FILE]
+
+OPTIONS
+    -e, --edit               edit the current crontab file
+    -l, --list               list the current crontab file
+    -r, --remove             remove the current crontab file
+    -u, --user <user>        use the specified user’s crontab
+
+EXAMPLE
+    crontab -e
+    crontab -l
+
+AUTHOR
+    Written by Paul Vixie.
+
+REPORTING BUG
+    Report bugs to <bug-cron@gnu.org>.
+
+SEE ALSO
+    crontab - GNU Cron Documentation(https://www.gnu.org/software/vixie-cron/man-crontab.html)
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

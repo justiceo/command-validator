@@ -1,0 +1,44 @@
+NAME
+       export -- set an environment variable
+
+SYNOPSIS
+       export [-fn] [name[=value]]
+       export -p
+
+DESCRIPTION
+       The export command sets an environment variable. The supplied names are
+       marked for automatic export to the environment of subsequently executed
+       commands.
+
+OPTIONS
+
+       -f                              The names refer to shell functions; otherwise
+                                       the names refer to shell variables.
+
+       -n                              No longer mark each name for export.
+
+       -p                              Print a list of all the names exported in this
+                                       shell. This is also the default action if no
+                                       name is given.
+
+       value                           The value of the variable is set to value.
+
+
+EXAMPLE
+    export VAR=value
+    export -p
+
+AUTHOR
+    Written by the GNU Bash team.
+
+REPORTING BUG
+    Report bugs to <bug-bash@gnu.org>.
+
+SEE ALSO
+    export - GNU Bash Documentation: https://www.gnu.org/software/bash/manual/html_node/Export-Builtin.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

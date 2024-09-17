@@ -1,0 +1,73 @@
+NAME  
+    cp - Copy one or more files to another location.
+
+SYNOPSIS  
+    cp [OPTIONS]... SOURCE DEST  
+    cp [OPTIONS]... SOURCE... DIRECTORY
+
+DESCRIPTION  
+    The `cp` command copies SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+
+OPTIONS  
+    -a, --archive                Same as -dpR.
+
+    -b, --backup                 Make backup before removal.
+                                 If the copy will overwrite a file in the destination, then
+                                 the original file will be backed up as 'filename~' before
+                                 being overwritten.
+
+    -d, --no-dereference         Preserve links.
+
+    -f, --force                  Remove existing destinations, never prompt.
+
+    -i, --interactive            Prompt before overwrite.
+
+    -l, --link                   Link files instead of copying.
+
+    -p, --preserve               Preserve file attributes if possible.
+
+    -P, --parents                Append source path to DIRECTORY.
+
+    -r                           Copy recursively, non-directories as files.
+
+        --sparse=WHEN            Control creation of sparse files.
+
+    -R, --recursive              Copy directories recursively.
+
+    -s, --symbolic-link          Make symbolic links instead of copying.
+
+    -S, --suffix=SUFFIX          Override the usual backup suffix.
+
+    -u, --update                 Copy only when the SOURCE file is newer
+                                 than the destination file or when the
+                                 destination file is missing.
+
+    -v, --verbose                Explain what is being done.
+
+    -V, --version-control=WORD   Override the usual version control.
+
+    -x, --one-file-system        Stay on this file system.
+
+        --help                   Display this help and exit.
+
+        --version                Output version information and exit.
+
+
+EXAMPLE
+    cp file1.txt /home/user/documents/
+    cp -r dir1/ dir2/
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    cp - GNU Coreutils Documentation(https://www.gnu.org/software/coreutils/manual/html_node/cp-invocation.html)
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

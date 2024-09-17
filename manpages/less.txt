@@ -1,0 +1,74 @@
+NAME
+    less - view files one screen at a time
+
+SYNOPSIS
+    less [OPTIONS] [FILE]...
+
+DESCRIPTION
+    The `less` command allows you to view the contents of a file one screen at a time, with the ability to scroll forward and backward.
+
+OPTIONS
+  -a  ........  --search-skip-screen               Forward search, skips current screen.
+  -g  ........  --hilite-search                   Highlight only last match for searches.
+  -G  ........  --HILITE-SEARCH                   Don’t highlight any matches for searches.
+  -h [N]  ....  --max-back-scroll=[N]             Backward scroll limit.
+  -i  ........  --ignore-case                     Ignore case in searches.
+  -I  ........  --IGNORE-CASE                     Ignore case in searches and in search patterns.
+  -j [N]  ....  --jump-target=[N]                 Screen position of target lines.
+  -p [pattern]  --pattern=[pattern]               Start at pattern (from command line).
+  -t [tag]  ..  --tag=[tag]                       Find a tag.
+  -T [tagsfile] --tag-file=[tagsfile]             Use an alternate tags file.
+  -y [N]  ....  --max-forw-scroll=[N]             Forward scroll limit.
+
+DISPLAY OPTIONS:
+
+  -D [xn.n]  .  --color=xn.n                      Set screen colors. (MS-DOS only)
+  -c  -C  ....  --clear-screen  --CLEAR-SCREEN    Repaint by scrolling/clearing.
+  -P [prompt]   --prompt=[prompt]                 Define new prompt.
+  -m  -M  ....  --long-prompt  --LONG-PROMPT      Set prompt style.
+  -n  -N  ....  --line-numbers  --LINE-NUMBERS    Use line numbers.
+  -r  ........  --raw-control-chars               Output "raw" control characters.
+  -s  ........  --squeeze-blank-lines             Squeeze multiple blank lines.
+  -S  ........  --chop-long-lines                 Chop long lines.
+  -w  ........  --hilite-unread                   Highlight first new line after forward-screen.
+  -W  ........  --HILITE-UNREAD                   Highlight first new line after any forward movement.
+  -~  ........  --tilde                           Don’t display tildes after end of file.
+  -z [N]  ....  --window=[N]                      Set size of window.
+
+FILE OPTIONS:
+
+  -b [N]  ....  --buffers=[N]                     Number of buffers.
+  -B  ........  --auto-buffers                    Don’t automatically allocate buffers for pipes.
+  -f  ........  --force                           Force open non-regular files.
+  -k [file]  .  --lesskey-file=[file]             Use a lesskey file.
+  -o [file]  .  --log-file=[file]                 Copy to log file (standard input only).
+  -O [file]  .  --LOG-FILE=[file]                 Copy to log file (unconditionally overwrite).
+
+MISC OPTIONS:
+
+  -d  ........  --dumb                            		Dumb terminal.
+  -e  -E  ....  --quit-at-eof  --QUIT-AT-EOF     		Quit at end of file.
+  -q  -Q  ....  --quiet  --QUIET  --silent --SILENT 		Quiet the terminal bell.
+  -u  -U  ....  --underline-special  --UNDERLINE-SPECIAL 	Change handling of backspaces.
+  -x [N]  ....  --tabs=[N]                        		Set tab stops.
+  -X  ........  --no-init                         		Don’t use termcap init/deinit strings.
+  -" [c[c]]  .  --quotes=[c[c]]                    		Set shell quote characters.
+  -?  ........  --help                            		Display help (from command line).
+  -V  ........  --version                        		Display the version number of "less".
+
+EXAMPLES
+    less file.txt
+    less +G file.txt
+    less -N file.txt
+
+AUTHOR
+    Written by Mark Nudelman.
+
+SEE ALSO
+    `man less` on your local system.
+
+DOCUMENTATION
+    For full documentation, visit: https://man.freebsd.org/cgi/man.cgi?query=less
+
+BUG REPORTING
+    Report bugs at: https://bugs.freebsd.org/

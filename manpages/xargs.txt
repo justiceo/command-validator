@@ -1,0 +1,48 @@
+NAME
+    xargs - build and execute command lines from standard input
+
+DESCRIPTION
+    The xargs command builds and executes command lines from standard input.
+
+SYNOPSIS
+    xargs [-0prtx] [-E eof-str] [-e[eof-str]] [--eof[=eof-str]] [--null] [-d delimiter] [--delimiter delimiter] [-I replace-str] [-i[replace-str]] [--replace[=replace-str]] [-l[max-lines]] [-L max-lines] [--max-lines[=max-lines]] [-n max-args] [--max-args=max-args] [-s max-chars] [--max-chars=max-chars] [-P max-procs] [--max-procs=max-procs] [--interactive] [--verbose] [--exit] [--no-run-if-empty] [--arg-file=file] [--show-limits] [--version] [--help] [command [initial-arguments]]
+
+OPTIONS
+    --arg-file=file -a file			Read items from file instead of standard input. If you use this option, stdin remains unchanged when commands are run. Otherwise, stdin is redirected from /dev/null.
+    --null, -0					Input items are terminated by a null character instead of by whitespace, and the quotes and backslash are not special (every character is taken literally). Disables the end of file string, which is treated like any other argument. Useful when input items might contain white space, quote marks, or backslashes. The GNU find -print0 option produces input suitable for this mode.
+    --delimiter=delim, -d delim			Input items are terminated by the specified character. Quotes and backslash are not special; every character in the input is taken literally. Disables the end-of-file string, which is treated like any other argument. This can be used when the input consists of simply newline-separated items, although it is almost always better to design your program to use --null where this is possible. The specified delimiter may be a single character, a C-style character escape such as \n, or an octal or hexadecimal escape code. Octal and hexadecimal escape codes are understood as for the printf command. Multibyte characters are not supported.
+    -E eof-str					Set the end of file string to eof-str. If the end of file string occurs as a line of input, the rest of the input is ignored. If neither -E nor -e is used, no end of file string is used.
+    --eof[=eof-str], -e[eof-str]		This option is a synonym for the -E option. Use -E instead, because it is POSIX compliant while this option is not. If eof-str is omitted, there is no end of file string. If neither -E nor -e is used, no end of file string is used.
+    --help					Print a summary of the options to xargs and exit.
+    -I replace-str				Replace occurrences of replace-str in the initial-arguments with names read from standard input. Also, unquoted blanks do not terminate input items; instead the separator is the newline character. Implies -x and -L 1.
+    --replace[=replace-str], -i[replace-str]	This option is a synonym for -Ireplace-str if replace-str is specified, and for -I{} otherwise. This option is deprecated; use -I instead.
+    -L max-lines				Use at most max-lines nonblank input lines per command line. Trailing blanks cause an input line to be logically continued on the next input line. Implies -x.
+    --max-lines[=max-lines] -l[max-lines]	Synonym for the -L option. Unlike -L, the max-lines argument is optional. If max-lines is not specified, it defaults to one. The -l option is deprecated since the POSIX standard specifies -L instead.
+    --max-args=max-args -n max-args		Use at most max-args arguments per command line. Fewer than max-args arguments will be used if the size (see the -s option) is exceeded, unless the -x option is given, in which case xargs will exit.
+    --interactive -p				Prompt the user about whether to run each command line and read a line from the terminal. Only run the command line if the response starts with 'y' or 'Y'. Implies -t.
+    --no-run-if-empty -r			If the standard input does not contain any nonblanks, do not run the command. Normally, the command is run once even if there is no input. This option is a GNU extension.
+    --max-chars=max-chars -s max-chars		Use at most max-chars characters per command line, including the command and initial-arguments and the terminating nulls at the ends of the argument strings. The largest allowed value is system-dependent, and is calculated as the argument length limit for exec, less the size of your environment, less 2048 bytes of headroom. If this value is more than 128KiB, 128Kib is used as the default value; otherwise, the default value is the maximum. 1KiB is 1024 bytes.
+    --verbose -t				Print the command line on the standard error output before executing it.
+    --version					Print the version number of xargs and exit.
+    --show-limits				Display the limits on the command-line length which are imposed by the operating system, xargs' choice of buffer size and the -s option. Pipe the input from /dev/null (and perhaps specify --no-run-if-empty) if you don't want xargs to do anything.
+    --exit   -x					Exit if the size (see the -s option) is exceeded.
+    --max-procs=max-procs -P max-procs		Run up to max-procs processes at a time; the default is 1. If max-procs is 0, xargs will run as many processes as possible at a time. Use the -n option with -P; otherwise chances are that only one exec will be done.
+
+EXAMPLE
+    find . -type f | xargs wc
+    echo "file.txt" | xargs cat
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-findutils@gnu.org>.
+
+SEE ALSO
+    xargs - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/xargs-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

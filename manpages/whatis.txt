@@ -1,0 +1,42 @@
+NAME
+    whatis - display one-line manual page descriptions
+
+DESCRIPTION
+    The whatis command displays a one-line description of the specified command from the manual pages.
+
+SYNOPSIS
+    whatis [OPTION]... COMMAND...
+
+OPTIONS
+     -d, --debug					Print debugging information.
+     -v, --verbose					Print verbose warning messages.
+     -r, --regex					Interpret each name as a regular expression. If a name matches any part of a page name, a match will be made.
+     -w, --wildcard					Interpret each name as a pattern containing shell style wildcards.  For a match to be made, an expanded name must match the entire page name.
+     -l, --long						Do not trim output to the terminal width.
+     -s list, --sections=list, --section=list		Search only the given manual sections.  list is a colon or comma-separated list of sections.
+     -m system[,...], --systems=system[,...]		If this system has access to other operating systems' manual page names, they can be accessed using this option.
+     -M path, --manpath=path				Specify an alternate set of colon-delimited manual page hierarchies to search. 
+     -L locale, --locale=locale				whatis will normally determine your current locale by a call to the C function setlocale(3) which interrogates various environment variables, possibly including $LC_MESSAGES and $LANG.
+     -C file, --config-file=file			Use this user configuration file rather than the default of ~/.manpath.
+     -?, --help						Print a help message and exit.
+     --usage						Print a short usage message and exit.
+     -V, --version					Display version information.
+
+EXAMPLE
+    whatis ls
+    whatis ssh
+
+AUTHOR
+    Written by Julianne Frances Haugh.
+
+REPORTING BUG
+    Report bugs to <bug-man-db@man-db.org>.
+
+SEE ALSO
+    whatis - man-db Documentation: https://man-db.readthedocs.io/en/latest/what-is.html
+
+COPYRIGHT
+    Copyright © 2024 man-db.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

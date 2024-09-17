@@ -1,0 +1,42 @@
+NAME
+    sed - stream editor
+
+DESCRIPTION
+    The sed command is a stream editor used to perform basic text transformations on an input stream (a file or input from a pipeline).
+
+SYNOPSIS
+    sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+
+OPTIONS
+   -n, --quiet, --silent                            suppress automatic printing of pattern space
+   -e script, --expression=script                   add the script to the commands to be executed
+   -f script-file, --file=script-file               add the contents of script-file to the commands to be executed
+   --follow-symlinks                                follow symlinks when processing in place; hard links will still be broken
+   -i[SUFFIX], --in-place[=SUFFIX]                  edit files in place (makes backup if extension supplied). The default operation mode is to break symbolic and hard links. This can be changed with --follow-symlinks and --copy
+   -c, --copy                                       use copy instead of rename when shuffling files in -i mode. While this will avoid breaking links (symbolic or hard), the resulting editing operation is not atomic. This is rarely the desired mode; --follow-symlinks is usually enough, and it is both faster and more secure
+   -l N, --line-length=N                            specify the desired line-wrap length for the 'l' command
+   --posix                                          disable all GNU extensions
+   -r, --regexp-extended                            use extended regular expressions in the script
+   -s, --separate                                   consider files as separate rather than as a single continuous long stream
+   -u, --unbuffered                                 load minimal amounts of data from the input files and flush the output buffers more often
+   --help                                           display this help and exit
+   --version                                        output version information and exit
+
+EXAMPLE
+    sed 's/old/new/g' file.txt
+    sed -i.bak 's/old/new/g' file.txt
+
+AUTHOR
+    Written by Jay Fenlason, Tom Lord, and others.
+
+REPORTING BUG
+    Report bugs to <bug-sed@gnu.org>.
+
+SEE ALSO
+    sed - GNU Sed Manual: https://www.gnu.org/software/sed/manual/sed.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

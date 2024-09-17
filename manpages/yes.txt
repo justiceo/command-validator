@@ -1,0 +1,32 @@
+NAME
+    yes - output a string repeatedly until killed
+
+DESCRIPTION
+    The yes command outputs a string repeatedly until killed.
+
+SYNOPSIS
+    yes [STRING]
+
+OPTIONS
+   text       	The text to repeat
+   --help     	Display help
+   --version  	Display the version no.
+
+EXAMPLE
+    yes
+    yes "y"
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    yes - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/yes-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

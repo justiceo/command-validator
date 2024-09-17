@@ -1,0 +1,45 @@
+NAME
+    usermod - modify a user account
+
+DESCRIPTION
+    The usermod command modifies the system account files to reflect the changes that are specified on the command line.
+
+SYNOPSIS
+    usermod [OPTION]... USERNAME
+
+OPTIONS
+    -a, --append				Add the user to the supplementary group(s). Use only with the -G option.
+    -c, --comment COMMENT			The new value of the user's password file comment field. It is normally modified using the chfn(1) utility.
+    -d, --home HOME_DIR				The user's new login directory. If the -m option is given, the contents of the current home directory will be moved to the new home directory, which is created if it does not already exist.
+    -e, --expiredate EXPIRE_DATE		The date on which the user account will be disabled. The date is specified in the format YYYY-MM-DD.
+    -f, --inactive INACTIVE			The number of days after a password expires until the account is permanently disabled. A value of 0 disables the account as soon as the password has expired, and a value of -1 disables the feature.
+    -g, --gid GROUP				The group name or number of the user's new initial login group. The group must exist.
+    -G, --groups GROUP1[,GROUP2,...[,GROUPN]]]	A list of supplementary groups which the user is also a member of. Each group is separated from the next by a comma, with no intervening whitespace. The groups are subject to the same restrictions as the group given with the -g option.
+    -l, --login NEW_LOGIN			The name of the user will be changed from LOGIN to NEW_LOGIN. Nothing else is changed. In particular, the user's home directory name should probably be changed manually to reflect the new login name.
+    -L, --lock					Lock a user's password. This puts a '!' in front of the encrypted password, effectively disabling the password. You can't use this option with -p or -U.
+    -m, --move-home				Move the content of the user's home directory to the new location. This option is only valid in combination with the -d (or --home) option.
+    -o, --non-unique				When used with the -u option, this option allows to change the user ID to a non-unique value.
+    -p, --password PASSWORD			The encrypted password, as returned by crypt(3).
+    -s, --shell SHELL				The name of the user's new login shell. Setting this field to blank causes the system to select the default login shell.
+    -u, --uid UID				The new numerical value of the user's ID. This value must be unique, unless the -o option is used. The value must be non-negative. Values between 0 and 999 are typically reserved for system accounts.
+    -U, --unlock				Unlock a user's password. This removes the '!' in front of the encrypted password. You can't use this option with -p or -L.
+    -Z, --selinux-user SEUSER			The SELinux user for the user's login. The default is to leave this field the blank, which causes the system to select the default SELinux user.
+
+EXAMPLE
+    usermod -a -G groupname username
+    usermod -d /home/newhome username
+
+AUTHOR
+    Written by Ulrich Drepper and others.
+
+REPORTING BUG
+    Report bugs to <bug-shadow@gnu.org>.
+
+SEE ALSO
+    usermod - Linux Manual Page: https://man7.org/linux/man-pages/man8/usermod.8.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

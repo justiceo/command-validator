@@ -1,0 +1,33 @@
+NAME
+    pwd - print name of current/working directory
+
+SYNOPSIS
+    pwd [OPTION]...
+
+DESCRIPTION
+    Print the full filename of the current working directory.
+
+OPTIONS
+   -L, --logical        use PWD from environment, even if it contains symlinks
+   -P, --physical       avoid all symlinks
+   --help               display this help and exit
+   --version            output version information and exit
+
+EXAMPLE
+    pwd
+    pwd -P
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    pwd - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/pwd-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

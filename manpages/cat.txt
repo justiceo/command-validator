@@ -1,0 +1,48 @@
+NAME
+    cat
+
+NAME  
+    cat - Concatenate and print (display) the content of files.
+
+SYNOPSIS  
+    cat [OPTIONS] [FILE]...
+
+DESCRIPTION  
+    Concatenate FILE(s), or standard input, to standard output.
+
+OPTIONS  
+    -A, --show-all           Equivalent to -vET.
+    
+    -b, --number-nonblank    Number nonblank output lines.
+    
+    -e                       Equivalent to -vE.
+    
+    -E, --show-ends          Display $ at end of each line.
+    
+    -n, --number             Number all output lines.
+    
+    -s, --squeeze-blank      Suppress repeated empty output lines (never more than one single blank line).
+    
+    -t                       Equivalent to -vT.
+    
+    -T, --show-tabs          Display TAB characters as ^I.
+    
+    -u                       (ignored).
+    
+    -v, --show-nonprinting   Use ^ and M- notation, except for LFD and TAB.
+    
+        --help               Display this help and exit.
+    
+        --version            Output version information and exit.
+
+
+AUTHOR
+    Written by Torbjorn Granlund and Richard M. Stallman.
+
+COPYRIGHT
+    Copyright © 2020 Free Software Foundation, Inc. License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+    This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
+
+REPORTING BUGS
+    Report `cat` bugs to <https://www.gnu.org/software/coreutils/>.
+    Full documentation at: <https://www.gnu.org/software/coreutils/cat> or available locally via: info '(coreutils) cat invocation'

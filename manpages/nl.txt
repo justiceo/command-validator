@@ -1,0 +1,56 @@
+NAME
+       nl -- line numbering filter
+
+SYNOPSIS
+       nl  [-p]	 [-b  type]  [-d delim]	[-f type] [-h type] [-i	incr] [-l num]
+	   [-n format] [-s sep] [-v startnum] [-w width]	[file]
+
+DESCRIPTION
+       The nl utility reads lines from the named file, applies a  configurable
+       line  numbering filter operation, and writes the	result to the standard
+       output.	If file	is a single dash (`-') or absent, nl  reads  from  the
+       standard	input.
+
+OPTIONS
+
+       -b type	    		Specify  the logical page body lines to be numbered.  Recognized type arguments are:
+
+		    		a	    Number all lines.
+
+		    		t	    Number only	non-empty lines.
+
+		    		n	    No line numbering.
+
+		    		pexpr       Number only those lines that contain the basic regular expression specified by expr.The default type for logical page body lines is t.
+       -d delim	    		Specify  the  delimiter  characters used to indicate the start of a logical page section in the input file. 
+       -f type	    		Specify the same as -b type except for logical page footer lines. The default type for logical page footer lines  is n.
+       -h type	    		Specify the same as -b type except for logical page header lines. The default type for logical page header lines is n.
+       -i incr	    		Specify the increment value used to number logical page lines. The default incr value is 1.
+       -l num	    		If numbering  of  all  lines is specified for the current logical section using the corresponding -b a, -f a or -h option, specify the	number of adjacent blank lines	to  be considered as one. 
+       -n format    		Specify  the  line	numbering  output  format.  Recognized format arguments are:
+		    		ln	    Left justified.
+		    		rn	    Right justified, leading zeros suppressed.
+		    		rz	    Right justified, leading zeros kept.
+       -p	    		Specify that line numbering should not  be restarted at logical page delimiters.
+       -s sep	    		Specify  the characters used in separating the line number and the corresponding text line. The default sep setting is a single	tab character.
+       -v startnum  		Specify  the  initial  value  used to number logical page lines; see also the description of the -p option. The default startnum value is 1.
+       -w width	    		Specify the number of characters to be occupied  by  the line number; in case the width is insufficient to hold the line number, it will be truncated to its width least significant digits.  The default width is 6.
+
+EXAMPLE
+    nl file.txt
+    nl -b a file.txt
+
+AUTHOR
+    Written by David MacKenzie.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    nl - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/nl-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

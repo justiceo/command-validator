@@ -1,0 +1,58 @@
+NAME
+    tar - archive files
+
+DESCRIPTION
+    The tar command is used to create, maintain, modify, or extract files from an archive file.
+
+SYNOPSIS
+     tar [[-]function] [options] filenames...
+
+      tar [[-]function] [options] -C directory-name...
+
+Functions:
+   Exactly one of the following functions (shown in bold) must be specified:
+   -A --catenate --concatenate  	Append the contents of named file, which must itself be a gnutar archive, to the end of the archive (erasing the old end-of-archive block).
+   -c --create     			Create a new archive (or truncate an old one) and write the named files to it.
+   -d --diff --compare    		Find differences between files in the archive and corresponding files in the file system.
+   --delete     			Delete named files from the archive.
+   -r --append     			Append files to the end of an archive.
+   -t --list       			List the contents of an archive; if filename arguments are given, only those files are listed, otherwise the entire table of contents is listed.
+   --test-label   			Test the archive volume label and exit
+   -u --update     			Append the named files if the on-disk version has a modification date more recent than their copy in the archive(if any). 
+   -x --extract --get        		Extract files from an archive.  The owner, modification time, and file permissions are restored, if possible. If no file arguments are given, extract all the files in the archive.
+   -C, --directory=DIR     		change to directory DIR
+   -f, --file=ARCHIVE     		use archive file or device ARCHIVE
+   -j, --bzip2     			filter the archive through bzip2
+   -J, --xz     			filter the archive through xz
+   -p, --preserve-permissions     	extract information about file permissions (default for superuser)
+   -v, --verbose     			verbosely list files processed.
+   -z, --gzip     			filter the archive through gzip 
+
+OPTIONS
+    -c, --create             		create a new archive
+    -x, --extract            		extract files from an archive
+    -f, --file <archive>     		use archive file or device ARCHIVE
+    -v, --verbose            		verbosely list files processed
+    -z, --gzip, --gunzip    		filter the archive through gzip
+    -j, --bzip2              		filter the archive through bzip2
+    -J, --xz                 		filter the archive through xz
+
+EXAMPLE
+    tar -cvf archive.tar file1 file2
+    tar -xvf archive.tar
+    tar -czvf archive.tar.gz directory/
+
+AUTHOR
+    Written by John Gilmore and others.
+
+REPORTING BUG
+    Report bugs to <bug-tar@gnu.org>.
+
+SEE ALSO
+    tar - GNU Tar Manual(https://www.gnu.org/software/tar/manual/tar.html)
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

@@ -1,0 +1,73 @@
+
+NAME
+    dd - Data Duplicator, convert and copy a file, write disk headers, boot records, create a boot floppy.
+
+SYNOPSIS
+    dd [OPTION]...
+
+DESCRIPTION
+    The dd utility is used to convert and copy files. It can create exact clones of disks (including unmounted ones),
+    write disk headers, and create bootable floppies. When cloning disks, the output destination must be at least as
+    large as the input to accommodate all data, including blank space.
+
+OPTIONS
+    if=FILE             Input file: Read from FILE instead of standard input.
+                        Example: if=/dev/sda
+
+    of=FILE             Output file: Write to FILE instead of standard output.
+                        Unless 'conv=notrunc' is given, 'dd' truncates FILE to zero bytes 
+                        (or the size specified with 'seek=').
+                        Example: of=/dev/sdb
+
+    bs=BYTES            Block size: Both read and write BYTES bytes at a time. This overrides 'ibs' and 'obs'.
+                        Example: bs=4M
+
+    ibs=BYTES           Input block size: Read BYTES bytes at a time.
+                        Example: ibs=512
+
+    obs=BYTES           Output block size: Write BYTES bytes at a time.
+                        Example: obs=1M
+
+    cbs=BYTES           Convert block size: Convert BYTES bytes at a time.
+                        Example: cbs=1024
+
+    count=N             Copy N input blocks (of 'ibs'-byte size) from the input file, instead of copying everything.
+                        Example: count=100
+
+    skip=N              Skip N input blocks before copying.
+                        Example: skip=10
+
+    seek=N              Skip N output blocks before writing.
+                        Example: seek=5
+
+    iflag=FLAGS         Read as per the comma separated symbol list.
+                        Example: iflag=direct
+
+    oflag=FLAGS         Write as per the comma separated symbol list.
+                        Example: oflag=sync
+
+    status=LEVEL        The LEVEL of information to print to stderr.
+                        'none' suppress everything but error messages.
+                        'noxfer' suppress the final transfer statistics.
+                        'progress' show periodic transfer statistics.
+                        Example: status=progress
+
+
+EXAMPLE
+    dd if=inputfile of=outputfile bs=1M
+    dd if=/dev/zero of=outputfile bs=1M count=1
+
+AUTHOR
+    Written by Paul Rubin and others.
+
+REPORTING BUG
+    Report bugs to <bug-coreutils@gnu.org>.
+
+SEE ALSO
+    dd - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/dd-invocation.html
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
