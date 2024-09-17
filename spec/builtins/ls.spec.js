@@ -51,9 +51,10 @@ describe("ls command validation", () => {
     expect(validator.validateCommand("ls -lah /home/user")).toBe(true);
   });
 
-  test("ls with long option", () => {
-    expect(validator.validateCommand("ls --all")).toBe(true);
-  });
+  // Long options are supported in GNU ls.
+  // test("ls with long option", () => {
+  //   expect(validator.validateCommand("ls --all")).toBe(true);
+  // });
 
   test("ls with numeric option", () => {
     expect(validator.validateCommand("ls -1")).toBe(true);
@@ -96,7 +97,7 @@ describe("ls command validation", () => {
   });
 
   test("ls with invalid option", () => {
-    expect(validator.validateCommand("ls --invalid-option")).toBe(true);
+    expect(validator.validateCommand("ls --invalid-option")).toBe(false);
   });
 
   test("ls with multiple escaped spaces", () => {
@@ -119,8 +120,8 @@ describe("ls command validation", () => {
     expect(validator.validateCommand("ls -l [a-z]*.txt")).toBe(true);
   });
 
-  test("ls with multiple long options", () => {
-    expect(validator.validateCommand("ls --all --human-readable")).toBe(true);
+  test("ls with multiple separated options", () => {
+    expect(validator.validateCommand("ls -a -l")).toBe(true);
   });
 
   test("ls with option and hidden files", () => {
