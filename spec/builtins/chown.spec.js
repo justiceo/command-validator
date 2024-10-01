@@ -49,6 +49,14 @@ describe("chown command validation", () => {
     expect(validator.validateCommand("chown user")).toBe(false);
   });
 
+  test("Invalid command: non_existent user or group", () => {
+    expect(validator.validateCommand("chown invalid_user: invalid_group file.txt")).toBe(false);
+  });
+
+  test("Invalid command: too many argument", () => {
+    expect(validator.validateCommand("chown user1 user2 file1 file2")).toBe(false);
+  });
+
   test("Invalid command: incorrect option", () => {
     expect(validator.validateCommand("chown --invalid-option user file.txt")).toBe(false);
   });
@@ -57,11 +65,19 @@ describe("chown command validation", () => {
     expect(validator.validateCommand("chown 'user file.txt")).toBe(false);
   });
 
+  test("Invalid command: improper user of special character", () => {
+    expect(validator.validateCommand("chown user@group file")).toBe(false);
+  });
+
   test("Change owner to a non-existing user", () => {
     expect(validator.validateCommand("chown nonexistinguser file.txt")).toBe(false);
   });
 
   test("Change ownership of multiple files", () => {
+    expect(validator.validateCommand("chown user:group file1.txt file2.txt")).toBe(true);
+  });
+
+  test("Invalid", () => {
     expect(validator.validateCommand("chown user:group file1.txt file2.txt")).toBe(true);
   });
 });
