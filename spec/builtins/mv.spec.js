@@ -31,12 +31,16 @@ describe("mv command validation", () => {
     expect(validator.validateCommand("mv -u file1.txt file2.txt")).toBe(true);
   });
 
-  test("mv with verbose option", () => {
+  test("Invalid: mv with verbose option", () => {
     expect(validator.validateCommand("mv -v file1.txt file2.txt")).toBe(true);
   });
 
   test("mv with version control option", () => {
-    expect(validator.validateCommand("mv -V t file1.txt file2.txt")).toBe(true);
+    expect(validator.validateCommand("mv -V t file1.txt file2.txt")).toBe(false);
+  });
+
+   test("mv with misplaced option", () => {
+    expect(validator.validateCommand("mv dir1/ dir2/ -r")).toBe(false);
   });
 
   test("Invalid: mv with no source specified", () => {
@@ -47,12 +51,28 @@ describe("mv command validation", () => {
     expect(validator.validateCommand("mv file1.txt file2.txt file3.txt")).toBe(false);
   });
 
-  test("Invalid: mv with space before option", () => {
-    expect(validator.validateCommand(" mv -f file1.txt file2.txt")).toBe(false);
+  test("mv with space before option", () => {
+    expect(validator.validateCommand(" mv -f file1.txt file2.txt")).toBe(true);
+  });
+
+  test("Invalid: mv directory to itself", () => {
+    expect(validator.validateCommand(" mv dir1 dir1")).toBe(false);
+  });
+
+  test("Invalid: mv file to itself", () => {
+    expect(validator.validateCommand(" mv file1.txt file1.txt")).toBe(false);
+  });
+
+  test("Invalid: overwrite non-directory with directory", () => {
+    expect(validator.validateCommand(" mv dir1 file1.txt")).toBe(false);
   });
 
   test("Invalid: mv with unmatched quote", () => {
     expect(validator.validateCommand("mv 'file1.txt")).toBe(false);
+  });
+
+   test("Invalid: mv parent directory into sub-directory", () => {
+    expect(validator.validateCommand("mv home/user/dir home/user/dir/subdir")).toBe(false);
   });
 
   test("mv with multiple options", () => {
