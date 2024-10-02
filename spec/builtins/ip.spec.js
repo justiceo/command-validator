@@ -11,6 +11,18 @@ describe("ip command validation", () => {
     expect(validator.validateCommand("ip addr")).toBe(true);
   });
 
+  test("Invalid: With wrong object", () => {
+    expect(validator.validateCommand("ip addrr")).toBe(false);
+  });
+
+   test("Invalid: IP without argument", () => {
+    expect(validator.validateCommand("ip")).toBe(false);
+  });
+
+  test("Invalid: Using option without input file", () => {
+    expect(validator.validateCommand("ip -b")).toBe(false);
+  });
+
   test("Show routing table", () => {
     expect(validator.validateCommand("ip route show")).toBe(true);
   });
