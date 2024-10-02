@@ -11,6 +11,10 @@ describe("head command validation", () => {
     expect(validator.validateCommand("head file.txt")).toBe(true);
   });
 
+  test("Without input file", () => {
+    expect(validator.validateCommand("head")).toBe(false);
+  });
+
   test("Display first n lines of a file", () => {
     expect(validator.validateCommand("head -n 20 file.txt")).toBe(true);
   });
