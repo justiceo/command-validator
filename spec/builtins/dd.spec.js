@@ -37,16 +37,33 @@ describe("dd command validation", () => {
 
   test("Invalid: dd without input file", () => {
     expect(validator.validateCommand("dd of=outputfile")).toBe(false);
+     expect(validator.validateCommand("dd if= of=outputfile")).toBe(false);
   });
 
   test("Invalid: dd without output file", () => {
     expect(validator.validateCommand("dd if=inputfile")).toBe(false);
   });
 
+  test("Invalid: dd with non_existent input file", () => {
+    expect(validator.validateCommand("dd if=non_existent_file of=outputfile")).toBe(false);
+  });
+
+   test("Invalid: dd with invalid options", () => {
+    expect(validator.validateCommand("dd if=inputfile of=outputfile xyz")).toBe(false);
+  });
+
   test("Invalid: dd with invalid option", () => {
     expect(validator.validateCommand("dd if=inputfile of=outputfile --invalid-option")).toBe(false);
   });
 
+   test("Invalid: dd with incorrect block size", () => {
+    expect(validator.validateCommand("dd if=inputfile of=outputfile bs=abc")).toBe(false);
+  });
+
+  test("Invalid: dd with missing arguments", () => {
+    expect(validator.validateCommand("dd")).toBe(false);
+  });
+  
   test("dd with flags for input", () => {
     expect(validator.validateCommand("dd if=inputfile of=outputfile iflag=direct")).toBe(true);
   });
