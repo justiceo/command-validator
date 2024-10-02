@@ -15,6 +15,14 @@ describe("history command validation", () => {
     expect(validator.validateCommand("history 10")).toBe(true);
   });
 
+  test("Without numeric argument", () => {
+    expect(validator.validateCommand("history file.txt")).toBe(false);
+  });
+
+  test("With too many argument", () => {
+    expect(validator.validateCommand("history 5 file.txt")).toBe(false);
+  });
+
   test("Clear the history list", () => {
     expect(validator.validateCommand("history -c")).toBe(true);
   });
@@ -49,5 +57,9 @@ describe("history command validation", () => {
 
   test("Invalid option usage", () => {
     expect(validator.validateCommand("history --invalid-option")).toBe(false);
+  });
+
+  test("With invalid option combinaion", () => {
+    expect(validator.validateCommand("history -nb file.txt")).toBe(false);
   });
 });
