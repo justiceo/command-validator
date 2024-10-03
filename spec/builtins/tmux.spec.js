@@ -90,4 +90,8 @@ describe("tmux command validation", () => {
   test("tmux with do not start server option", () => {
     expect(validator.validateCommand("tmux -N")).toBe(true);
   });
+
+  test("tmux with wrong config file type", () => {
+    expect(validator.validateCommand("tmux -f file.txt")).toBe(true);
+  });
 });
