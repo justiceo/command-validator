@@ -1,0 +1,49 @@
+NAME
+       jq - Command-line JSON processor
+
+SYNOPSIS
+       jq [options...] filter [files...]
+
+       jq  can transform JSON in various ways, by selecting, iterating,	reducing and otherwise mangling JSON documents.
+
+DESCRIPTION
+       For instance, running the command jq 'map(.price) | add' will take an array of JSON objects as input and return the sum of their "price" fields.
+
+OPTIONS
+       --null-input / -n:				Don't read any input at all. Instead, the filter is run once using null as the input. 
+       --raw-input / -R:				Don't parse the input as JSON. Instead, each line of text is passed to	the filter as a	string.
+       --slurp / -s:					Instead of running the filter for each JSON object in the input, read the entire input stream into a large array and run the filter just once.
+       --compact-output	/ -c:				By default, jq pretty-prints JSON output.
+       --raw-output / -r:				With  this  option,  if  the filter's result is a string then it will be written directly to standard output rather than being formatted as a JSON string with	quotes.	
+       --raw-output0:					Like -r but jq will print NUL instead of newline after each output. 
+       --join-output / -j:				Like -r but jq won't print a newline after each output.
+       --ascii-output /	-a:				jq usually  outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified them as escape sequences (like "\u03bc").
+       --sort-keys / -S:				Output the fields of each object with the keys in sorted order.
+       --color-output /	-C 				By default, jq	outputs	colored	JSON if	writing	to a terminal.
+       --tab:						Use a tab for each indentation level instead of two spaces.
+       --indent	n:					Use the given number of spaces (no more than 7) for indentation.
+       --unbuffered:					Flush the output after each JSON object is printed
+       --stream:					Parse the input in streaming fashion, outputting arrays of path and leaf values (scalars and empty arrays or empty objects).
+       --stream-errors:					Like --stream, but invalid JSON inputs yield array values where the first element is the error and the second is a path. 
+       --seq:						Use the application/json-seq  MIME  type scheme for separating JSON texts in jq's input and output. 
+       -f filename / --from-file filename:		Read filter from the file rather than from a command line, like awk's -f option. 
+       -L directory:					Prepend directory to the search list for modules.
+       --arg name value:				This option passes a value to the jq program as a predefined variable. 
+       --argjson name JSON-text:			This option passes a JSON-encoded value to the jq program as a predefined variable.
+       --slurpfile variable-name filename:		This option reads all the JSON texts in the named file and binds an array of the parsed JSON values to the given global variable.
+       --rawfile variable-name filename:		This option reads in the namedfile and binds its contents to the given global variable.
+       --args: 						Remaining arguments are	positional string arguments. These are available to the jq program as $ARGS.positional[].
+       --jsonargs:					Remaining arguments are positional JSON text arguments.	 
+       --exit-status / -e:				Sets  the exit status of jq to 0 if the last output value was neither false nor	null, 1	if the last output value was either false or null, or 4 if no valid result was ever produced. 
+       --binary	/ -b:					Windows users using WSL, MSYS2, or Cygwin, should use this option when	using a	native jq.exe, otherwise jq will turn newlines (LFs) into carriage-return-then-newline (CRLF).
+       --version / -V:					Output the jq version andexit with zero.
+       --build-configuration:				Output  the  build  configurationof jq and exit with zero. 
+       --help /	-h:					Output the jq help and exit with zero.
+       --:						Terminates argument processing. Remaining arguments are not interpreted	as options.
+       --run-tests [filename]:				Runs the tests in the given file or standard input. 
+
+AUTHOR
+       Stephen Dolan <mu@netsoc.tcd.ie>
+
+REPORTING BUGS
+       https://github.com/stedolan/jq/issues
