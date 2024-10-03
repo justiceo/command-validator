@@ -5,15 +5,13 @@ SYNOPSIS
       jobs [OPTIONS] [PID]
 
 OPTIONS:
-   -c, --command                        Print the command name for each process in jobs
+    -l                 List process IDs in addition to the normal information.
+    -p                 List only the process ID of the job’s process group leader.
+    -n                 Display information only about jobs that have changed status since the
+                       user was last notified of their status.
+    -r                 Restrict output to running jobs.
+    -s                 Restrict output to stopped jobs.
 
-   -g, --group                          Only print the group id of each job
-
-   -h, --help                           Display a help message and exit
-
-   -l, --last                           Only the last job to be started is printed
-
-   -p, --pid                            Print the process id for each process in all jobs
 
 EXAMPLE
     jobs
