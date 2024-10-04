@@ -18,7 +18,7 @@ EXAMPLE
     pwd -P
 
 AUTHOR
-    Written by David MacKenzie.
+    Written by Jim Meyering.
 
 REPORTING BUG
     Report bugs to <bug-coreutils@gnu.org>.
