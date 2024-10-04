@@ -11,6 +11,10 @@ describe("less command validation", () => {
     expect(validator.validateCommand("less file.txt")).toBe(true);
   });
 
+  test("INvalid: less without option and filename", () => {
+    expect(validator.validateCommand("less ")).toBe(false);
+  });
+
   test("Start at end of file", () => {
     expect(validator.validateCommand("less +G file.txt")).toBe(true);
   });
