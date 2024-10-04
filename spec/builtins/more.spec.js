@@ -71,6 +71,10 @@ describe("more command validation", () => {
     expect(validator.validateCommand("more")).toBe(false);
   });
 
+  test("Invalid: typo in command", () => {
+    expect(validator.validateCommand("morre -f file.txt")).toBe(false);
+  });
+
   test("Invalid: Line number must be positive", () => {
     expect(validator.validateCommand("more -n -5 file.txt")).toBe(false);
   });
