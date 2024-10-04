@@ -47,6 +47,10 @@ describe("lsof command validation", () => {
     expect(validator.validateCommand("lsof -u")).toBe(false);
   });
 
+   test("Invalid: Typo in command", () => {
+    expect(validator.validateCommand("lssof -v")).toBe(false);
+  });
+
   test("List open files for specific filenames", () => {
     expect(validator.validateCommand("lsof /path/to/file")).toBe(true);
   });
