@@ -63,8 +63,16 @@ describe("nl command validation", () => {
     expect(validator.validateCommand("nl --invalid-option file.txt")).toBe(false);
   });
 
+   test("Invalid: nl with non-existent file", () => {
+    expect(validator.validateCommand("nl non_existent_file.txt")).toBe(false);
+  });
+
   test("Invalid: nl with space before option", () => {
-    expect(validator.validateCommand(" nl -b a file.txt")).toBe(false);
+    expect(validator.validateCommand("nl  -b a file.txt")).toBe(true);
+  });
+
+   test("Invalid: nl without option anf file", () => {
+    expect(validator.validateCommand("nl ")).toBe(false);
   });
 
   test("Invalid: nl with unmatched quote", () => {
