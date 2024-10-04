@@ -27,6 +27,10 @@ describe("nvim command validation", () => {
     expect(validator.validateCommand("nvim -b file.bin")).toBe(true);
   });
 
+   test("With space before option", () => {
+    expect(validator.validateCommand("nvim   -b file.bin")).toBe(true);
+  });
+
   test("Use a specific vimrc file", () => {
     expect(validator.validateCommand("nvim -u custom.vimrc file.txt")).toBe(true);
   });
