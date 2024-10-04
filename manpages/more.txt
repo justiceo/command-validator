@@ -56,7 +56,7 @@ EXAMPLE
     more -c file.txt
 
 AUTHOR
-    Written by David MacKenzie.
+    Written by Eric Shienbrood, UC Berkeley.
 
 REPORTING BUGS
     Report bugs to <bug-coreutils@gnu.org>.
