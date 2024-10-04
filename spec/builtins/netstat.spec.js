@@ -59,6 +59,19 @@ describe("netstat command validation", () => {
     expect(validator.validateCommand("netstat --invalid-option")).toBe(false);
   });
 
+  test("Invalid: netstat with typo", () => {
+    expect(validator.validateCommand("nettstat -o")).toBe(false);
+  });
+
+  test("Invalid: netstat with incorrect TCP protocol", () => {
+    expect(validator.validateCommand("netstat --tcp")).toBe(false);
+  });
+
+  test("Invalid: netstat with incorrect UPP protocol", () => {
+    expect(validator.validateCommand("netstat --udp")).toBe(false);
+  });
+
+
   test("Invalid: netstat with space before option", () => {
     expect(validator.validateCommand(" netstat -a")).toBe(false);
   });
