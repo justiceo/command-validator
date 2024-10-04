@@ -43,8 +43,12 @@ describe("ln command validation", () => {
     expect(validator.validateCommand("ln -L symlink_to_file.txt link_to_symlink.txt")).toBe(true);
   });
 
-  test("Invalid: Missing target for link creation", () => {
+  test("Invalid: Without argument", () => {
     expect(validator.validateCommand("ln")).toBe(false);
+  });
+
+  test("Invalid: Missing target file", () => {
+    expect(validator.validateCommand("ln -s ")).toBe(false);
   });
 
   test("Verbose output while creating links", () => {
