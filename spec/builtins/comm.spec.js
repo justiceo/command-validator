@@ -9,6 +9,7 @@ describe("comm command validation", () => {
 
   test("Basic comm", () => {
     expect(validator.validateCommand("comm file1.txt file2.txt")).toBe(true);
+    expect(validator.validateCommand("comm")).toBe(false);
   });
 
   test("comm with option -1", () => {
@@ -43,12 +44,28 @@ describe("comm command validation", () => {
     expect(validator.validateCommand(" comm file1.txt file2.txt")).toBe(false);
   });
 
+   test("Invalid: comm with single file", () => {
+    expect(validator.validateCommand(" comm file1.txt")).toBe(false);
+  });
+
+   test("Invalid: comm with incorrect flags", () => {
+    expect(validator.validateCommand(" comm -x file1.txt file2.txt")).toBe(false);
+  });
+
   test("comm with invalid option", () => {
     expect(validator.validateCommand("comm --invalid-option file1.txt file2.txt")).toBe(false);
   });
 
   test("comm with missing files", () => {
     expect(validator.validateCommand("comm")).toBe(false);
+  });
+
+   test("Invalid: using pipe without valid imput", () => {
+    expect(validator.validateCommand(" cat file1.txt | comm - file2.txt")).toBe(false);
+  });
+
+   test("Invalid: comm with too many arguments", () => {
+    expect(validator.validateCommand(" comm file1.txt file2.txt file3.txt")).toBe(false);
   });
 
   test("comm with multiple options", () => {
