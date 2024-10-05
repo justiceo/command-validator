@@ -59,6 +59,14 @@ describe("su command validation", () => {
     expect(validator.validateCommand("su -c 'command")).toBe(false);
   });
 
+  test("Invalid: su with typo", () => {
+    expect(validator.validateCommand("suu -c 'command")).toBe(false);
+  });
+
+  test("Invalid: su with misplaced option", () => {
+    expect(validator.validateCommand("su user -c")).toBe(false);
+  });
+
   test("Invalid: su with restricted shell", () => {
     expect(validator.validateCommand("su -s /bin/false user")).toBe(false);
   });
