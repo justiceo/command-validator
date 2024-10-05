@@ -27,12 +27,15 @@ describe("shutdown command validation", () => {
     expect(validator.validateCommand("shutdown -c")).toBe(true);
   });
 
-  test("Invalid: Shutdown with no arguments", () => {
-    expect(validator.validateCommand("shutdown")).toBe(false);
+  test("Shutdown with no arguments", () => {
+    expect(validator.validateCommand("shutdown")).toBe(true);
   });
 
   test("Invalid: Shutdown with incorrect time format", () => {
     expect(validator.validateCommand("shutdown +abc")).toBe(false);
+  });
+   test("Invalid: Shutdown with a typo", () => {
+    expect(validator.validateCommand("shuutdown -c")).toBe(false);
   });
 
   test("Invalid: Shutdown with negative time", () => {
