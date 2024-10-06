@@ -48,6 +48,22 @@ describe("usermod command validation", () => {
     expect(validator.validateCommand("usermod -a -G groupname")).toBe(false);
   });
 
+   test("Invalid: usermod without argument", () => {
+    expect(validator.validateCommand("usermod")).toBe(false);
+  });
+
+   test("Invalid: usermod with non existent user", () => {
+    expect(validator.validateCommand("usermod non_existen_username")).toBe(false);
+  });
+
+   test("Invalid: usermod with improper option placement", () => {
+    expect(validator.validateCommand("usermod username -d")).toBe(false);
+  });
+  
+   test("Invalid: usermod with typo", () => {
+    expect(validator.validateCommand("usermood username")).toBe(false);
+  });
+
   test("Invalid: usermod with invalid option", () => {
     expect(validator.validateCommand("usermod --invalid-option username")).toBe(false);
   });
