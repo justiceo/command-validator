@@ -31,6 +31,14 @@ describe("umask command validation", () => {
     expect(validator.validateCommand(" umask 022")).toBe(false);
   });
 
+  test("Invalid: umask with symbolic notation", () => {
+    expect(validator.validateCommand(" umask +rw")).toBe(false);
+  });
+
+  test("Invalid: umask with typo", () => {
+    expect(validator.validateCommand(" umassk 0022")).toBe(false);
+  });
+
   test("Invalid: umask with invalid option", () => {
     expect(validator.validateCommand("umask --invalid-option")).toBe(false);
   });
