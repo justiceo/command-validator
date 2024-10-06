@@ -63,7 +63,23 @@ describe("whereis command validation", () => {
     expect(validator.validateCommand("whereis ls extra")).toBe(false);
   });
 
-  test("Invalid: whereis with space before command", () => {
-    expect(validator.validateCommand(" whereis ls")).toBe(false);
+  test("Invalid: whereis with mutually exclusive options", () => {
+    expect(validator.validateCommand(" whereis -b -m -s ls")).toBe(false);
+  });
+
+  test("Invalid: whereis with typo", () => {
+    expect(validator.validateCommand(" whereiss ls")).toBe(false);
+  });
+
+  test("Invalid: whereis with wildcard", () => {
+    expect(validator.validateCommand(" whereis *")).toBe(false);
+  });
+
+  test("whereis with space before command", () => {
+    expect(validator.validateCommand(" whereis ls")).toBe(true);
+  });
+
+  test("Invalid: whereis without argument", () => {
+    expect(validator.validateCommand(" whereis")).toBe(false);
   });
 });
