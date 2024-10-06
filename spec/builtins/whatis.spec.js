@@ -71,6 +71,22 @@ describe("whatis command validation", () => {
     expect(validator.validateCommand("whatis ls extra")).toBe(false);
   });
 
+   test("Invalid: whatis with wrong syntax", () => {
+    expect(validator.validateCommand("whatis -s 1,2,3")).toBe(false);
+  });
+
+   test("Invalid: whatis with typo", () => {
+    expect(validator.validateCommand("whatiis ls")).toBe(false);
+  });
+
+   test("Invalid: whatis with path", () => {
+    expect(validator.validateCommand("whatis /bin/bash")).toBe(false);
+  });
+
+   test("Invalid: whatis with improper option combination", () => {
+    expect(validator.validateCommand("whatis -w wild*card")).toBe(false);
+  });
+
   test("Invalid: whatis with space before command", () => {
     expect(validator.validateCommand(" whatis ls")).toBe(false);
   });
