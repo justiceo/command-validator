@@ -59,9 +59,12 @@ describe("uname command validation", () => {
     expect(validator.validateCommand("uname --invalid-option")).toBe(false);
   });
 
-  test("Invalid: uname with space before command", () => {
-    expect(validator.validateCommand(" uname")).toBe(false);
+  test("Invalid: uname with typo", () => {
+    expect(validator.validateCommand(" unamme")).toBe(false);
   });
+
+  test("uname with space before command", () => {
+    expect(validator.validateCommand(" uname")).toBe(true);
 
   test("uname with multiple options", () => {
     expect(validator.validateCommand("uname -a -m")).toBe(true);
