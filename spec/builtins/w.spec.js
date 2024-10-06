@@ -44,6 +44,10 @@ describe("w command validation", () => {
     expect(validator.validateCommand("w --invalid-option")).toBe(false);
   });
 
+  test("Invalid: w with typo", () => {
+    expect(validator.validateCommand("ww -f")).toBe(false);
+  });
+
   test("Invalid: w with unmatched quotes", () => {
     expect(validator.validateCommand("w 'username")).toBe(false);
   });
