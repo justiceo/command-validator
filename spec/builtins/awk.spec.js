@@ -1,4 +1,4 @@
-import { CommandValidator } from "../../src/cmd-validator.js";
+ import { CommandValidator } from "../../src/cmd-validator.js";
 
 describe("awk command validation", () => {
   let validator;
