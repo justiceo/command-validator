@@ -59,8 +59,16 @@ describe("uniq command validation", () => {
     expect(validator.validateCommand("uniq --invalid-option file.txt")).toBe(false);
   });
 
-  test("Invalid: uniq with space before command", () => {
-    expect(validator.validateCommand(" uniq file.txt")).toBe(false);
+  test("Invalid: uniq with typo", () => {
+    expect(validator.validateCommand("uniqq file.txt")).toBe(false);
+  });
+
+   test("Invalid: uniq without atgument", () => {
+    expect(validator.validateCommand("uniq")).toBe(false);
+  });
+
+  test("uniq with space before command", () => {
+    expect(validator.validateCommand(" uniq file.txt")).toBe(true);
   });
 
   test("uniq with help option", () => {
