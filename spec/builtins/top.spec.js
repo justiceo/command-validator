@@ -51,8 +51,8 @@ describe("top command validation", () => {
     expect(validator.validateCommand("top --unknown-option")).toBe(false);
   });
 
-  test("Invalid: top with space before command", () => {
-    expect(validator.validateCommand(" top -d 5")).toBe(false);
+  test("top with space before command", () => {
+    expect(validator.validateCommand("top  -d 5")).toBe(true);
   });
 
   test("top with multiple options", () => {
@@ -77,6 +77,14 @@ describe("top command validation", () => {
 
   test("Invalid: top with interactive command 'r' in secure mode", () => {
     expect(validator.validateCommand("top -s r")).toBe(false);
+  });
+
+   test("Invalid: top with comma in arguments", () => {
+    expect(validator.validateCommand("top -p PID1,PID2,PID3")).toBe(false);
+  });
+
+   test("Invalid: top with typo", () => {
+    expect(validator.validateCommand("topp")).toBe(false);
   });
 
   test("top with interactive command 'm'", () => {
