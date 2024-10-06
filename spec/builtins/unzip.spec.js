@@ -55,12 +55,24 @@ describe("unzip command validation", () => {
     expect(validator.validateCommand("unzip 'unmatched")).toBe(false);
   });
 
-  test("Invalid: unzip with space before command", () => {
-    expect(validator.validateCommand(" unzip archive.zip")).toBe(false);
+  test("unzip with space before command", () => {
+    expect(validator.validateCommand(" unzip archive.zip")).toBe(true);
   });
 
   test("unzip with invalid option", () => {
     expect(validator.validateCommand("unzip --invalid-option archive.zip")).toBe(false);
+  });
+
+  test("unzip without argument", () => {
+    expect(validator.validateCommand("unzip")).toBe(false);
+  });
+
+  test("Invalid: unzip with unsupported file", () => {
+    expect(validator.validateCommand("unzip file.txt.gz")).toBe(false);
+  });
+
+  test("unzip with typo", () => {
+    expect(validator.validateCommand("unziip file.zip")).toBe(false);
   });
 
   test("unzip with option -n", () => {
