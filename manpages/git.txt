@@ -1,0 +1,68 @@
+NAME
+
+       git - the stupid content tracker
+
+SYNOPSIS
+
+       git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p|--paginate|-P|--no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           [--config-env=<name>=<envvar>] <command> [<args>]
+
+DESCRIPTION
+
+       Git is a fast, scalable, distributed revision control system with an
+       unusually rich command set that provides both high-level operations and
+       full access to internals.
+
+
+OPTIONS
+
+       -v, --version			Prints the Git suite version that the git program came from. This option is internally converted to git version ... and accepts
+         				the same options as the git-version(1) command.
+       -h, --help			Prints the synopsis and a list of the most commonly used commands. If the option --all or -a is given then all available commands are printed.
+       -C <path>			Run as if git was started in <path> instead of the current working directory. When multiple -C options are given, each subsequent
+           				non-absolute -C <path> is interpreted relative to the preceding -C <path>. If <path> is present but empty, e.g.  -C "", then the
+           				current working directory is left unchanged.
+       -c <name>=<value>		Pass a configuration parameter to the command. The value given will override values from configuration files. 
+					The <name> is expected in the same format as listed by git config (subkeys separated by dots).
+       --config-env=<name>=<envvar>	Like -c <name>=<value>, give configuration variable <name> a value where <envvar> is the name of an environment variable from which to
+           				retrieve the value. 
+       --exec-path[=<path>]		Path to wherever your core Git programs are installed. This can also be controlled by setting the GIT_EXEC_PATH environment variable. 
+					If no path is given, git will print the current setting and then exit.
+       --html-path			Print the path, without trailing slash, where Git's HTML documentation is installed and exit.
+       --man-path			Print the manpath for the man pages for this version of Git and exit.
+       --info-path			Print the path where the Info files documenting this version of Git are installed and exit.
+       -p, --paginate			Pipe all output into less (or if set, $PAGER) if standard output is a terminal. 
+       -P, --no-pager			Do not pipe Git output into a pager.
+       --git-dir=<path>			Set the path to the repository (".git" directory). This can also be controlled by setting the GIT_DIR environment variable. It can be
+           				an absolute path or relative path to current working directory.
+       --work-tree=<path>		Set the path to the working tree. It can be an absolute path or apath relative to the current working directory.
+       --namespace=<path>		Set the Git namespace. 
+       --bare				Treat the repository as a bare repository. If GIT_DIR environment is not set, it is set to the current working directory.
+       --no-replace-objects		Do not use replacement refs to replace Git objects. 
+       --literal-pathspecs		Treat pathspecs literally (i.e. no globbing, no pathspec magic).
+       --glob-pathspecs			Add "glob" magic to all pathspec. This is equivalent to setting the GIT_GLOB_PATHSPECS environment variable to 1. Disabling globbing on
+           				individual pathspecs can be done using pathspec magic ":(literal)"
+       --noglob-pathspecs		Add "literal" magic to all pathspec. This is equivalent to setting the GIT_NOGLOB_PATHSPECS environment variable to 1. 
+       --icase-pathspecs		Add "icase" magic to all pathspec. This is equivalent to setting the GIT_ICASE_PATHSPECS environment variable to 1.
+       --no-optional-locks		Do not perform optional operations that require locks. This is equivalent to setting the GIT_OPTIONAL_LOCKS to 0.
+       --list-cmds=group[,group...]	List commands by group. This is an internal/experimental option anD may change or be removed in the future.
+       --attr-source=<tree-ish>		Read gitattributes from <tree-ish> instead of the worktree.
+
+
+AUTHORS
+
+       Git was started by Linus Torvalds, and is currently maintained by Junio C Hamano
+
+
+REPORTING BUGS
+
+       Report bugs to the Git mailing list <git@vger.kernel.org>
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

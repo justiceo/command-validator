@@ -41,7 +41,7 @@ EXAMPLE
     nl -b a file.txt
 
 AUTHOR
-    Written by David MacKenzie.
+    Written by Scott Bartram & David MacKenzie.
 
 REPORTING BUG
     Report bugs to <bug-coreutils@gnu.org>.
