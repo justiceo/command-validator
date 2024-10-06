@@ -55,6 +55,14 @@ describe("wc command validation", () => {
   test("Invalid: wc with invalid option", () => {
     expect(validator.validateCommand("wc --invalid-option")).toBe(false);
   });
+  
+  test("Invalid: wc without argument", () => {
+    expect(validator.validateCommand("wc")).toBe(false);
+  });
+
+   test("Invalid: wc with typo", () => {
+    expect(validator.validateCommand("wcc file.txt")).toBe(false);
+  });
 
   test("wc with total counts option", () => {
     expect(validator.validateCommand("wc --total=auto file.txt")).toBe(true);
