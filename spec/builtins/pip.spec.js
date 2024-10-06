@@ -94,4 +94,16 @@ describe("pip command validation", () => {
   test("Invalid: pip with multiple spaces", () => {
     expect(validator.validateCommand("pip   install package-name")).toBe(false);
   });
+
+  test("Invalid: pip with missing package requirement", () => {
+    expect(validator.validateCommand("pip install --upgrade")).toBe(false);
+  });
+
+  test("Invalid: pip with wring command", () => {
+    expect(validator.validateCommand("pip remove package-name")).toBe(false);
+  });
+
+  test("Invalid: pip with typo in command", () => {
+    expect(validator.validateCommand("pip instll package-name")).toBe(false);
+  });
 });

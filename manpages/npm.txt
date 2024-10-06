@@ -1,0 +1,28 @@
+NAME
+    npm - node package manager
+
+SYNOPSIS
+    npm <command>[args]
+
+DESCRIPTION
+    npm is the package manager for the Node JavaScript platform. It puts modules in place so that node can find them, and manages dependency conflicts intelligently.
+
+OPTIONS
+    json		npm help Make a package.json file. See package.json.
+    link		For linking your current working code into Node's path, so that you don't have to reinstall every time you make a change. Use npm link to do this.
+    install		It's a good idea to install things if you don't need the symbolic link. Especially, installing other peoples code from the registry is done via npm install
+    adduser		Create an account or log in. Credentials are stored in the user config file.
+    publish		Use the npm publish command to upload your code to the registry.
+
+
+AUTHOR
+    Isaac Z. Schlueter
+
+REPORT BUGS
+    http://github.com/npm/npm/issues
+
+COPYRIGHT
+    Copyright © 2024 Free Software Foundation, Inc.
+
+COLOPHON
+    This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

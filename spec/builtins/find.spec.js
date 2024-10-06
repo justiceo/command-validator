@@ -19,6 +19,26 @@ describe("find command validation", () => {
     expect(validator.validateCommand('find . -type d -name "backup"')).toBe(true);
   });
 
+   test("Invalid: find with invalid predicate", () => {
+    expect(validator.validateCommand('find --name "*.txt"')).toBe(false);
+  });
+
+   test("Invalid: incorrect argument for 'type' option", () => {
+    expect(validator.validateCommand('find . -type -d name dir')).toBe(false);
+  });
+
+   test("Invalid: find with extended regex", () => {
+    expect(validator.validateCommand('find -E -dir -regex ".*\\.txt')).toBe(false);
+  });
+
+   test("Invalid: declaring symbolic link before option", () => {
+    expect(validator.validateCommand('find symlink -L')).toBe(false);
+  });
+
+   test("Invalid: find with option and wrong argument combination", () => {
+    expect(validator.validateCommand('find -d file.txt')).toBe(false);
+  });
+
   test("Use extended regex", () => {
     expect(validator.validateCommand('find /home/user -E -regex ".*\\.txt"')).toBe(true);
   });
@@ -29,6 +49,10 @@ describe("find command validation", () => {
 
   test("Do not follow symbolic links", () => {
     expect(validator.validateCommand('find -P /path/to/dir')).toBe(true);
+  });
+
+   test("Invalid: find combined with incorrect logical operator declarator", () => {
+    expect(validator.validateCommand('find . -type f -name "*.png" or -name "*.txt"')).toBe(false);
   });
 
   test("Use depth-first traversal", () => {
@@ -43,6 +67,10 @@ describe("find command validation", () => {
     expect(validator.validateCommand('find . -exec ls {} \\;')).toBe(true);
   });
 
+   test("Invalid: missing execution escape sequence", () => {
+    expect(validator.validateCommand('find  -name "*.txt" -exec ls {} ')).toBe(false);
+  });
+
   test("Delete found files", () => {
     expect(validator.validateCommand('find . -name "*.tmp" -delete')).toBe(true);
   });
@@ -53,5 +81,8 @@ describe("find command validation", () => {
 
   test("Invalid command handling", () => {
     expect(validator.validateCommand('find /home/user --invalid-option')).toBe(false);
+  });
+  test("Invalid: find non existent file", () => {
+    expect(validator.validateCommand('find /non/existent/file')).toBe(false);
   });
 });

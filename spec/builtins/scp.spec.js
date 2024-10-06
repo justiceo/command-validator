@@ -1,49 +1,93 @@
 import { CommandValidator } from "../../src/cmd-validator.js";
 
-describe("sed command validation", () => {
+describe("scp command validation", () => {
   let validator;
 
   beforeEach(() => {
     validator = new CommandValidator();
   });
 
-  test("Basic substitution", () => {
-    expect(validator.validateCommand("sed 's/old/new/g' file.txt")).toBe(true);
+  test("Basic scp", () => {
+    expect(validator.validateCommand("scp")).toBe(false); // scp needs at least a source and destination
   });
 
-  test("In-place substitution with backup", () => {
-    expect(validator.validateCommand("sed -i.bak 's/old/new/g' file.txt")).toBe(true);
+  test("scp with file to remote", () => {
+    expect(validator.validateCommand("scp file.txt user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Suppress automatic printing", () => {
-    expect(validator.validateCommand("sed -n 's/old/new/p' file.txt")).toBe(true);
+  test("scp with remote file to local", () => {
+    expect(validator.validateCommand("scp user@remote:/path/to/file.txt .")).toBe(true);
   });
 
-  test("Using script file", () => {
-    expect(validator.validateCommand("sed -f script.sed file.txt")).toBe(true);
+  test("scp with recursive option", () => {
+    expect(validator.validateCommand("scp -r directory/ user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Using extended regular expressions", () => {
-    expect(validator.validateCommand("sed -r 's/(old|new)/replacement/' file.txt")).toBe(true);
+  test("scp with multiple files", () => {
+    expect(validator.validateCommand("scp file1.txt file2.txt user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Invalid: Missing script for operation", () => {
-    expect(validator.validateCommand("sed file.txt")).toBe(false);
+  test("scp with -P option", () => {
+    expect(validator.validateCommand("scp -P 2222 file.txt user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Invalid: Incorrect option usage", () => {
-    expect(validator.validateCommand("sed -x 's/old/new/' file.txt")).toBe(false);
+  test("scp with -p option", () => {
+    expect(validator.validateCommand("scp -p file.txt user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Invalid: In-place editing without script", () => {
-    expect(validator.validateCommand("sed -i file.txt")).toBe(false);
+  test("scp with compression option", () => {
+    expect(validator.validateCommand("scp -C file.txt user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Invalid: Nonexistent file", () => {
-    expect(validator.validateCommand("sed 's/old/new/' non_existent_file.txt")).toBe(false);
+  test("scp with identity file", () => {
+    expect(validator.validateCommand("scp -i ~/.ssh/id_rsa file.txt user@remote:/path/to/destination")).toBe(true);
   });
 
-  test("Invalid: Incorrect regex syntax", () => {
-    expect(validator.validateCommand("sed 's/old/new/' file.txt 'extra'")).toBe(false);
+  test("scp with IPv4 option", () => {
+    expect(validator.validateCommand("scp -4 file.txt user@remote:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with verbose option", () => {
+    expect(validator.validateCommand("scp -v file.txt user@remote:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with typo", () => {
+    expect(validator.validateCommand("scpp file.txt user@remote:/path/to/destination")).toBe(false);
+  });
+
+  test("scp with invalid option", () => {
+    expect(validator.validateCommand("scp --invalid-option file.txt user@remote:/path/to/destination")).toBe(false);
+  });
+
+  test("scp with unmatched quote", () => {
+    expect(validator.validateCommand("scp 'file.txt user@remote:/path/to/destination")).toBe(false);
+  });
+
+  test("scp with typo", () => {
+    expect(validator.validateCommand("sccp 'file.txt user@remote:/path/to/destination")).toBe(false);
+  });
+
+  test("scp with space before options", () => {
+    expect(validator.validateCommand(" scp -C file.txt user@remote:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with user@host and file", () => {
+    expect(validator.validateCommand("scp user@remote:/path/to/file.txt user@another:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with option after file", () => {
+    expect(validator.validateCommand("scp file.txt -C user@remote:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with file path", () => {
+    expect(validator.validateCommand("scp /path/to/file.txt user@remote:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with directory", () => {
+    expect(validator.validateCommand("scp directory/ user@remote:/path/to/destination")).toBe(true);
+  });
+
+  test("scp with path and options", () => {
+    expect(validator.validateCommand("scp -r /path/to/directory/ user@remote:/path/to/destination")).toBe(true);
   });
 });

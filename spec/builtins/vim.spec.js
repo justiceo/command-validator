@@ -14,6 +14,7 @@ describe("vim command validation", () => {
 
   test("Basic vim command", () => {
     expect(validator.validateCommand("vim filename")).toBe(true);
+    expect(validator.validateCommand("vim")).toBe(true);
   });
 
   test("vim with line number option", () => {
@@ -50,6 +51,10 @@ describe("vim command validation", () => {
 
   test("Invalid: vim with invalid option", () => {
     expect(validator.validateCommand("vim --invalid-option filename")).toBe(false);
+  });
+
+   test("Invalid: vim with typo", () => {
+    expect(validator.validateCommand("vimm filename")).toBe(false);
   });
 
   test("vim with multiple options", () => {

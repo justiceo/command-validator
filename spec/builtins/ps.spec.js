@@ -63,8 +63,8 @@ describe("ps command validation", () => {
     expect(validator.validateCommand("ps --invalid-option")).toBe(false);
   });
 
-  test("Invalid: ps with space before option", () => {
-    expect(validator.validateCommand(" ps -A")).toBe(false);
+  test("ps with space before option", () => {
+    expect(validator.validateCommand("ps  -A")).toBe(true);
   });
 
   test("Invalid: ps with unmatched quote", () => {

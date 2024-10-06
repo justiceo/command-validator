@@ -36,6 +36,14 @@ describe("date command validation", () => {
     expect(validator.validateCommand("date --rfc-3339=date")).toBe(true);
   });
 
+  test("Invalid: with reference to non existent file", () => {
+    expect(validator.validateCommand("date --reference=non_existent_file")).toBe(false);
+  });
+
+   test("Invalid: with improper field option declaration", () => {
+    expect(validator.validateCommand("date date --reference=file5.txt -f")).toBe(false);
+  });
+
   test("date with -s option to set time", () => {
     expect(validator.validateCommand("date -s '2024-01-01 10:00:00'")).toBe(true);
   });
@@ -44,8 +52,8 @@ describe("date command validation", () => {
     expect(validator.validateCommand("date -u")).toBe(true);
   });
 
-  test("Invalid: date with invalid option", () => {
-    expect(validator.validateCommand("date --invalid-option")).toBe(false);
+  test("Invalid: date with wrong option declarator", () => {
+    expect(validator.validateCommand("date --d "2024-10-4")).toBe(false);
   });
 
   test("Invalid: date with unmatched quote", () => {
