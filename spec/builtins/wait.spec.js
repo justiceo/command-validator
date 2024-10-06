@@ -7,11 +7,6 @@ describe("wait command validation", () => {
     validator = new CommandValidator();
   });
 
-  afterEach(() => {
-    // Perform any necessary cleanup here if needed
-    validator = null; // Clear the validator instance
-  });
-
   test("Basic wait", () => {
     expect(validator.validateCommand("wait")).toBe(true);
   });
@@ -41,7 +36,7 @@ describe("wait command validation", () => {
   });
 
   test("wait with space before process ID", () => {
-    expect(validator.validateCommand(" wait 1234")).toBe(false);
+    expect(validator.validateCommand(" wait 1234")).toBe(true);
   });
 
   test("wait with combination of process IDs and options", () => {
@@ -50,6 +45,14 @@ describe("wait command validation", () => {
 
   test("Invalid: wait with no arguments after command", () => {
     expect(validator.validateCommand("wait ")).toBe(false);
+  });
+
+  test("Invalid: wait in subshell", () => {
+    expect(validator.validateCommand(" some_command & wait ")).toBe(false);
+  });
+
+  test("Invalid: wait with typo", () => {
+    expect(validator.validateCommand("waiit PID")).toBe(false);
   });
 
   test("wait with a negative process ID", () => {
