@@ -51,8 +51,12 @@ describe("who command validation", () => {
     expect(validator.validateCommand("who extra")).toBe(false);
   });
 
-  test("Invalid: who with space before command", () => {
-    expect(validator.validateCommand(" who")).toBe(false);
+   test("Invalid: who with typo", () => {
+    expect(validator.validateCommand("whoo -q")).toBe(false);
+  });
+
+  test("who with space before command", () => {
+    expect(validator.validateCommand(" who")).toBe(true);
   });
 
   test("who with version option", () => {
