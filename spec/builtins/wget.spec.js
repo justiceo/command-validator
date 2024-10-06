@@ -48,8 +48,24 @@ describe("wget command validation", () => {
     expect(validator.validateCommand("wget 'http://example.com/file")).toBe(false);
   });
 
+   test("Invalid: wget without argument", () => {
+    expect(validator.validateCommand("wget")).toBe(false);
+  });
+
+   test("Invalid: wget with typo", () => {
+    expect(validator.validateCommand("wgeet -w 2 'http://example.com/file")).toBe(false);
+  });
+
+   test("Invalid: wget -O option without target file", () => {
+    expect(validator.validateCommand("wget ftp://example.com/file.zip -O /root/downloads/")).toBe(false);
+  });
+
   test("Invalid: wget with invalid option", () => {
     expect(validator.validateCommand("wget --invalid-option")).toBe(false);
+  });
+
+   test("Invalid: wget with improper options combinaion", () => {
+    expect(validator.validateCommand("wget -c ftp://example.com/largefile.iso -O differentname.iso")).toBe(false);
   });
 
   test("wget with wait between downloads", () => {
