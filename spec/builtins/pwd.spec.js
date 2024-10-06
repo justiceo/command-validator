@@ -39,6 +39,14 @@ describe("pwd command validation", () => {
     expect(validator.validateCommand("pwd 'unmatched")).toBe(false);
   });
 
+   test("Invalid: pwd with improper option combination", () => {
+    expect(validator.validateCommand("pwd -L -P")).toBe(false);
+  });
+
+   test("Invalid: pwd with typo", () => {
+    expect(validator.validateCommand("pwdd -L")).toBe(false);
+  });
+
   test("pwd with combination of options", () => {
     expect(validator.validateCommand("pwd -L -P")).toBe(true);
   });

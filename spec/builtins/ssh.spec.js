@@ -62,4 +62,8 @@ describe("ssh command validation", () => {
   test("Invalid: specify user without hostname", () => {
     expect(validator.validateCommand("ssh user@")).toBe(false);
   });
+
+   test("Invalid: typo in command initiator", () => {
+    expect(validator.validateCommand("sssh user@hostname")).toBe(false);
+  });
 });

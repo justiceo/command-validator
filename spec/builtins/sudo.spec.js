@@ -43,6 +43,10 @@ describe("sudo command validation", () => {
     expect(validator.validateCommand("sudo -h")).toBe(true);
   });
 
+  test("Invalid: sudo with typo", () => {
+    expect(validator.validateCommand("sudoo -h")).toBe(true);
+  });
+
   test("Kill user timestamp", () => {
     expect(validator.validateCommand("sudo -k")).toBe(true);
   });

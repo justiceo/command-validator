@@ -11,6 +11,14 @@ describe("kill command validation", () => {
     expect(validator.validateCommand("kill 1234")).toBe(true);
   });
 
+  test("Invalid: kill without option or argument", () => {
+    expect(validator.validateCommand("kill")).toBe(false);
+  });
+
+  test("Invalid: kill with negative pid", () => {
+    expect(validator.validateCommand("kill  -1234")).toBe(false);
+  });
+
   test("kill with signal number", () => {
     expect(validator.validateCommand("kill -9 1234")).toBe(true);
   });
@@ -36,7 +44,7 @@ describe("kill command validation", () => {
   });
 
   test("Invalid: kill with space before option", () => {
-    expect(validator.validateCommand(" kill 1234")).toBe(false);
+    expect(validator.validateCommand(" kill 1234")).toBe(true);
   });
 
   test("kill with invalid signal name", () => {

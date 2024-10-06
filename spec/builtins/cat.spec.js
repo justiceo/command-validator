@@ -7,8 +7,8 @@ describe("cat command validation", () => {
     validator = new CommandValidator();
   });
 
-  test("Basic cat", () => {
-    expect(validator.validateCommand("cat")).toBe(true);
+  test("Invalid: Basic cat", () => {
+    expect(validator.validateCommand("cat")).toBe(false);
   });
 
   test("cat with file", () => {
@@ -43,6 +43,14 @@ describe("cat command validation", () => {
     expect(validator.validateCommand('cat "My File.txt"')).toBe(true);
   });
 
+  test("cat with pipe usage", () => {
+    expect(validator.validateCommand("cat file.txt | grep "text"")).toBe(true);
+  });
+  
+  test("cat with incorrect pipe usage", () => {
+    expect(validator.validateCommand("cat file.txt || grep "text"")).toBe(false);
+  });
+
   test("cat with escaped space in filename", () => {
     expect(validator.validateCommand("cat My\\ File.txt")).toBe(true);
   });
@@ -53,6 +61,14 @@ describe("cat command validation", () => {
 
   test("Invalid: cat with unmatched quote", () => {
     expect(validator.validateCommand("cat 'unmatched")).toBe(false);
+  });
+
+  test("Invalid: cat with empty file name", () => {
+    expect(validator.validateCommand("cat " "")).toBe(false);
+  });
+
+  test("Invalid: cat with incorrect output redirect", () => {
+    expect(validator.validateCommand("cat file.txt >"cat )).toBe(false);
   });
 
   test("Invalid: cat with space before option", () => {
@@ -103,4 +119,3 @@ describe("cat command validation", () => {
     expect(validator.validateCommand("cat -a .hidden_file")).toBe(true);
   });
 });
-

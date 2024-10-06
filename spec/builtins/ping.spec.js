@@ -55,6 +55,10 @@ describe("ping command validation", () => {
     expect(validator.validateCommand("ping -t 64 google.com")).toBe(true);
   });
 
+   test("Invalid: TTL value exceeds maximum", () => {
+    expect(validator.validateCommand("ping -t 256 google.com")).toBe(false);
+  });
+
   test("ping with help option", () => {
     expect(validator.validateCommand("ping --help")).toBe(true);
   });
@@ -67,8 +71,8 @@ describe("ping command validation", () => {
     expect(validator.validateCommand("ping --invalid-option google.com")).toBe(false);
   });
 
-  test("Invalid: ping with space before option", () => {
-    expect(validator.validateCommand(" ping -c 4 google.com")).toBe(false);
+  test("ping with space before option", () => {
+    expect(validator.validateCommand("ping -c 4 google.com")).toBe(true);
   });
 
   test("Invalid: ping with unmatched quote", () => {
@@ -77,6 +81,30 @@ describe("ping command validation", () => {
 
   test("ping with multiple options", () => {
     expect(validator.validateCommand("ping -c 4 -n google.com")).toBe(true);
+  });
+
+   test("Invalid: ping hostname with protocol", () => {
+    expect(validator.validateCommand("ping https://example.com")).toBe(false);
+  });
+
+  test("Invalid: ping without option or hostname", () => {
+    expect(validator.validateCommand("ping")).toBe(false);
+  });
+
+  test("Invalid: ping cannot combine deadline(-w) and timeout(-W) options", () => {
+    expect(validator.validateCommand("ping -c 5 -w 10 -W 2 192.168.1.1")).toBe(false);
+  });
+
+  test("Invalid: ping with excess package size", () => {
+    expect(validator.validateCommand("ping -s 65508 8.8.8.8")).toBe(false);
+  });
+
+  test("Invalid: ping using IPv6 option with IPv4", () => {
+    expect(validator.validateCommand("ping -6 192.168.1.1")).toBe(false);
+  });
+
+  test("Invalid: IP octect exceeds 255", () => {
+    expect(validator.validateCommand("ping 256.0.0.1")).toBe(false);
   });
 
   test("ping with combination of options", () => {

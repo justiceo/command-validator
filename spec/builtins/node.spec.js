@@ -71,6 +71,10 @@ describe("node command validation", () => {
     expect(validator.validateCommand('node -e "console.log(\'Hello')).toBe(false);
   });
 
+   test("Invalid: running package manager within node environment", () => {
+    expect(validator.validateCommand('node npm run test script.js')).toBe(false);
+  });
+
   test("node with specified title", () => {
     expect(validator.validateCommand("node --title=my-app script.js")).toBe(true);
   });

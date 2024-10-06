@@ -8,11 +8,23 @@ describe("git command validation", () => {
   });
 
   test("Basic git command without arguments", () => {
-    expect(validator.validateCommand("git")).toBe(true);
+    expect(validator.validateCommand("git")).toBe(false);
   });
 
   test("git command with version option", () => {
     expect(validator.validateCommand("git --version")).toBe(true);
+  });
+
+  test("Invalid: git with typo in option", () => {
+    expect(validator.validateCommand("git commmit -m 'message'")).toBe(false);
+  });
+
+  test("Invalid: git checkout non existent branch", () => {
+    expect(validator.validateCommand("git checkout non-existent-branch")).toBe(false);
+  });
+
+  test("Invalid: git clone invalid path", () => {
+    expect(validator.validateCommand("git clone https://github.com/user/repo.git/invalid-path")).toBe(false);
   });
 
   test("git command with help option", () => {
@@ -39,4 +51,3 @@ describe("git command validation", () => {
     expect(validator.validateCommand("git -C /path/to/repo -c user.name='John Doe' commit -m 'message'")).toBe(true);
   });
 });
-

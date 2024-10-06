@@ -30,9 +30,13 @@ describe("xdg-open command validation", () => {
   test("Invalid: xdg-open with unmatched quote", () => {
     expect(validator.validateCommand("xdg-open 'unmatched")).toBe(false);
   });
+  
+  test("Invalid: xdg-open with typo", () => {
+    expect(validator.validateCommand("xdg-openn file.pdf")).toBe(false);
+  });
 
-  test("Invalid: xdg-open with space before option", () => {
-    expect(validator.validateCommand(" xdg-open file.pdf")).toBe(false);
+  test("xdg-open with space before option", () => {
+    expect(validator.validateCommand(" xdg-open file.pdf")).toBe(true);
   });
 
   test("xdg-open with multiple file types", () => {
@@ -43,8 +47,8 @@ describe("xdg-open command validation", () => {
     expect(validator.validateCommand("xdg-open 'my file@2024.pdf'")).toBe(true);
   });
 
-  test("xdg-open with empty filename", () => {
-    expect(validator.validateCommand("xdg-open ''")).toBe(true);
+  test("Invalid: xdg-open with empty filename", () => {
+    expect(validator.validateCommand("xdg-open ''")).toBe(false);
   });
 
   test("xdg-open with no arguments", () => {

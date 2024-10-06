@@ -64,6 +64,14 @@ describe("watch command validation", () => {
     expect(validator.validateCommand("watch --invalid-option ls")).toBe(false);
   });
 
+  test("Invalid: watch with ininterative command", () => {
+    expect(validator.validateCommand("watch vim file.txt")).toBe(false);
+  });
+
+  test("Invalid: watch with typo", () => {
+    expect(validator.validateCommand("wattch date")).toBe(false);
+  });
+
   test("watch with help option", () => {
     expect(validator.validateCommand("watch --help")).toBe(true);
   });

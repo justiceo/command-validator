@@ -15,6 +15,10 @@ describe("ifconfig command validation", () => {
     expect(validator.validateCommand("ifconfig eth0 up")).toBe(true);
   });
 
+  test("Invalid: Wrong order of argument", () => {
+    expect(validator.validateCommand("ifconfig -v -a  eth0 -s")).toBe(false);
+  });
+
   test("Deactivate a network interface", () => {
     expect(validator.validateCommand("ifconfig eth0 down")).toBe(true);
   });
@@ -57,6 +61,10 @@ describe("ifconfig command validation", () => {
 
   test("Invalid command usage", () => {
     expect(validator.validateCommand("ifconfig --invalid-option")).toBe(false);
+  });
+
+   test("Wrong combination of options", () => {
+    expect(validator.validateCommand("ifconfig -va")).toBe(false);
   });
 
   test("Check for valid combination of options", () => {

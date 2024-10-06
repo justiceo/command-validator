@@ -43,6 +43,18 @@ describe("rsync command validation", () => {
     expect(validator.validateCommand("rsync source/")).toBe(false);
   });
 
+  test("Invalid: Missing destination", () => {
+    expect(validator.validateCommand("rsync -av user@remote:/source /destination")).toBe(false);
+  });
+
+  test("Invalid: Missing source and destination", () => {
+    expect(validator.validateCommand("rsync -av")).toBe(false);
+  });
+
+  test("Invalid: With unquoted spaces", () => {
+    expect(validator.validateCommand("rsync -av path/with space/ /destination")).toBe(false);
+  });
+
   test("Invalid: Incorrect option usage", () => {
     expect(validator.validateCommand("rsync --invalid-option source/ destination/")).toBe(false);
   });

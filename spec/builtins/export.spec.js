@@ -15,6 +15,14 @@ describe("export command validation", () => {
     expect(validator.validateCommand('export -p')).toBe(true);
   });
 
+   test("Invalid identifier", () => {
+    expect(validator.validateCommand('export VARIABLE_NAME = VALUE')).toBe(false);
+  });
+
+   test("Invalid variable name with special character", () => {
+    expect(validator.validateCommand('export VARIABLE-NAME=VALUE')).toBe(false);
+  });
+
   test("Export a shell function", () => {
     expect(validator.validateCommand('function myFunc { echo "Hello"; } export -f myFunc')).toBe(true);
   });

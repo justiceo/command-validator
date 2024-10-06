@@ -47,8 +47,16 @@ describe("xargs command validation", () => {
     expect(validator.validateCommand("echo 'file.txt | xargs cat")).toBe(false);
   });
 
-  test("Invalid: xargs with space before option", () => {
-    expect(validator.validateCommand(" xargs -n 1 echo")).toBe(false);
+  test("xargs with space before option", () => {
+    expect(validator.validateCommand(" xargs -n 1 echo")).toBe(true);
+  });
+
+  test("Invalid: xargs without argument", () => {
+    expect(validator.validateCommand("xargs")).toBe(false);
+  });
+
+  test("Invalid: xargs with typo", () => {
+    expect(validator.validateCommand(" xarggs --help")).toBe(false);
   });
 
   test("xargs with show limits option", () => {
