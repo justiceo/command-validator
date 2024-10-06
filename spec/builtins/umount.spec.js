@@ -43,8 +43,24 @@ describe("umount command validation", () => {
     expect(validator.validateCommand("umount --invalid-option")).toBe(false);
   });
 
-  test("Invalid: umount with space before command", () => {
-    expect(validator.validateCommand(" umount /mnt/point")).toBe(false);
+  test("Invalid: umount without option and argument", () => {
+    expect(validator.validateCommand("umount")).toBe(false);
+  });
+
+  test("Invalid: umount with typo", () => {
+    expect(validator.validateCommand("umounnt -a")).toBe(false);
+  });
+
+  test("Invalid: umount with non existent file systems", () => {
+    expect(validator.validateCommand("umount -f /non/existent/mount/point")).toBe(false);
+  });
+
+  test("Invalid: umount with multiple file systems", () => {
+    expect(validator.validateCommand("umount /mnt/dev1 /mnt/dev2")).toBe(false);
+  });
+
+  test("umount with space before command", () => {
+    expect(validator.validateCommand(" umount /mnt/point")).toBe(true);
   });
 
   test("umount with specified filesystem type", () => {
