@@ -39,6 +39,14 @@ describe("mkdir command validation", () => {
     expect(validator.validateCommand("mkdir")).toBe(false);
   });
 
+  test("Invalid: With typo in command", () => {
+    expect(validator.validateCommand("mkdiir directory")).toBe(false);
+  });
+
+   test("Invalid: options combination", () => {
+    expect(validator.validateCommand("mkdiir -v-p directory")).toBe(false);
+  });
+
   test("Invalid: Path with invalid characters", () => {
     expect(validator.validateCommand("mkdir /invalid*path")).toBe(false);
   });

@@ -67,6 +67,10 @@ describe("passwd command validation", () => {
     expect(validator.validateCommand("passwd --invalid-option username")).toBe(false);
   });
 
+   test("Invalid: passwd with typo", () => {
+    expect(validator.validateCommand("passwwd ")).toBe(false);
+  });
+
   test("Invalid: passwd with space before option", () => {
     expect(validator.validateCommand(" passwd -d username")).toBe(false);
   });

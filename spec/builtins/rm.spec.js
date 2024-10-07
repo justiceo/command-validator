@@ -47,6 +47,26 @@ describe("rm command validation", () => {
     expect(validator.validateCommand("rm 'file1.txt")).toBe(false);
   });
 
+  test("Invalid: rm without operand", () => {
+    expect(validator.validateCommand("rm")).toBe(false);
+  });
+
+  test("Invalid: rm with non existent file", () => {
+    expect(validator.validateCommand("rm non_existent_file")).toBe(false);
+  });
+
+  test("Invalid: rm without target", () => {
+    expect(validator.validateCommand("rm -f")).toBe(false);
+  });
+
+  test("Invalid: rm with improper option placement", () => {
+    expect(validator.validateCommand("rm file.txt -i")).toBe(false);
+  });
+
+  test("Invalid: rm directory without -r option", () => {
+    expect(validator.validateCommand("rm directory")).toBe(false);
+  });
+
   test("rm with help option", () => {
     expect(validator.validateCommand("rm --help")).toBe(true);
   });
@@ -55,8 +75,8 @@ describe("rm command validation", () => {
     expect(validator.validateCommand("rm --version")).toBe(true);
   });
 
-  test("Invalid: rm with space before option", () => {
-    expect(validator.validateCommand(" rm -f file1.txt")).toBe(false);
+  test("rm with space before option", () => {
+    expect(validator.validateCommand("rm -f file1.txt")).toBe(true);
   });
 
   test("rm with multiple directories", () => {

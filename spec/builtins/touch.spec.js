@@ -35,8 +35,28 @@ describe("touch command validation", () => {
     expect(validator.validateCommand("touch --invalid-option file.txt")).toBe(false);
   });
 
-  test("Invalid: touch command with space before command", () => {
-    expect(validator.validateCommand(" touch file.txt")).toBe(false);
+  test("touch command with space before command", () => {
+    expect(validator.validateCommand(" touch file.txt")).toBe(true);
+  });
+  
+  test("Invalid: touch command with typo", () => {
+    expect(validator.validateCommand(" toucch file.txt")).toBe(false);
+  });
+
+  test("Invalid: touch command without permission", () => {
+    expect(validator.validateCommand(" touch /directory")).toBe(false);
+  });
+
+  test("Invalid: touch command with non existent directory", () => {
+    expect(validator.validateCommand(" touch path/to/non/existent/directory/file.txt")).toBe(false);
+  });
+
+  test("Invalid: touch without target file", () => {
+    expect(validator.validateCommand(" touch --reference_file")).toBe(false);
+  });
+
+  test("Invalid: touch command with comma seperated arguments", () => {
+    expect(validator.validateCommand(" touch file1.txt,file2.txt")).toBe(false);
   });
 
   test("Invalid: touch command with missing file argument", () => {

@@ -30,6 +30,10 @@ describe("sleep command validation", () => {
   test("Invalid: sleep with invalid time format", () => {
     expect(validator.validateCommand("sleep 5x")).toBe(false);
   });
+  
+  test("Invalid: sleep with typo", () => {
+    expect(validator.validateCommand("sleeep 5")).toBe(false);
+  });
 
   test("Invalid: sleep with negative time", () => {
     expect(validator.validateCommand("sleep -10")).toBe(false);

@@ -43,6 +43,14 @@ describe("tail command validation", () => {
     expect(validator.validateCommand("tail -v file.txt")).toBe(true);
   });
 
+  test("Invalid: tail with multiple file input", () => {
+    expect(validator.validateCommand("tail file1.txt file2.txt file3.txt")).toBe(true);
+  });
+
+  test("Invalid: tail with directory", () => {
+    expect(validator.validateCommand("tail directory")).toBe(false);
+  });
+
   test("Retry opening a file", () => {
     expect(validator.validateCommand("tail --retry log.txt")).toBe(true);
   });
@@ -61,6 +69,10 @@ describe("tail command validation", () => {
 
   test("Invalid: tail with no file specified", () => {
     expect(validator.validateCommand("tail")).toBe(false);
+  });
+
+  test("Invalid: tail with typo", () => {
+    expect(validator.validateCommand("taiil file.txt")).toBe(false);
   });
 
   test("Invalid: tail with unknown option", () => {

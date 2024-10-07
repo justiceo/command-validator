@@ -47,6 +47,10 @@ describe("jq command validation", () => {
     expect(validator.validateCommand("jq -f filter.jq input.json")).toBe(true);
   });
 
+   test("Use from file without filter", () => {
+    expect(validator.validateCommand("jq -f input.json")).toBe(false);
+  });
+
   test("Pass argument to jq", () => {
     expect(validator.validateCommand("jq --arg name 'value' '.name = $name' input.json")).toBe(true);
   });
@@ -77,5 +81,14 @@ describe("jq command validation", () => {
 
   test("Invalid: jq with no input files specified", () => {
     expect(validator.validateCommand("jq '.'")).toBe(false);
+  });
+
+  
+  test("Invalid: jq with improper array handling", () => {
+    expect(validator.validateCommand("jq '.array.select(.field == "value")'")).toBe(false);
+  });
+
+  test("Invalid: jq with unknown option", () => {
+    expect(validator.validateCommand("jq -unknown-option testfile")).toBe(false);
   });
 });

@@ -50,9 +50,17 @@ describe("sort command validation", () => {
   test("Use a custom field separator", () => {
     expect(validator.validateCommand("sort -t, file.txt")).toBe(true);
   });
-
+sor
   test("Invalid: sort with no file specified", () => {
     expect(validator.validateCommand("sort")).toBe(false);
+  });
+
+  test("Invalid: sort with no output specified", () => {
+    expect(validator.validateCommand("sort -o file.txt")).toBe(false);
+  });
+
+  test("Invalid: sort with typo", () => {
+    expect(validator.validateCommand("sorrt file.txt")).toBe(false);
   });
 
   test("Invalid: sort with unknown option", () => {

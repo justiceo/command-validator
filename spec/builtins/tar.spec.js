@@ -8,7 +8,7 @@ describe("tar command validation", () => {
   });
 
   test("Basic tar command", () => {
-    expect(validator.validateCommand("tar")).toBe(true);
+    expect(validator.validateCommand("tar")).toBe(false);
   });
 
   test("Create a new archive", () => {
@@ -69,6 +69,10 @@ describe("tar command validation", () => {
 
   test("Invalid: tar without filename argument", () => {
     expect(validator.validateCommand("tar -cvf")).toBe(false);
+  });
+
+   test("Invalid: tar with typo", () => {
+    expect(validator.validateCommand("tarr -cvf archive.tar directory")).toBe(false);
   });
 
   test("tar with verbose listing", () => {

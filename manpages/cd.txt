@@ -1,4 +1,3 @@
-﻿NAME
 NAME  
     cd - Change Directory. Change the current working directory to a specific folder.
 

@@ -67,6 +67,18 @@ describe("npm command validation", () => {
     expect(validator.validateCommand("npm install 'package1")).toBe(false);
   });
 
+  test("Invalid: npm with non existent package", () => {
+    expect(validator.validateCommand("npm install non_existent_package")).toBe(false);
+  });
+
+  test("Invalid: npm with unsupported version", () => {
+    expect(validator.validateCommand("npm install package@latesttest)).toBe(false);
+  });
+
+  test("Invalid: npm with syntax errror", () => {
+    expect(validator.validateCommand("npm instal package1)).toBe(false);
+  });
+
   test("npm with command and flags", () => {
     expect(validator.validateCommand("npm publish --access public")).toBe(true);
   });

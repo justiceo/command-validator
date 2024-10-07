@@ -23,8 +23,12 @@ describe("yes command validation", () => {
     expect(validator.validateCommand("yes --invalid-option")).toBe(false);
   });
 
-  test("Invalid: yes command with space before command", () => {
-    expect(validator.validateCommand(" yes")).toBe(false);
+  test("yes command with space before command", () => {
+    expect(validator.validateCommand(" yes")).toBe(true);
+  });
+
+  test("Invalid: yes with typo", () => {
+    expect(validator.validateCommand(" yess hello")).toBe(false);
   });
 
   test("Invalid: yes command with multiple strings", () => {

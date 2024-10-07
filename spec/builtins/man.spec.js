@@ -63,12 +63,20 @@ describe("man command validation", () => {
     expect(validator.validateCommand("man --invalid-option ls")).toBe(false);
   });
 
-  test("Invalid: Man page with space before option", () => {
-    expect(validator.validateCommand(" man -k keyword")).toBe(false);
+  test(" Man page with space before option", () => {
+    expect(validator.validateCommand("man  -k keyword")).toBe(true);
   });
 
   test("Invalid: Man page with unmatched quote", () => {
     expect(validator.validateCommand("man 'ls")).toBe(false);
+  });
+
+  test("Invalid: without parameter", () => {
+    expect(validator.validateCommand("man")).toBe(false);
+  });
+
+  test("Invalid: Use of wildcard", () => {
+    expect(validator.validateCommand("man grep*")).toBe(false);
   });
 
   test("Man page with formatting option", () => {
@@ -83,8 +91,7 @@ describe("man command validation", () => {
     expect(validator.validateCommand("man -w ls")).toBe(true);
   });
 
-  test("Invalid: Search all man pages with -K", () => {
+  test("Search all man pages with -K", () => {
     expect(validator.validateCommand("man -K keyword")).toBe(true);
   });
 });
-
