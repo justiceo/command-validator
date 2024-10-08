@@ -11,6 +11,10 @@ describe("jq command validation", () => {
     expect(validator.validateCommand("jq .")).toBe(true);
   });
 
+  test("Invalid jq command name", () => {
+    expect(validator.validateCommand("jqq .")).toBe(false);
+  });
+
   test("Run jq with a filter", () => {
     expect(validator.validateCommand("jq 'map(.price)' input.json")).toBe(true);
   });
@@ -85,7 +89,7 @@ describe("jq command validation", () => {
 
   
   test("Invalid: jq with improper array handling", () => {
-    expect(validator.validateCommand("jq '.array.select(.field == "value")'")).toBe(false);
+    expect(validator.validateCommand("jq '.array.select(.field == value)'")).toBe(false);
   });
 
   test("Invalid: jq with unknown option", () => {

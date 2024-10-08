@@ -72,11 +72,15 @@ describe("man command validation", () => {
   });
 
   test("Invalid: without parameter", () => {
-    expect(validator.validateCommand("man")).toBe(false);
+    expect(validator.validateCommand("man")).toBe(false)
   });
 
   test("Invalid: Use of wildcard", () => {
     expect(validator.validateCommand("man grep*")).toBe(false);
+  });
+
+  test("Invalid: Command name with typo", () => {
+    expect(validator.validateCommand("mann grep")).toBe(false);
   });
 
   test("Man page with formatting option", () => {

@@ -1,6 +1,6 @@
 import { CommandValidator } from "../../src/cmd-validator.js";
 
-describe("wget command validation", () => {
+describe("wc command validation", () => {
   let validator;
 
   beforeEach(() => {
@@ -12,79 +12,59 @@ describe("wget command validation", () => {
     validator = null; // Clear the validator instance
   });
 
-  test("Basic wget with URL", () => {
-    expect(validator.validateCommand("wget http://example.com/file")).toBe(true);
+  test("Basic wc with file", () => {
+    expect(validator.validateCommand("wc file.txt")).toBe(true);
   });
 
-  test("wget with -V option", () => {
-    expect(validator.validateCommand("wget -V")).toBe(true);
+  test("wc with lines option", () => {
+    expect(validator.validateCommand("wc -l file.txt")).toBe(true);
   });
 
-  test("wget with -h option", () => {
-    expect(validator.validateCommand("wget --help")).toBe(true);
+  test("wc with words option", () => {
+    expect(validator.validateCommand("wc -w file.txt")).toBe(true);
   });
 
-  test("wget in background", () => {
-    expect(validator.validateCommand("wget -b http://example.com/file")).toBe(true);
+  test("wc with bytes option", () => {
+    expect(validator.validateCommand("wc -c file.txt")).toBe(true);
   });
 
-  test("wget with output file option", () => {
-    expect(validator.validateCommand("wget -o log.txt http://example.com/file")).toBe(true);
+  test("wc with character counts option", () => {
+    expect(validator.validateCommand("wc -m file.txt")).toBe(true);
   });
 
-  test("wget with multiple URLs", () => {
-    expect(validator.validateCommand("wget http://example.com/file1 http://example.com/file2")).toBe(true);
+  test("wc with max line length option", () => {
+    expect(validator.validateCommand("wc -L file.txt")).toBe(true);
   });
 
-  test("wget with input file", () => {
-    expect(validator.validateCommand("wget -i urls.txt")).toBe(true);
+  test("wc with multiple options", () => {
+    expect(validator.validateCommand("wc -l -w file.txt")).toBe(true);
   });
 
-  test("wget with continue option", () => {
-    expect(validator.validateCommand("wget -c http://example.com/file")).toBe(true);
+  test("wc with multiple files", () => {
+    expect(validator.validateCommand("wc file1.txt file2.txt")).toBe(true);
   });
 
-  test("Invalid: wget with unmatched quotes", () => {
-    expect(validator.validateCommand("wget 'http://example.com/file")).toBe(false);
+  test("wc with files0-from option", () => {
+    expect(validator.validateCommand("wc --files0-from=file.txt")).toBe(true);
   });
 
-   test("Invalid: wget without argument", () => {
-    expect(validator.validateCommand("wget")).toBe(false);
+  test("Invalid: wc with unmatched quotes", () => {
+    expect(validator.validateCommand("wc 'file.txt")).toBe(false);
   });
 
-   test("Invalid: wget with typo", () => {
-    expect(validator.validateCommand("wgeet -w 2 'http://example.com/file")).toBe(false);
+  test("Invalid: wc with invalid option", () => {
+    expect(validator.validateCommand("wc --invalid-option")).toBe(false);
   });
 
-   test("Invalid: wget -O option without target file", () => {
-    expect(validator.validateCommand("wget ftp://example.com/file.zip -O /root/downloads/")).toBe(false);
+  test("wc with total counts option", () => {
+    expect(validator.validateCommand("wc --total=auto file.txt")).toBe(true);
   });
 
-  test("Invalid: wget with invalid option", () => {
-    expect(validator.validateCommand("wget --invalid-option")).toBe(false);
+  test("wc with help option", () => {
+    expect(validator.validateCommand("wc --help")).toBe(true);
   });
 
-   test("Invalid: wget with improper options combinaion", () => {
-    expect(validator.validateCommand("wget -c ftp://example.com/largefile.iso -O differentname.iso")).toBe(false);
-  });
-
-  test("wget with wait between downloads", () => {
-    expect(validator.validateCommand("wget -w 2 http://example.com/file")).toBe(true);
-  });
-
-  test("wget with no proxy option", () => {
-    expect(validator.validateCommand("wget --no-proxy http://example.com/file")).toBe(true);
-  });
-
-  test("wget with multiple options", () => {
-    expect(validator.validateCommand("wget -q -O output.txt http://example.com/file")).toBe(true);
-  });
-
-  test("wget with forced HTML input", () => {
-    expect(validator.validateCommand("wget -F -i input.html")).toBe(true);
-  });
-
-  test("wget with timestamping", () => {
-    expect(validator.validateCommand("wget -N http://example.com/file")).toBe(true);
+  test("wc with version option", () => {
+    expect(validator.validateCommand("wc --version")).toBe(true);
   });
 });

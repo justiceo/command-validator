@@ -43,6 +43,10 @@ describe("head command validation", () => {
     expect(validator.validateCommand("head --help")).toBe(true);
   });
 
+  test("Typo in command", () => {
+    expect(validator.validateCommand("heaad --help")).toBe(false);
+  });
+
   test("Display version information", () => {
     expect(validator.validateCommand("head --version")).toBe(true);
   });

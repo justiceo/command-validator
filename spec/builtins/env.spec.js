@@ -43,6 +43,10 @@ describe("env command validation", () => {
     expect(validator.validateCommand('env 123INVALID=value command')).toBe(false);
   });
 
+  test("Invalid command name", () => {
+    expect(validator.validateCommand('envv -v command')).toBe(false);
+  });
+
   test("Multiple environment variables", () => {
     expect(validator.validateCommand('env VAR1=value1 VAR2=value2 command')).toBe(true);
   });

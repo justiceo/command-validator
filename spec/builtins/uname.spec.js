@@ -70,3 +70,4 @@ describe("uname command validation", () => {
     expect(validator.validateCommand("uname -a -m")).toBe(true);
   });
 });
+});

@@ -1,105 +1,69 @@
 import { CommandValidator } from "../../src/cmd-validator.js";
 
-describe("rm command validation", () => {
+describe("mv command validation", () => {
   let validator;
 
   beforeEach(() => {
     validator = new CommandValidator();
   });
 
-  test("Basic rm", () => {
-    expect(validator.validateCommand("rm file1.txt")).toBe(true);
+  test("Basic move to directory", () => {
+    expect(validator.validateCommand("mv file1.txt /home/user/documents/")).toBe(true);
   });
 
-  test("rm with force option", () => {
-    expect(validator.validateCommand("rm -f file1.txt")).toBe(true);
+  test("Basic rename file", () => {
+    expect(validator.validateCommand("mv file1.txt file2.txt")).toBe(true);
   });
 
-  test("rm with interactive option", () => {
-    expect(validator.validateCommand("rm -i file1.txt")).toBe(true);
+  test("mv with backup option", () => {
+    expect(validator.validateCommand("mv -b file1.txt file2.txt")).toBe(true);
   });
 
-  test("rm with multiple files", () => {
-    expect(validator.validateCommand("rm file1.txt file2.txt")).toBe(true);
+  test("mv with force option", () => {
+    expect(validator.validateCommand("mv -f file1.txt file2.txt")).toBe(true);
   });
 
-  test("rm with recursive option", () => {
-    expect(validator.validateCommand("rm -r directory/")).toBe(true);
+  test("mv with interactive option", () => {
+    expect(validator.validateCommand("mv -i file1.txt file2.txt")).toBe(true);
   });
 
-  test("rm with verbose option", () => {
-    expect(validator.validateCommand("rm -v file1.txt")).toBe(true);
+  test("mv with update option", () => {
+    expect(validator.validateCommand("mv -u file1.txt file2.txt")).toBe(true);
   });
 
-  test("rm with multiple options", () => {
-    expect(validator.validateCommand("rm -rf directory/")).toBe(true);
+  test("mv with verbose option", () => {
+    expect(validator.validateCommand("mv -v file1.txt file2.txt")).toBe(true);
   });
 
-  test("rm with one-file-system option", () => {
-    expect(validator.validateCommand("rm --one-file-system -r directory/")).toBe(true);
+  test("mv with version control option", () => {
+    expect(validator.validateCommand("mv -V t file1.txt file2.txt")).toBe(true);
   });
 
-  test("Invalid: rm with invalid option", () => {
-    expect(validator.validateCommand("rm --invalid-option")).toBe(false);
+  test("Invalid: mv with no source specified", () => {
+    expect(validator.validateCommand("mv /home/user/documents/")).toBe(false);
   });
 
-  test("Invalid: rm with unmatched quote", () => {
-    expect(validator.validateCommand("rm 'file1.txt")).toBe(false);
+  test("Invalid: mv with multiple sources and no directory", () => {
+    expect(validator.validateCommand("mv file1.txt file2.txt file3.txt")).toBe(false);
   });
 
-  test("Invalid: rm without operand", () => {
-    expect(validator.validateCommand("rm")).toBe(false);
+  test("mv with space before option", () => {
+    expect(validator.validateCommand(" mv -f file1.txt file2.txt")).toBe(true);
   });
 
-  test("Invalid: rm with non existent file", () => {
-    expect(validator.validateCommand("rm non_existent_file")).toBe(false);
+  test("Invalid: mv with unmatched quote", () => {
+    expect(validator.validateCommand("mv 'file1.txt")).toBe(false);
   });
 
-  test("Invalid: rm without target", () => {
-    expect(validator.validateCommand("rm -f")).toBe(false);
+  test("Invalid: mv with typo in command", () => {
+    expect(validator.validateCommand("mvv 'file1.txt")).toBe(false);
   });
 
-  test("Invalid: rm with improper option placement", () => {
-    expect(validator.validateCommand("rm file.txt -i")).toBe(false);
+  test("mv with multiple options", () => {
+    expect(validator.validateCommand("mv -f -v file1.txt file2.txt")).toBe(true);
   });
 
-  test("Invalid: rm directory without -r option", () => {
-    expect(validator.validateCommand("rm directory")).toBe(false);
-  });
-
-  test("rm with help option", () => {
-    expect(validator.validateCommand("rm --help")).toBe(true);
-  });
-
-  test("rm with version option", () => {
-    expect(validator.validateCommand("rm --version")).toBe(true);
-  });
-
-  test("rm with space before option", () => {
-    expect(validator.validateCommand("rm -f file1.txt")).toBe(true);
-  });
-
-  test("rm with multiple directories", () => {
-    expect(validator.validateCommand("rm -r dir1/ dir2/")).toBe(true);
-  });
-
-  test("rm with combination of options", () => {
-    expect(validator.validateCommand("rm -v -i file1.txt")).toBe(true);
-  });
-
-  test("rm with no-preserve-root option", () => {
-    expect(validator.validateCommand("rm --no-preserve-root /")).toBe(true);
-  });
-
-  test("rm with preserve-root option", () => {
-    expect(validator.validateCommand("rm --preserve-root /")).toBe(false);
-  });
-
-  test("Invalid: rm with path containing special character", () => {
-    expect(validator.validateCommand("rm file|name")).toBe(true);
-  });
-
-  test("rm with option and complex path", () => {
-    expect(validator.validateCommand("rm -rf ~/Documents/*")).toBe(true);
+  test("mv with backup and suffix option", () => {
+    expect(validator.validateCommand("mv -b -S ~ file1.txt file2.txt")).toBe(true);
   });
 });

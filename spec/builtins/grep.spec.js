@@ -75,6 +75,10 @@ describe("grep command validation", () => {
     expect(validator.validateCommand('grep --invalid-option')).toBe(false);
   });
 
+  test("Invalid command name", () => {
+    expect(validator.validateCommand('grepp -w "word" file.txt')).toBe(false);
+  });
+
   test("Print version information", () => {
     expect(validator.validateCommand('grep --version')).toBe(true);
   });

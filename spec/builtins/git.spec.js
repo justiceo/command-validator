@@ -15,7 +15,7 @@ describe("git command validation", () => {
     expect(validator.validateCommand("git --version")).toBe(true);
   });
 
-  test("Invalid: git with typo in option", () => {
+  test("Invalid: git with typo in command", () => {
     expect(validator.validateCommand("git commmit -m 'message'")).toBe(false);
   });
 

@@ -53,7 +53,7 @@ describe("date command validation", () => {
   });
 
   test("Invalid: date with wrong option declarator", () => {
-    expect(validator.validateCommand("date --d "2024-10-4")).toBe(false);
+    expect(validator.validateCommand("date --d 2024-10-4")).toBe(false);
   });
 
   test("Invalid: date with unmatched quote", () => {
@@ -76,7 +76,7 @@ describe("date command validation", () => {
     expect(validator.validateCommand("date -f dates.txt")).toBe(true);
   });
 
-  test("Invalid: date with no arguments", () => {
-    expect(validator.validateCommand("date")).toBe(true);
+  test("Invalid: date with typo", () => {
+    expect(validator.validateCommand("datee")).toBe(false);
   });
 });

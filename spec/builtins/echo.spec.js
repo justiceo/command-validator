@@ -64,6 +64,10 @@ describe("echo command validation", () => {
   });
 
    test("With unmatched quoute", () => {
-    expect(validator.validateCommand('echo 'Hello world"')).toBe(false);
+    expect(validator.validateCommand('echo Hello world')).toBe(false);
+  });
+
+  test("With typo in command", () => {
+    expect(validator.validateCommand('eccho Hello world')).toBe(false);
   });
 });

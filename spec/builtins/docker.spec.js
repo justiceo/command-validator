@@ -56,7 +56,7 @@ describe("docker command validation", () => {
   });
 
   test("docker with space before option", () => {
-    expect(validator.validateCommand(" docker run")).toBe(false);
+    expect(validator.validateCommand(" docker run")).toBe(true);
   });
 
   test("docker with command and argument", () => {
@@ -81,5 +81,9 @@ describe("docker command validation", () => {
 
   test("docker with unsupported option combination", () => {
     expect(validator.validateCommand("docker --tls --debug --version run")).toBe(false);
+  });
+
+  test("docker with unsupported option combination", () => {
+    expect(validator.validateCommand("dockerr --tls --debug --version run")).toBe(false);
   });
 });

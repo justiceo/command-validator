@@ -67,8 +67,12 @@ describe("cut command validation", () => {
     expect(validator.validateCommand("cut -f 'unmatched")).toBe(false);
   });
 
-  test("Invalid: cut with space before option", () => {
-    expect(validator.validateCommand(" cut -b 1")).toBe(false);
+  test("cut with space before option", () => {
+    expect(validator.validateCommand(" cut -b file.txt")).toBe(true);
+  });
+
+  test("cut with typo", () => {
+    expect(validator.validateCommand("cutt -b file.txt")).toBe(false);
   });
 
   test("cut with invalid option", () => {

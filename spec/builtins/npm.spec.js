@@ -72,11 +72,11 @@ describe("npm command validation", () => {
   });
 
   test("Invalid: npm with unsupported version", () => {
-    expect(validator.validateCommand("npm install package@latesttest)).toBe(false);
+    expect(validator.validateCommand("npm install package@latesttest")).toBe(false);
   });
 
   test("Invalid: npm with syntax errror", () => {
-    expect(validator.validateCommand("npm instal package1)).toBe(false);
+    expect(validator.validateCommand("npm instal package1")).toBe(false);
   });
 
   test("npm with command and flags", () => {

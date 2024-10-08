@@ -59,10 +59,12 @@ describe("gzip command validation", () => {
     expect(validator.validateCommand("gunzip non_zip_file")).toBe(false);
   });
 
-  
-
   test("Display help message", () => {
     expect(validator.validateCommand("gzip --help")).toBe(true);
+  });
+
+  test("Typo in command name", () => {
+    expect(validator.validateCommand("gziip --help")).toBe(false);
   });
 
   test("Display version information", () => {

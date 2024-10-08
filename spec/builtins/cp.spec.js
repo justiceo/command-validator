@@ -90,27 +90,31 @@ describe("cp command validation", () => {
   test("cp with specific suffix for backup", () => {
     expect(validator.validateCommand("cp -b -S '~' file1.txt file2.txt")).toBe(true);
   });
+
   test("Invalid: cp without source and destination", () => {
     expect(validator.validateCommand("cp")).toBe(false);
   });
+
   test("Invalid: cp without destination", () => {
     expect(validator.validateCommand("cp file1.txt")).toBe(false);
   });
+
   test("Invalid: cp with multiple source files and invalid destination", () => {
     expect(validator.validateCommand("cp file1.txt file2.txt file3.txt")).toBe(false);
   });
+
   test("Invalid: cp with multiple non-existent source files and destination", () => {
     expect(validator.validateCommand("cp non_existent_file1.txt non_existent_file2.txt dir1")).toBe(false);
   });
-  test("Invalid: cp without source and destination", () => {
-    expect(validator.validateCommand("cp")).toBe(false);
-  });
+
   test("INvalid: cp overwriting a file with itself", () => {
     expect(validator.validateCommand("cp file1.txt file1.txt")).toBe(false);
   });
+
   test("Invalid: cp overwriting non-directory with directory ", () => {
     expect(validator.validateCommand("cp dir1 file1.txt")).toBe(false);
   });
+
   test("Invalid: cp with unauthorized file", () => {
     expect(validator.validateCommand("cp protected_file.txt /home/user/documents/newfile.txt")).toBe(false);
   });

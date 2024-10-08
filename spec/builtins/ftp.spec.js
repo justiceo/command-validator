@@ -75,6 +75,10 @@ describe("ftp command validation", () => {
     expect(validator.validateCommand('ftp --invalid-option')).toBe(false);
   });
 
+  test("Invalid command with typo", () => {
+    expect(validator.validateCommand('ftpp url')).toBe(false);
+  });
+
   test("Run a local command", () => {
     expect(validator.validateCommand('! ls')).toBe(true);
   });

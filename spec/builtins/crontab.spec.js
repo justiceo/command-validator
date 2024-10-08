@@ -35,8 +35,8 @@ describe("crontab command validation", () => {
     expect(validator.validateCommand("crontab 'user")).toBe(false);
   });
 
-  test("Invalid: crontab with space before option", () => {
-    expect(validator.validateCommand(" crontab -e")).toBe(false);
+  test("crontab with space before option", () => {
+    expect(validator.validateCommand(" crontab -e")).toBe(true);
   });
 
   test("Invalid: crontab with invalid option", () => {

@@ -85,4 +85,8 @@ describe("find command validation", () => {
   test("Invalid: find non existent file", () => {
     expect(validator.validateCommand('find /non/existent/file')).toBe(false);
   });
+
+  test("Invalid: find with typo", () => {
+    expect(validator.validateCommand('findd filename.txt')).toBe(false);
+  });
 });

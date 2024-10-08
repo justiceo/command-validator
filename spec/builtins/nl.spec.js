@@ -67,8 +67,12 @@ describe("nl command validation", () => {
     expect(validator.validateCommand("nl non_existent_file.txt")).toBe(false);
   });
 
-  test("Invalid: nl with space before option", () => {
+  test("nl with space before option", () => {
     expect(validator.validateCommand("nl  -b a file.txt")).toBe(true);
+  });
+
+  test("nl with typo", () => {
+    expect(validator.validateCommand("nnl  -b a file.txt")).toBe(false);
   });
 
    test("Invalid: nl without option anf file", () => {

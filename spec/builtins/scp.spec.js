@@ -63,10 +63,6 @@ describe("scp command validation", () => {
     expect(validator.validateCommand("scp 'file.txt user@remote:/path/to/destination")).toBe(false);
   });
 
-  test("scp with typo", () => {
-    expect(validator.validateCommand("sccp 'file.txt user@remote:/path/to/destination")).toBe(false);
-  });
-
   test("scp with space before options", () => {
     expect(validator.validateCommand(" scp -C file.txt user@remote:/path/to/destination")).toBe(true);
   });

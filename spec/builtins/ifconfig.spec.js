@@ -11,6 +11,10 @@ describe("ifconfig command validation", () => {
     expect(validator.validateCommand("ifconfig")).toBe(true);
   });
 
+  test("With typo in command name", () => {
+    expect(validator.validateCommand("ifconfiig")).toBe(false);
+  });
+
   test("Activate a network interface", () => {
     expect(validator.validateCommand("ifconfig eth0 up")).toBe(true);
   });

@@ -47,6 +47,10 @@ describe("rm command validation", () => {
     expect(validator.validateCommand("rm 'file1.txt")).toBe(false);
   });
 
+  test("Invalid: rm with typo", () => {
+    expect(validator.validateCommand("rmm 'file1.txt")).toBe(false);
+  });
+
   test("Invalid: rm without operand", () => {
     expect(validator.validateCommand("rm")).toBe(false);
   });

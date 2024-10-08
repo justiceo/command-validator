@@ -76,6 +76,10 @@ describe("file command validation", () => {
     expect(validator.validateCommand('file -v')).toBe(true);
   });
 
+  test("With typo in command name", () => {
+    expect(validator.validateCommand('fille -v')).toBe(false);
+  });
+
   test("Invalid command handling", () => {
     expect(validator.validateCommand('file --invalid-option')).toBe(false);
   });

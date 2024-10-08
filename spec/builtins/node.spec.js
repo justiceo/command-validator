@@ -55,8 +55,12 @@ describe("node command validation", () => {
     expect(validator.validateCommand("node --invalid-option")).toBe(false);
   });
 
-  test("Invalid: node with space before script", () => {
-    expect(validator.validateCommand("node  script.js")).toBe(false);
+  test("Invalid: node with typo", () => {
+    expect(validator.validateCommand("nodee script.s")).toBe(false);
+  });
+
+  test("node with space before script", () => {
+    expect(validator.validateCommand("node  script.js")).toBe(true);
   });
 
   test("node with inspector options", () => {

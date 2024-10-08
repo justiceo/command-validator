@@ -78,4 +78,8 @@ describe("free command validation", () => {
   test("Invalid option handling", () => {
     expect(validator.validateCommand('free --invalid-option')).toBe(false);
   });
+
+  test("Invalid command name", () => {
+    expect(validator.validateCommand('freee -option')).toBe(false);
+  });
 });

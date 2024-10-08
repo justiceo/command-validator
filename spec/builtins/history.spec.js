@@ -62,4 +62,8 @@ describe("history command validation", () => {
   test("With invalid option combinaion", () => {
     expect(validator.validateCommand("history -nb file.txt")).toBe(false);
   });
+
+  test("With typo in command", () => {
+    expect(validator.validateCommand("historry -nb file.txt")).toBe(false);
+  });
 });

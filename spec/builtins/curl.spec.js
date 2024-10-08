@@ -65,7 +65,11 @@ describe("curl command validation", () => {
   });
 
   test("Invalid: curl with unmatched quotes", () => {
-    expect(validator.validateCommand("curl -d 'data")).toBe(false);
+    expect(validator.validateCommand("curl -d 'data ")).toBe(false);
+  });
+
+  test("Invalid: curl with typo in command name", () => {
+    expect(validator.validateCommand("currl -d 'data ")).toBe(false);
   });
 
   test("curl with custom User-Agent", () => {

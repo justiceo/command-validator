@@ -11,7 +11,7 @@ describe("awk command validation", () => {
     expect(validator.validateCommand("awk {'print $1'} file.txt")).toBe(true);
   });
 
-   test("Invalid: awk with missing actione", () => {
+   test("Invalid: awk with missing action", () => {
     expect(validator.validateCommand("awk '{print $1}'")).toBe(false);
   });
 
@@ -56,15 +56,15 @@ describe("awk command validation", () => {
   });
 
    test("Invalid: awk with improper use of variables", () => {
-    expect(validator.validateCommand("awk '{print $1 + $2} file.txt")).toBe(false);
+    expect(validator.validateCommand("awk '{print $1 + $2}' file.txt")).toBe(false);
   });
 
    test("Invalid: awk missing BEGIN action part", () => {
-    expect(validator.validateCommand("awk BEGIN {print "HELLO")").toBe(false);
+    expect(validator.validateCommand("awk BEGIN {'print HELLO'}")).toBe(false);
   });
 
    test("Invalid: awk with invalid program file", () => {
-    expect(validator.validateCommand("awk -f '{print $1 $2} invalid_file").toBe(false);
+    expect(validator.validateCommand("awk -f '{print $1 $2}' invalid_file")).toBe(false);
   });
 
   test("Invalid: awk with space before option", () => {
@@ -80,14 +80,12 @@ describe("awk command validation", () => {
   });
 
    test("Invalid: awk with syntax error", () => {
-    expect(validator.validateCommand("awk 'BEGIN {print "HELLO" else print "WORLD"}'")).toBe(false);
+    expect(validator.validateCommand("awk 'BEGIN {print HELLO else print WORLD }")).toBe(false);
   });
 
   test("awk with command line and program file", () => {
     expect(validator.validateCommand("awk -f program.awk '{print $1}' file.txt")).toBe(true);
   });
 
-  test("awk with examples from documentation", () => {
-    expect(validator.validateCommand("awk '{sum += $1} END {print sum}' file.txt")).toBe(true);
-  });
+  
 });

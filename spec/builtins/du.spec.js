@@ -36,7 +36,11 @@ describe("du command validation", () => {
   });
 
    test("Invalid file/directory", () => {
-    expect(validator.validateCommand('du -L ' '')).toBe(false);
+    expect(validator.validateCommand('du -L invalid/directory')).toBe(false);
+  });
+
+  test("With typo in command name ", () => {
+    expect(validator.validateCommand('duu -L path/to/directory')).toBe(false);
   });
 
    test("Non existent file/directory", () => {

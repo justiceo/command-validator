@@ -51,6 +51,10 @@ describe("ln command validation", () => {
     expect(validator.validateCommand("ln -s ")).toBe(false);
   });
 
+  test("Invalid: Wrong command name", () => {
+    expect(validator.validateCommand("lnn file.txt link_to_file.txt")).toBe(false);
+  });
+
   test("Verbose output while creating links", () => {
     expect(validator.validateCommand("ln -v file1.txt link_to_file1.txt")).toBe(true);
   });

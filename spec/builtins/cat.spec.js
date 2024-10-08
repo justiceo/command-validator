@@ -44,11 +44,11 @@ describe("cat command validation", () => {
   });
 
   test("cat with pipe usage", () => {
-    expect(validator.validateCommand("cat file.txt | grep "text"")).toBe(true);
+    expect(validator.validateCommand("cat file.txt | grep text")).toBe(true);
   });
   
   test("cat with incorrect pipe usage", () => {
-    expect(validator.validateCommand("cat file.txt || grep "text"")).toBe(false);
+    expect(validator.validateCommand("cat file.txt || grep text")).toBe(false);
   });
 
   test("cat with escaped space in filename", () => {
@@ -63,12 +63,8 @@ describe("cat command validation", () => {
     expect(validator.validateCommand("cat 'unmatched")).toBe(false);
   });
 
-  test("Invalid: cat with empty file name", () => {
-    expect(validator.validateCommand("cat " "")).toBe(false);
-  });
-
   test("Invalid: cat with incorrect output redirect", () => {
-    expect(validator.validateCommand("cat file.txt >"cat )).toBe(false);
+    expect(validator.validateCommand("cat file.txt >cat"  )).toBe(false);
   });
 
   test("Invalid: cat with space before option", () => {

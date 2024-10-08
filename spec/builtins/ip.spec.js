@@ -11,6 +11,10 @@ describe("ip command validation", () => {
     expect(validator.validateCommand("ip addr")).toBe(true);
   });
 
+  test("Invalid command name", () => {
+    expect(validator.validateCommand("ipp addr")).toBe(false);
+  });
+
   test("Invalid: With wrong object", () => {
     expect(validator.validateCommand("ip addrr")).toBe(false);
   });

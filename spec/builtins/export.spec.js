@@ -50,4 +50,8 @@ describe("export command validation", () => {
   test("Export without value", () => {
     expect(validator.validateCommand('export VAR')).toBe(true);
   });
+
+  test("Export with typo", () => {
+    expect(validator.validateCommand('exportt VAR')).toBe(false);
+  });
 });

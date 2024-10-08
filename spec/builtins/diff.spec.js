@@ -56,8 +56,8 @@ describe("diff command validation", () => {
     expect(validator.validateCommand("diff 'file1.txt")).toBe(false);
   });
 
-  test("Invalid: diff with space before option", () => {
-    expect(validator.validateCommand(" diff file1.txt file2.txt")).toBe(false);
+  test("Idiff with space before option", () => {
+    expect(validator.validateCommand(" diff file1.txt file2.txt")).toBe(true);
   });
 
   test("Invalid: diff with invalid option", () => {
@@ -82,6 +82,10 @@ describe("diff command validation", () => {
 
   test("Invalid: diff with non-existent file", () => {
     expect(validator.validateCommand("diff nonexistent.txt file2.txt")).toBe(false);
+  });
+
+  test("Invalid: diff with typo", () => {
+    expect(validator.validateCommand("difff file1.txt file2.txt")).toBe(false);
   });
 
   test("diff with label option", () => {

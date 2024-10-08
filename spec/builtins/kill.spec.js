@@ -23,6 +23,10 @@ describe("kill command validation", () => {
     expect(validator.validateCommand("kill -9 1234")).toBe(true);
   });
 
+  test("kill with invalid command name", () => {
+    expect(validator.validateCommand("kiill -9 1234")).toBe(false);
+  });
+
   test("kill with signal name", () => {
     expect(validator.validateCommand("kill -TERM 1234")).toBe(true);
   });

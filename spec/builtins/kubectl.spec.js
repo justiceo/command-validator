@@ -75,6 +75,10 @@ describe("kubectl command validation", () => {
     expect(validator.validateCommand(" kubectl --logtostderr")).toBe(true);
   });
 
+  test("kubectl with incorrect command name", () => {
+    expect(validator.validateCommand(" kubectll --logtostderr")).toBe(false);
+  });
+
   test("kubectl with multiple options", () => {
     expect(validator.validateCommand("kubectl --context=my-context --namespace=default")).toBe(true);
   });
