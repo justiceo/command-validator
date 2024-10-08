@@ -56,10 +56,10 @@ EXAMPLE
     more -c file.txt
 
 AUTHOR
-    Written by David MacKenzie.
+    Written by Eric Shienbrood, UC Berkeley.
 
 REPORTING BUGS
-    Report bugs to <bug-coreutils@gnu.org>.
+    Report bugs to <https://github.com/util-linux/util-linux/issues.>.
 
 SEE ALSO
     more - GNU Coreutils Documentation: https://www.gnu.org/software/coreutils/manual/html_node/more-invocation.html

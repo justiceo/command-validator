@@ -62,4 +62,8 @@ describe("df command validation", () => {
   test("Do not invoke sync system call", () => {
     expect(validator.validateCommand('df --no-sync')).toBe(true);
   });
+
+  test("Do not invoke sync system call", () => {
+    expect(validator.validateCommand('dff -a')).toBe(false);
+  });
 });

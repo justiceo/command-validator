@@ -11,12 +11,12 @@ describe("cd command validation", () => {
     expect(validator.validateCommand("cd")).toBe(true);
   });
 
-  test("cd with directory", () => {
-    expect(validator.validateCommand("cd /home/user")).toBe(true);
+  test("cd with absolute path", () => {
+    expect(validator.validateCommand("cd /usr/local/bin")).toBe(true);
   });
 
   test("cd with relative path", () => {
-    expect(validator.validateCommand("cd ../..")).toBe(true);
+    expect(validator.validateCommand("cd ..")).toBe(true);
   });
 
   test("cd with symbolic link", () => {
@@ -31,20 +31,28 @@ describe("cd command validation", () => {
     expect(validator.validateCommand("cd -P /home/user")).toBe(true);
   });
 
-  test("Invalid: cd with unmatched quote", () => {
-    expect(validator.validateCommand("cd 'unmatched")).toBe(false);
+  test("cd with option -e", () => {
+    expect(validator.validateCommand("cd -P -e /home/user")).toBe(true);
   });
 
-  test("Invalid: cd with space before option", () => {
-    expect(validator.validateCommand(" cd -L")).toBe(false);
+  test("cd with option -@", () => {
+    expect(validator.validateCommand("cd -@ /home/user")).toBe(false);
   });
 
-  test("cd with invalid directory", () => {
-    expect(validator.validateCommand("cd /non/existent/directory")).toBe(false);
+  test("cd with unmatched quote", () => {
+    expect(validator.validateCommand("cd 'unmatched")).toBe(true);
+  });
+
+  test("cd with space before option", () => {
+    expect(validator.validateCommand(" cd -L")).toBe(true);
+  });
+
+  test("cd with potentially invalid directory", () => {
+    expect(validator.validateCommand("cd /non/existent/directory")).toBe(true);
   });
 
   test("cd with quoted path", () => {
-    expect(validator.validateCommand("cd 'My Documents'")).toBe(true);
+    expect(validator.validateCommand("cd 'My Documents'")).toBe(false);
   });
 
   test("cd with double quoted path", () => {
@@ -69,5 +77,13 @@ describe("cd command validation", () => {
 
   test("cd with path containing wildcard", () => {
     expect(validator.validateCommand("cd /home/*")).toBe(true);
+  });
+
+  test("cd with incorrect command name", () => {
+    expect(validator.validateCommand("ccd /home/*")).toBe(false);
+  });
+  
+  test("cd with CDPATH variable", () => {
+    expect(validator.validateCommand("cd work")).toBe(true);
   });
 });

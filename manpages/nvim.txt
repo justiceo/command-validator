@@ -1,0 +1,63 @@
+NAME
+       nvim -- edit text
+
+SYNOPSIS
+       nvim [options] [file ...]
+       nvim [options] -
+       nvim [options] -t tag
+       nvim [options] -q [errorfile]
+
+DESCRIPTION
+       nvim  is	a text editor based on Vim.  Start nvim	followed by any	number of options and/or files:
+
+OPTIONS
+       -t tag	   		Finds tag in the tags file, the associated file becomes the current file and the associated command is executed. 
+       -q [errorfile]		QuickFix  mode. Display the first error in errorfile. If errorfile is omitted, the value of the 'errorfile' option is used (defaults to errors.err).
+       --	   		End of options. Remaining arguments are treated as literal file	names, including filenames starting with hyphen	(`-').
+       -e	   		Ex mode, reading stdin as Ex commands.
+       -E	   		Ex mode, reading stdin as text.
+       -es	   		Silent (non-interactive) Ex mode, reading stdin as Ex commands. Useful for scripting because it does NOT start aUI, unlike -e.
+       -Es	   		Silent (non-interactive) Ex mode, reading  stdin  as texts.	
+       -d	   		Diff mode. Show the difference between two to eight files, similar to sdiff(1).
+       -R	   		Read-only  mode.  Sets the 'readonly' option.  Implies -n
+       -m	   		Resets the 'write' option, to disable  file modifications.
+       -M	   		Resets the 'write' and  'modifiable' options, to disable file and buffer modifications.
+       -b	   		Binary mode.
+       -A	   		Arabic mode. Sets the 'arabic' option.
+       -H	   		Hebrew mode. Sets the 'hkmap' and 'rightleft' options.
+       -V[N][file]		Verbose  mode. Prints debug messages. N is the 'verbose' level, defaults to 10.  If file is specified,  append  messages to file instead of printing them.
+       -D	   		Vimscript debug  mode. Started when executing the first	command from a script.
+       -n	   		Disable the use of swap files.  Sets the 'updatecount' option to  0. Can be useful for editing files on	a slow medium.
+       -r [file]   		Recovery mode. If file is omitted then list swap files with recovery information. Otherwise the swap file file is used to recover a crashed session.
+       -L [file]   		Alias for -r.
+       -u vimrc	   		Use vimrc instead of the default  ~/.config/nvim/init.vim.
+       -i shada	   		Use shada instead of the default ~/.local/state/nvim/shada/main.shada. If shada is NONE not read or write a ShaDa file.
+       --noplugin 	 	Skip loading plugins. Implied by -u NONE.
+       --clean	   		Start Nvim with "factory defaults" (no user config and plugins, no shada).
+       -o[N]	   		Open N windows stacked horizontally. If N is omitted, open one window for each file. If N is less than the number file arguments, allocate windows for the first N files and hide the rest.
+       -O[N]	   		Like -o, but tile windows vertically.
+       -p[N]	   		Like -o, but for tab pages.
+       +[linenum]  		For the first file, position the cursor on line linenum
+       +/[pattern]		For the first file, position the cursor on the first occurrence of pattern.
+       +command, -c command	Execute command after reading the first file. Up to 10 instances allowed.
+       --cmd command		Like -c, but execute command before processing any vimrc
+       -l script [args]		Execute Lua script with optional [args] after processing any preceding Nvim startup arguments. 
+       -S [session]		Execute session after the first file argument has been read. If session filename ends with .lua it is executed as Lua instead of Vimscript.
+       -s scriptin		Read normal mode commands from scriptin.  The same can be done	with the command :source! scriptin. 
+       -w scriptout		Append all typed characters to scriptout. Can be used for creating a script to	be used	with -s	or :source!.
+       -W scriptout		Like -w, but truncate scriptout.
+       --startuptime file	During  startup, append timing messages to file. Can be used to diagnose slow startup times.
+       --api-info  		Dump API metadata serialized to msgpack and exit.
+       --embed	   		Use standard input and standard output as a  msgpack-channel.
+       --headless  		Do not start a UI.  When supplied with --embed this implies that the embedding application does	not intend to (immediately) start a UI.
+       --listen	address		Start RPC server on this pipe or TCP socket.
+       -h, --help  		Print usage information and exit.
+       -v, --version		Print version information and exit.
+
+
+AUTHORS
+       Started by Thiago de Arruda.  Most of Vim was written by Bram
+       Moolenaar.  Vim is based	on Stevie, worked on  by  Tim  Thompson,  Tony
+       Andrews,	and G.R. (Fred)	Walter.
+
+

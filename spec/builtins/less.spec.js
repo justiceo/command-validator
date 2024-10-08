@@ -47,8 +47,11 @@ describe("less command validation", () => {
     expect(validator.validateCommand("less")).toBe(false);
   });
 
+  test("Invalid: With typo in command name", () => {
+    expect(validator.validateCommand("lesss file.txt")).toBe(false);
+  });
+
   test("Suppress terminal bell", () => {
     expect(validator.validateCommand("less -q file.txt")).toBe(true);
   });
 });
-

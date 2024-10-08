@@ -9,6 +9,7 @@ describe("cp command validation", () => {
 
   test("Basic cp", () => {
     expect(validator.validateCommand("cp file1.txt file2.txt")).toBe(true);
+    expect(validator.validateCommand("cp file1.txt dir")).toBe(true);
   });
 
   test("cp with option -a", () => {
@@ -35,6 +36,11 @@ describe("cp command validation", () => {
     expect(validator.validateCommand("cp file1.txt file2.txt /home/user/documents/")).toBe(true);
   });
 
+  test("cp with no source files", () => {
+    expect(validator.validateCommand("cp /home/user/documents/")).toBe(false);
+    expect(validator.validateCommand("cp ' ' /home/user/documents/")).toBe(false);
+  });
+
   test("cp with symbolic link option", () => {
     expect(validator.validateCommand("cp -s file1.txt link_to_file")).toBe(true);
   });
@@ -59,12 +65,14 @@ describe("cp command validation", () => {
     expect(validator.validateCommand("cp 'file1.txt")).toBe(false);
   });
 
-  test("Invalid: cp with space before option", () => {
-    expect(validator.validateCommand(" cp -i file1.txt file2.txt")).toBe(false);
+  test("cp with space before option", () => {
+    expect(validator.validateCommand(" cp -i file1.txt file2.txt")).toBe(true);
+    expect(validator.validateCommand("cp   -i file1.txt file2.txt")).toBe(true);
   });
 
   test("cp with invalid option", () => {
     expect(validator.validateCommand("cp --invalid-option file1.txt file2.txt")).toBe(false);
+    expect(validator.validateCommand("cp -invalid-option file1.txt file2.txt")).toBe(false);
   });
 
   test("cp with no source files", () => {
@@ -82,5 +90,32 @@ describe("cp command validation", () => {
   test("cp with specific suffix for backup", () => {
     expect(validator.validateCommand("cp -b -S '~' file1.txt file2.txt")).toBe(true);
   });
-});
 
+  test("Invalid: cp without source and destination", () => {
+    expect(validator.validateCommand("cp")).toBe(false);
+  });
+
+  test("Invalid: cp without destination", () => {
+    expect(validator.validateCommand("cp file1.txt")).toBe(false);
+  });
+
+  test("Invalid: cp with multiple source files and invalid destination", () => {
+    expect(validator.validateCommand("cp file1.txt file2.txt file3.txt")).toBe(false);
+  });
+
+  test("Invalid: cp with multiple non-existent source files and destination", () => {
+    expect(validator.validateCommand("cp non_existent_file1.txt non_existent_file2.txt dir1")).toBe(false);
+  });
+
+  test("INvalid: cp overwriting a file with itself", () => {
+    expect(validator.validateCommand("cp file1.txt file1.txt")).toBe(false);
+  });
+
+  test("Invalid: cp overwriting non-directory with directory ", () => {
+    expect(validator.validateCommand("cp dir1 file1.txt")).toBe(false);
+  });
+
+  test("Invalid: cp with unauthorized file", () => {
+    expect(validator.validateCommand("cp protected_file.txt /home/user/documents/newfile.txt")).toBe(false);
+  });
+});

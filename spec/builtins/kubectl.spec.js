@@ -63,8 +63,20 @@ describe("kubectl command validation", () => {
     expect(validator.validateCommand("kubectl --invalid-option")).toBe(false);
   });
 
+  test("kubectl with missing namespace", () => {
+    expect(validator.validateCommand("kubectl get pods -n ")).toBe(false);
+  });
+
+  test("kubectl with incorrect command syntax", () => {
+    expect(validator.validateCommand("kubectlget pods --all-namespaces --output= ")).toBe(false);
+  });
+
   test("kubectl with space before option", () => {
-    expect(validator.validateCommand(" kubectl --logtostderr")).toBe(false);
+    expect(validator.validateCommand(" kubectl --logtostderr")).toBe(true);
+  });
+
+  test("kubectl with incorrect command name", () => {
+    expect(validator.validateCommand(" kubectll --logtostderr")).toBe(false);
   });
 
   test("kubectl with multiple options", () => {

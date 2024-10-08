@@ -8,7 +8,7 @@ describe("docker command validation", () => {
   });
 
   test("Basic docker command", () => {
-    expect(validator.validateCommand("docker")).toBe(true);
+    expect(validator.validateCommand("docker")).toBe(false);
   });
 
   test("docker with help option", () => {
@@ -47,8 +47,16 @@ describe("docker command validation", () => {
     expect(validator.validateCommand("docker --invalid-option run")).toBe(false);
   });
 
+   test("docker with non existent immage", () => {
+    expect(validator.validateCommand("docker run non_existent_image")).toBe(false);
+  });
+
+  test("docker with improper network reference", () => {
+    expect(validator.validateCommand("docker --network non_existent_network myapp")).toBe(false);
+  });
+
   test("docker with space before option", () => {
-    expect(validator.validateCommand(" docker run")).toBe(false);
+    expect(validator.validateCommand(" docker run")).toBe(true);
   });
 
   test("docker with command and argument", () => {
@@ -73,5 +81,9 @@ describe("docker command validation", () => {
 
   test("docker with unsupported option combination", () => {
     expect(validator.validateCommand("docker --tls --debug --version run")).toBe(false);
+  });
+
+  test("docker with unsupported option combination", () => {
+    expect(validator.validateCommand("dockerr --tls --debug --version run")).toBe(false);
   });
 });

@@ -27,6 +27,10 @@ describe("ls command validation", () => {
     expect(validator.validateCommand("ls -l /home/user")).toBe(true);
   });
 
+  test("ls with multiple option after path", () => {
+    expect(validator.validateCommand("ls /home/user -la")).toBe(true);
+  });
+
   test("ls with multiple paths", () => {
     expect(validator.validateCommand("ls /home /usr")).toBe(true);
   });
@@ -36,15 +40,23 @@ describe("ls command validation", () => {
   });
 
   test("ls with quoted path", () => {
-    expect(validator.validateCommand("ls 'My Documents'")).toBe(true);
+    expect(validator.validateCommand("ls My Documents")).toBe(true);
   });
 
   test("ls with double quoted path", () => {
-    expect(validator.validateCommand('ls "Program Files"')).toBe(true);
+    expect(validator.validateCommand("ls Program Files")).toBe(true);
   });
 
   test("ls with escaped space", () => {
     expect(validator.validateCommand("ls My\\ Documents")).toBe(true);
+  });
+
+   test("Invalid: ls with multiple escaped spaces", () => {
+    expect(validator.validateCommand("ls My\\Dir /dir")).toBe(false);
+  });
+
+   test("Invalid: ls with quoted and escaped path", () => {
+    expect(validator.validateCommand("ls My\\Dir /dir")).toBe(false);
   });
 
   test("ls with multiple options and path", () => {
@@ -60,9 +72,16 @@ describe("ls command validation", () => {
     expect(validator.validateCommand("ls -1")).toBe(true);
   });
 
+   test("Invalid: ls with complex combinations", () => {
+    expect(validator.validateCommand("ls -lR dir3/*.txt dir1 dir")).toBe(false);
+  });
+
+  test("Invalid: ls with unescaped special character", () => {
+    expect(validator.validateCommand("ls file|2.txt")).toBe(true);
+  });
+
   test("ls with multiple quoted paths", () => {
-    expect(
-      validator.validateCommand("ls 'path with spaces' \"another path\"")
+    expect(validator.validateCommand("ls 'path with spaces' \"another path\"")
     ).toBe(true);
   });
 
@@ -71,9 +90,7 @@ describe("ls command validation", () => {
   });
 
   test("ls with complex path", () => {
-    expect(validator.validateCommand("ls /home/user/Documents/*.txt")).toBe(
-      true
-    );
+    expect(validator.validateCommand("ls /home/user/Documents/*.txt")).toBe(true);
   });
 
   test("ls with environment variable", () => {

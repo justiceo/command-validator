@@ -11,6 +11,10 @@ describe("head command validation", () => {
     expect(validator.validateCommand("head file.txt")).toBe(true);
   });
 
+  test("Without input file", () => {
+    expect(validator.validateCommand("head")).toBe(false);
+  });
+
   test("Display first n lines of a file", () => {
     expect(validator.validateCommand("head -n 20 file.txt")).toBe(true);
   });
@@ -37,6 +41,10 @@ describe("head command validation", () => {
 
   test("Display help message", () => {
     expect(validator.validateCommand("head --help")).toBe(true);
+  });
+
+  test("Typo in command", () => {
+    expect(validator.validateCommand("heaad --help")).toBe(false);
   });
 
   test("Display version information", () => {

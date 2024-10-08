@@ -15,6 +15,14 @@ describe("grep command validation", () => {
     expect(validator.validateCommand('grep -r "function" /path/to/code')).toBe(true);
   });
 
+  test("Without option, pattern or file", () => {
+    expect(validator.validateCommand('grep')).toBe(false);
+  });
+
+  test("Unquoted pattern with spaces", () => {
+    expect(validator.validateCommand('grep unquoted pattern file.txt')).toBe(false);
+  });
+
   test("Ignore case distinctions", () => {
     expect(validator.validateCommand('grep -i "ERROR" logfile.txt')).toBe(true);
   });
@@ -65,6 +73,10 @@ describe("grep command validation", () => {
 
   test("Invalid option usage", () => {
     expect(validator.validateCommand('grep --invalid-option')).toBe(false);
+  });
+
+  test("Invalid command name", () => {
+    expect(validator.validateCommand('grepp -w "word" file.txt')).toBe(false);
   });
 
   test("Print version information", () => {

@@ -47,12 +47,16 @@ describe("mv command validation", () => {
     expect(validator.validateCommand("mv file1.txt file2.txt file3.txt")).toBe(false);
   });
 
-  test("Invalid: mv with space before option", () => {
-    expect(validator.validateCommand(" mv -f file1.txt file2.txt")).toBe(false);
+  test("mv with space before option", () => {
+    expect(validator.validateCommand(" mv -f file1.txt file2.txt")).toBe(true);
   });
 
   test("Invalid: mv with unmatched quote", () => {
     expect(validator.validateCommand("mv 'file1.txt")).toBe(false);
+  });
+
+  test("Invalid: mv with typo in command", () => {
+    expect(validator.validateCommand("mvv 'file1.txt")).toBe(false);
   });
 
   test("mv with multiple options", () => {

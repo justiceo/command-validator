@@ -52,6 +52,18 @@ describe("useradd command validation", () => {
     expect(validator.validateCommand("useradd")).toBe(false);
   });
 
+  test("Invalid: single useradd with duplicate username", () => {
+    expect(validator.validateCommand("useradd username username")).toBe(false);
+  });
+
+  test("Invalid: useradd without permission", () => {
+    expect(validator.validateCommand("useradd username")).toBe(false);
+  });
+
+  test("Invalid: useradd with typo", () => {
+    expect(validator.validateCommand("useraddd username")).toBe(false);
+  });
+
   test("Invalid: useradd with invalid option", () => {
     expect(validator.validateCommand("useradd --invalid-option username")).toBe(false);
   });

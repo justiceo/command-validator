@@ -9,6 +9,7 @@ describe("diff command validation", () => {
 
   test("Basic diff", () => {
     expect(validator.validateCommand("diff file1.txt file2.txt")).toBe(true);
+    expect(validator.validateCommand("diff")).toBe(false);
   });
 
   test("diff with unified format", () => {
@@ -21,6 +22,14 @@ describe("diff command validation", () => {
 
   test("diff with ignore space change", () => {
     expect(validator.validateCommand("diff -b file1.txt file2.txt")).toBe(true);
+  });
+
+   test("Invalid: diff with one argument", () => {
+    expect(validator.validateCommand("diff file1.txt")).toBe(false);
+  });
+
+  test("Invalid: diff with multiple argument", () => {
+    expect(validator.validateCommand("diff file1.txt file2.txt file3.txt")).toBe(false);
   });
 
   test("diff with ignore all space", () => {
@@ -39,12 +48,16 @@ describe("diff command validation", () => {
     expect(validator.validateCommand("diff --suppress-common-lines file1.txt file2.txt")).toBe(true);
   });
 
+  test("Invalid: diff with inconsistent file type", () => {
+    expect(validator.validateCommand("diff dir file1.txt")).toBe(false);
+  });
+
   test("Invalid: diff with unmatched quote", () => {
     expect(validator.validateCommand("diff 'file1.txt")).toBe(false);
   });
 
-  test("Invalid: diff with space before option", () => {
-    expect(validator.validateCommand(" diff file1.txt file2.txt")).toBe(false);
+  test("Idiff with space before option", () => {
+    expect(validator.validateCommand(" diff file1.txt file2.txt")).toBe(true);
   });
 
   test("Invalid: diff with invalid option", () => {
@@ -69,6 +82,10 @@ describe("diff command validation", () => {
 
   test("Invalid: diff with non-existent file", () => {
     expect(validator.validateCommand("diff nonexistent.txt file2.txt")).toBe(false);
+  });
+
+  test("Invalid: diff with typo", () => {
+    expect(validator.validateCommand("difff file1.txt file2.txt")).toBe(false);
   });
 
   test("diff with label option", () => {

@@ -35,6 +35,18 @@ describe("du command validation", () => {
     expect(validator.validateCommand('du -L directory/')).toBe(true);
   });
 
+   test("Invalid file/directory", () => {
+    expect(validator.validateCommand('du -L invalid/directory')).toBe(false);
+  });
+
+  test("With typo in command name ", () => {
+    expect(validator.validateCommand('duu -L path/to/directory')).toBe(false);
+  });
+
+   test("Non existent file/directory", () => {
+    expect(validator.validateCommand('du /path/to/non/existent/file')).toBe(true);
+  });
+
   test("Exclude specific patterns", () => {
     expect(validator.validateCommand('du --exclude="*.o"')).toBe(true);
   });

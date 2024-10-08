@@ -31,6 +31,15 @@ describe("unalias command validation", () => {
     expect(validator.validateCommand("unalias 'ls")).toBe(false);
   });
 
+  test("Invalid command: wrong syntax", () => {
+    expect(validator.validateCommand("unalias alias_name=command")).toBe(false);
+  });
+
+  test("Invalid command: with typo", () => {
+    expect(validator.validateCommand("unaliaas alias_name")).toBe(false);
+  });
+
+
   test("Attempt to remove a non-existent alias", () => {
     expect(validator.validateCommand("unalias non_existent_alias")).toBe(true); // Assuming it doesn't fail if alias doesn't exist
   });

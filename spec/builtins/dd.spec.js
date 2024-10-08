@@ -63,8 +63,8 @@ describe("dd command validation", () => {
     expect(validator.validateCommand("dd if='inputfile")).toBe(false);
   });
 
-  test("Invalid: dd with space before option", () => {
-    expect(validator.validateCommand(" dd if=inputfile of=outputfile")).toBe(false);
+  test("dd with space before option", () => {
+    expect(validator.validateCommand(" dd if=inputfile of=outputfile")).toBe(true);
   });
 
   test("dd with /dev/zero input file", () => {

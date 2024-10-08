@@ -46,4 +46,16 @@ describe("uptime command validation", () => {
   test("Invalid: uptime with invalid option", () => {
     expect(validator.validateCommand("uptime --invalid-option")).toBe(false);
   });
+
+   test("Invalid: uptime with invalid argument", () => {
+    expect(validator.validateCommand("uptime file.txt")).toBe(false);
+  });
+
+   test("Invalid: uptime with typo", () => {
+    expect(validator.validateCommand("uptimee -s")).toBe(false);
+  });
+  
+  test("Invalid: uptime option without declarator", () => {
+    expect(validator.validateCommand("uptimee s")).toBe(false);
+  });
 });

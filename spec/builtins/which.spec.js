@@ -55,6 +55,10 @@ describe("which command validation", () => {
     expect(validator.validateCommand("which ls extra")).toBe(false);
   });
 
+  test("Invalid: which with typo", () => {
+    expect(validator.validateCommand("whichh ls")).toBe(false);
+  });
+
   test("Invalid: which with space before command", () => {
     expect(validator.validateCommand(" which ls")).toBe(false);
   });

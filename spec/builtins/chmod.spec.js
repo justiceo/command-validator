@@ -21,8 +21,24 @@ describe("chmod command validation", () => {
     expect(validator.validateCommand("chmod u+x,g-w file.txt")).toBe(true);
   });
 
+   test("Invalid: Change with invalid octal value", () => {
+    expect(validator.validateCommand("chmod 9 file.txt")).toBe(false);
+  });
+
+  test("Invalid: Change with invalid symbolic mode", () => {
+    expect(validator.validateCommand("chmod u+xg file.txt")).toBe(false);
+  });
+
   test("Change permissions using reference file", () => {
     expect(validator.validateCommand("chmod --reference=reffile.txt file.txt")).toBe(true);
+  });
+
+  test("Invalid: Wrong order of arguments", () => {
+    expect(validator.validateCommand("chmod file.txt 755")).toBe(false);
+  });
+
+  test("Invalid: Spaces in permission", () => {
+    expect(validator.validateCommand("chmod 7 5 5 file.txt")).toBe(false);
   });
 
   test("Recursive change of permissions", () => {

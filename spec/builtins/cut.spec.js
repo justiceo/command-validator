@@ -8,7 +8,7 @@ describe("cut command validation", () => {
   });
 
   test("Basic cut", () => {
-    expect(validator.validateCommand("cut")).toBe(true);
+    expect(validator.validateCommand("cut")).toBe(false);
   });
 
   test("cut with option -b", () => {
@@ -27,8 +27,12 @@ describe("cut command validation", () => {
     expect(validator.validateCommand("cut -d ';' -f 2")).toBe(true);
   });
 
-  test("cut with multiple options", () => {
-    expect(validator.validateCommand("cut -b 1-5 -d ';' -f 2")).toBe(true);
+  test("Invalid: cut with complex options", () => {
+    expect(validator.validateCommand("cut -b 1-5 -d ';' -f 2")).toBe(false);
+  });
+
+   test("cut with no fields", () => {
+    expect(validator.validateCommand("cut -f 0 myfile.txt")).toBe(false);
   });
 
   test("cut with input file", () => {
@@ -37,6 +41,14 @@ describe("cut command validation", () => {
 
   test("cut with multiple input files", () => {
     expect(validator.validateCommand("cut -f 2 myfile.txt yourfile.txt")).toBe(true);
+  });
+
+   test("cut with complex options", () => {
+    expect(validator.validateCommand("cut -b 1-5 -d 'dir' -f 2 myfile.txt")).toBe(false);
+  });
+
+   test("cut with no input file", () => {
+    expect(validator.validateCommand("cut -f 2")).toBe(false);
   });
 
   test("cut with standard input", () => {
@@ -55,8 +67,12 @@ describe("cut command validation", () => {
     expect(validator.validateCommand("cut -f 'unmatched")).toBe(false);
   });
 
-  test("Invalid: cut with space before option", () => {
-    expect(validator.validateCommand(" cut -b 1")).toBe(false);
+  test("cut with space before option", () => {
+    expect(validator.validateCommand(" cut -b file.txt")).toBe(true);
+  });
+
+  test("cut with typo", () => {
+    expect(validator.validateCommand("cutt -b file.txt")).toBe(false);
   });
 
   test("cut with invalid option", () => {

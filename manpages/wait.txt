@@ -5,14 +5,24 @@ DESCRIPTION
     The wait command waits for a specified process to complete.
 
 SYNOPSIS
-    wait [n ...]
+    #include <sys/wait.h>
+    pid_t wait(int *stat_loc);
+    pid_t waitpid(pid_t pid, int *stat_loc, int options);
 
 OPTIONS
-    n   A process ID or a job specification
+    WNOHANG     		return immediately if no child has exited.
+    WUNTRACED   		also return if a child has stopped (but not traced via ptrace(2)). Status for traced children which have stopped is provided even if this option is not specified.
+    WCONTINUED 			(since Linux 2.6.10)also return if a stopped child has been resumed by delivery of SIGCONT.
+    WIFEXITED(wstatus)		returns true if the child terminated normally, that is, by calling exit(3) or _exit(2), or by returning from main().
+    WEXITSTATUS(wstatus)	returns  the  exit  status  of  the child.  This consists of the least significant 8 bits of the status argument that  the  child
+              			specified in a call to exit(3) or _exit(2) or as the argument for a return statement in main().  This macro should be employed only if WIFEXITED returned true.
+    WIFSIGNALED(wstatus)	returns true if the child process was terminated by a signal.
+    WTERMSIG(wstatus)		returns the number of the signal that caused the child process to terminate. This macro should be employed only if WIFSIGNALED returned true.
+    WCOREDUMP(wstatus)		returns true if the child produced a core dump (see core(5)). This macro should be employed only if WIFSIGNALED returned true.
+    WIFSTOPPED(wstatus)		returns true if the child process was stopped by delivery of a signal;  this is possible only if the call was done using WUNTRACED or when the child is being traced.
+    WSTOPSIG(wstatus)		returns the number of the signal which caused the child to stop. This macro should be employed only if WIFSTOPPED returned true.
+    WIFCONTINUED(wstatus)	(since  Linux  2.6.10) returns true if the child process was resumed by delivery of SIGCONT.
 
-EXAMPLE
-    wait 1234
-    wait
 
 AUTHOR
     Written by David MacKenzie.

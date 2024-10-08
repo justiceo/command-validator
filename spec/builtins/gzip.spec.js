@@ -47,8 +47,24 @@ describe("gzip command validation", () => {
     expect(validator.validateCommand("gzip --invalid-option")).toBe(false);
   });
 
+  test("With non existent file", () => {
+    expect(validator.validateCommand("gzip non_existent_file")).toBe(false);
+  });
+
+  test("Missing compression type", () => {
+    expect(validator.validateCommand("gzip")).toBe(false);
+  });
+
+  test("Uncompress non-zip file", () => {
+    expect(validator.validateCommand("gunzip non_zip_file")).toBe(false);
+  });
+
   test("Display help message", () => {
     expect(validator.validateCommand("gzip --help")).toBe(true);
+  });
+
+  test("Typo in command name", () => {
+    expect(validator.validateCommand("gziip --help")).toBe(false);
   });
 
   test("Display version information", () => {

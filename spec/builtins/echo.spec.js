@@ -54,4 +54,20 @@ describe("echo command validation", () => {
   test("Empty string", () => {
     expect(validator.validateCommand('echo')).toBe(true);
   });
+
+   test("Using pipe character", () => {
+    expect(validator.validateCommand('echo | cat file.txt')).toBe(true);
+  });
+
+   test("Empty string", () => {
+    expect(validator.validateCommand('echo')).toBe(true);
+  });
+
+   test("With unmatched quoute", () => {
+    expect(validator.validateCommand('echo Hello world')).toBe(false);
+  });
+
+  test("With typo in command", () => {
+    expect(validator.validateCommand('eccho Hello world')).toBe(false);
+  });
 });

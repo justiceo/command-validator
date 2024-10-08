@@ -15,6 +15,14 @@ describe("free command validation", () => {
     expect(validator.validateCommand('free -h')).toBe(true);
   });
 
+  test("Invalid: Combining option with invalid argument ", () => {
+    expect(validator.validateCommand('free -h --shared')).toBe(false);
+  });
+
+  test("Invalid: With multiple unit option ", () => {
+    expect(validator.validateCommand('free -bb')).toBe(false);
+  });
+
   test("Display memory usage in bytes", () => {
     expect(validator.validateCommand('free -b')).toBe(true);
   });
@@ -25,6 +33,14 @@ describe("free command validation", () => {
 
   test("Display memory usage in mebibytes", () => {
     expect(validator.validateCommand('free -m')).toBe(true);
+  });
+
+  test("Invalid: Incorrect time argument ", () => {
+    expect(validator.validateCommand('free -s -2x')).toBe(false);
+  });
+
+  test("With invalid option declarator ", () => {
+    expect(validator.validateCommand('free --v')).toBe(false);
   });
 
   test("Display memory usage in gibibytes", () => {
@@ -61,5 +77,9 @@ describe("free command validation", () => {
 
   test("Invalid option handling", () => {
     expect(validator.validateCommand('free --invalid-option')).toBe(false);
+  });
+
+  test("Invalid command name", () => {
+    expect(validator.validateCommand('freee -option')).toBe(false);
   });
 });

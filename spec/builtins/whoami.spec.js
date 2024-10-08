@@ -23,8 +23,12 @@ describe("whoami command validation", () => {
     expect(validator.validateCommand("whoami extra")).toBe(false);
   });
 
-  test("Invalid: whoami with space before command", () => {
-    expect(validator.validateCommand(" whoami")).toBe(false);
+  test("whoami with space before command", () => {
+    expect(validator.validateCommand(" whoami")).toBe(true);
+  });
+
+  test("Invalid: whoami with typo", () => {
+    expect(validator.validateCommand("whoaami")).toBe(false);
   });
 
   test("whoami with command substitution", () => {

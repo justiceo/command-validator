@@ -39,6 +39,14 @@ describe("jobs command validation", () => {
     expect(validator.validateCommand("jobs 1234")).toBe(false);
   });
 
+  test("Invalid: List jobs with option after argument", () => {
+    expect(validator.validateCommand("jobs 1234 -p")).toBe(false);
+  });
+
+  test("Invalid: wrong command name", () => {
+    expect(validator.validateCommand("jobbs -p")).toBe(false);
+  });
+
   test("List jobs with additional valid options", () => {
     expect(validator.validateCommand("jobs -c -p")).toBe(true);
   });
